@@ -447,3 +447,6 @@ C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_Gis_Falcon\Net_Gis_Falcon
 C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_Gis_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Net_Gis_Falcon.pdb
 C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_Gis_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Net_Gis_Falcon.genruntimeconfig.cache
 C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_Gis_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\Index.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\Index.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\bin\Debug\net5.0\Npgsql.dll
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

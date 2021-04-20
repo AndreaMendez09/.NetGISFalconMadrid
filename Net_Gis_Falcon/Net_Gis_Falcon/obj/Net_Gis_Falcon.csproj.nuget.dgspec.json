@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj": {}
+    "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj": {}
   },
   "projects": {
-    "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj": {
+    "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
+        "projectUniqueName": "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
         "projectName": "Net_Gis_Falcon",
-        "projectPath": "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
-        "packagesPath": "C:\\Users\\raul\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\obj\\",
+        "projectPath": "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
+        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+        "outputPath": "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\raul\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[5.0.4, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.4, )"
@@ -63,6 +67,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.4, )"
             }
           },
           "imports": [
@@ -83,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
