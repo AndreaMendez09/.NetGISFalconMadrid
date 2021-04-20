@@ -13,70 +13,70 @@ namespace Net_GIS_Falcon.Shared
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
+#line 1 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
+#line 2 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
+#line 3 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
+#line 4 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
+#line 5 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
+#line 6 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
+#line 7 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
+#line 8 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
+#line 9 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
 using Net_GIS_Falcon;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
+#line 10 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\_Imports.razor"
 using Net_GIS_Falcon.Shared;
 
 #line default
@@ -90,16 +90,17 @@ using Net_GIS_Falcon.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 33 "C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_GIS_Falcon\Shared\NavMenu.razor"
-       
-    private bool collapseNavMenu = true;
+#line 76 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Shared\NavMenu.razor"
+           
+        private bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+        private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
+        private void ToggleNavMenu()
+        {
+            collapseNavMenu = !collapseNavMenu;
+        }
+    
 
 #line default
 #line hidden

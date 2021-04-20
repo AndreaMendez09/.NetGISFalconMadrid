@@ -1,12 +1,16 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">Net_GIS_Falcon</a>
+﻿<div class="top-row pl-4 navbar navbar-dark d-lg-none">
+    <a class="navbar-brand" href="">TodoList</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
+<!--<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+
+    <ul class="nav navbar-expand-lg">
+
+
+
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
@@ -24,19 +28,58 @@
         </li>
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="todo">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Login
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Todo
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="login">
+                <span class="bi bi-geo-alt-fill" aria-hidden="true"></span> Login
             </NavLink>
         </li>
     </ul>
+</div>-->
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Inicio
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Ver historial
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Gestión de usuarios
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="todo">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Gestión de preguntas
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="login">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Gestión de estados
+                </NavLink>
+            </li>
+        </ul>
+    </nav>
 </div>
 
-@code {
-    private bool collapseNavMenu = true;
+    @code {
+        private bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+        private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
+        private void ToggleNavMenu()
+        {
+            collapseNavMenu = !collapseNavMenu;
+        }
     }
-}
