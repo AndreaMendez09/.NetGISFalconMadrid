@@ -60,6 +60,40 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "Nombre")]
+            public string Name { get; set; }
+
+            [Required]
+            [Display(Name = "Apellido")]
+            public string Surname { get; set; }
+
+            [Required]
+            [DataType(DataType.PhoneNumber)]
+            [Display(Name = "NumeroDeTLF")]
+            public string PhoneNumber { get; set; }
+
+            [Required]
+            [Display(Name = "Genero")]
+            public string Gender { get; set; }
+
+            [Required]
+            [Display(Name = "Idioma")]
+            public string Language { get; set; }
+
+            [Required]
+            [Display(Name = "Direccion")]
+            public string Direction { get; set; }
+
+            [Required]
+            [Display(Name = "Municipio")]
+            public string Municipality { get; set; }
+
+            [Required]
+            [DataType(DataType.Date)]
+            [Display(Name = "FechaDeNacimiento")]
+            public string BirthDay { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
