@@ -117,12 +117,16 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                     connection.Open();
                     NpgsqlCommand cmd = new NpgsqlCommand();
                     cmd.Connection = connection;
-                    cmd.CommandText = "Insert into usuarios values(@id_usuario,@nombre,@genero)";
+                    cmd.CommandText = "Insert into personas values(@id_persona,@nombre,@apellido,@email,@genero,@idioma,@contraseña)";
                     cmd.CommandType = CommandType.Text;
 
-                    cmd.Parameters.Add(new NpgsqlParameter("@id_usuario", 8));
+                    cmd.Parameters.Add(new NpgsqlParameter("@id_persona", 1));
                     cmd.Parameters.Add(new NpgsqlParameter("@nombre", Input.Name.ToString()));
-                    cmd.Parameters.Add(new NpgsqlParameter("@genero", Input.Email.ToString()));
+                    cmd.Parameters.Add(new NpgsqlParameter("@apellido", Input.Surname.ToString()));
+                    cmd.Parameters.Add(new NpgsqlParameter("@email", Input.Email.ToString()));
+                    cmd.Parameters.Add(new NpgsqlParameter("@genero", Input.Gender.ToString()));
+                    cmd.Parameters.Add(new NpgsqlParameter("@idioma", Input.Language.ToString()));
+                    cmd.Parameters.Add(new NpgsqlParameter("@contraseña", Input.Password.ToString()));
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                     connection.Close();
