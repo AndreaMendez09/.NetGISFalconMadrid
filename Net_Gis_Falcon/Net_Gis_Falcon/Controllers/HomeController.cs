@@ -3,11 +3,13 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using Net_Gis_Falcon.Data;
 using Net_Gis_Falcon.Models;
-using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
+using Npgsql;
 
 namespace Net_Gis_Falcon.Controllers
 {
@@ -29,7 +31,7 @@ namespace Net_Gis_Falcon.Controllers
 
         public IActionResult Privacy()
         {
-            List<Usuario> usuarios = (from Usuarios in this.Context.Usuarios.Take(1) select Usuarios).ToList();
+            List<Usuario> usuarios = (from Usuarios in this.Context.Usuarios select Usuarios).ToList();
             /*String connectionString = "Data Source=localhost;" +
                "Initial Catalog=test;" +
                "User id=postgres;" +
@@ -62,10 +64,19 @@ namespace Net_Gis_Falcon.Controllers
 
         }
 
+        public IActionResult Register()
+        {
+            
+
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

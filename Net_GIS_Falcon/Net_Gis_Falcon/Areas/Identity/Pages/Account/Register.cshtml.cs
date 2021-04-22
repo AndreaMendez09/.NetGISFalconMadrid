@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -13,6 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Npgsql;
+using Microsoft.IdentityModel.Protocols;
 
 namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 {
@@ -104,7 +108,32 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            try
+            {
+                /* Insertion After Validations*/
+                using (NpgsqlConnection connection = new NpgsqlConnection())
+                {
+                    connection.ConnectionString = "host=localhost;port=5433;username=postgres;password=1234;database=demo";
+                    connection.Open();
+                    NpgsqlCommand cmd = new NpgsqlCommand();
+                    cmd.Connection = connection;
+                    cmd.CommandText = "Insert into usuarios values(@id_usuario,@nombre,@genero)";
+                    cmd.CommandType = CommandType.Text;
+
+                    cmd.Parameters.Add(new NpgsqlParameter("@id_usuario", 8));
+                    cmd.Parameters.Add(new NpgsqlParameter("@nombre", Input.Name.ToString()));
+                    cmd.Parameters.Add(new NpgsqlParameter("@genero", Input.Email.ToString()));
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                    connection.Close();
+                }
+            }
+            catch (Exception ex) {
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                Console.WriteLine(ex.Message.ToString());
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            }
+            /*returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
@@ -139,7 +168,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
-            }
+            }*/
 
             // If we got this far, something failed, redisplay form
             return Page();
