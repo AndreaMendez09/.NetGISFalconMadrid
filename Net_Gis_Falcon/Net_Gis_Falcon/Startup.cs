@@ -30,7 +30,7 @@ namespace Net_Gis_Falcon
             /*services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));*/
-            services.AddEntityFrameworkNpgsql().AddDbContext<ApplicationDbContext>(options =>
+            services.AddEntityFrameworkNpgsql().AddDbContext<testContext>(options =>
                 {
                     options.UseNpgsql(Configuration.GetConnectionString("SegundaConnection"));
                 });
@@ -38,7 +38,7 @@ namespace Net_Gis_Falcon
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<testContext>();
             services.AddControllersWithViews();
             //services.AddEntityFrameworkNpgsql
         }
