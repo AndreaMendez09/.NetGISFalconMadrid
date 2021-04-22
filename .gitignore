@@ -520,3 +520,12 @@ FodyWeavers.xsd
 *.tlog
 
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore,visualstudio,windows
+*.cache
+Net_Gis_Falcon/Net_Gis_Falcon/obj/Debug/net5.0/Net_Gis_Falcon.assets.cache
+Net_Gis_Falcon/Net_Gis_Falcon/obj/Debug/net5.0/Net_Gis_Falcon.csprojAssemblyReference.cache
+Net_Gis_Falcon/Net_Gis_Falcon/obj/Net_Gis_Falcon.csproj.nuget.dgspec.json
+Net_Gis_Falcon/Net_Gis_Falcon/obj/Net_Gis_Falcon.csproj.nuget.g.props
+Net_Gis_Falcon/Net_Gis_Falcon/obj/project.assets.json
+Net_Gis_Falcon/Net_Gis_Falcon/obj/project.nuget.cache
+Net_Gis_Falcon/Net_Gis_Falcon/appsettings.json
+*.cache
