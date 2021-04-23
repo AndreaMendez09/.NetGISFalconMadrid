@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Net_Gis_Falcon
 {
-    public partial class Usuario
+    public partial class Persona
     {
         public int IdPersona { get; set; }
         public string Nombre { get; set; }
@@ -15,7 +15,5 @@ namespace Net_Gis_Falcon
         public string Idioma { get; set; }
         public string Contraseña { get; set; }
         public string Foto { get; set; }
-        public string Municipio { get; set; }
-        public DateTime? FechaNacimiento { get; set; }
     }
 }

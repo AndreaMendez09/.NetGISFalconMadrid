@@ -529,3 +529,5 @@ Net_Gis_Falcon/Net_Gis_Falcon/obj/project.assets.json
 Net_Gis_Falcon/Net_Gis_Falcon/obj/project.nuget.cache
 Net_Gis_Falcon/Net_Gis_Falcon/appsettings.json
 *.cache
+Net_Gis_Falcon/Net_Gis_Falcon/bin/Debug/net5.0/appsettings.json
+*.config
