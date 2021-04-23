@@ -81,10 +81,19 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             try
             {
+                returnUrl ??= Url.Content("~/");
+
+                /*var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User logged in.");
+                    Console.WriteLine("User logged in.");
+                    return LocalRedirect(returnUrl);
+                }*/
                 /* Insertion After Validations*/
                 using (NpgsqlConnection connection = new NpgsqlConnection())
                 {
-                    connection.ConnectionString = "host=localhost;port=5433;username=postgres;password=1234;database=demo";
+                    connection.ConnectionString = "host=localhost;port=5432;username=postgres;password=ADMIN;database=test";
                     connection.Open();
                     NpgsqlCommand cmd = new NpgsqlCommand();
                     cmd.Connection = connection;
@@ -102,9 +111,10 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                     da.Fill(dt);
                     if(dt.Rows.Count > 0)
                     {
+                        Console.WriteLine("Entre");
                         cmd.Dispose();
                         connection.Close();
-                        return RedirectToPage("./Privacy");
+                        return LocalRedirect(returnUrl + "Home/Privacy");
                     }
 
                     

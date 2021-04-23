@@ -113,7 +113,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                 /* Insertion After Validations*/
                 using (NpgsqlConnection connection = new NpgsqlConnection())
                 {
-                    connection.ConnectionString = "host=localhost;port=5433;username=postgres;password=1234;database=demo";
+                    connection.ConnectionString = "host=localhost;port=5432;username=postgres;password=ADMIN;database=test";
                     connection.Open();
                     NpgsqlCommand cmd = new NpgsqlCommand();
                     cmd.Connection = connection;
