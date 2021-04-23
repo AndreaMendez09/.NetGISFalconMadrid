@@ -1,5 +1,5 @@
 ﻿@using Net_Gis_Falcon.Models;
-@model IEnumerable<Usuario>
+@model IEnumerable<Persona>
 
 @{
     ViewData["Title"] = "Privacy Policy";
@@ -16,7 +16,7 @@
         <th>Usuario_id</th>
         <th>Nombre</th>
     </tr>
-    @foreach (Usuario customer in Model)
+    @foreach (Persona customer in Model)
     {
         <tr>
             <td>@customer.IdPersona</td>

@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Npgsql;
+using System.Data;
 
 namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 {
@@ -44,10 +46,13 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [Display(Name = "Email")]
             public string Email { get; set; }
 
             [Required]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
+            [Display(Name = "Password")]
             public string Password { get; set; }
 
             [Display(Name = "Remember me?")]
@@ -73,7 +78,47 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            try
+            {
+                /* Insertion After Validations*/
+                using (NpgsqlConnection connection = new NpgsqlConnection())
+                {
+                    connection.ConnectionString = "host=localhost;port=5433;username=postgres;password=1234;database=demo";
+                    connection.Open();
+                    NpgsqlCommand cmd = new NpgsqlCommand();
+                    cmd.Connection = connection;
+                    cmd.CommandText = "Select * from personas where email= '" + Input.Email.ToString() + "' and contraseña='" + Input.Password.ToString() + "'";
+                    cmd.CommandType = CommandType.Text;
+
+                    Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    Console.WriteLine(cmd.ExecuteNonQuery());
+                    Console.WriteLine(cmd.CommandText.ToString());
+                    Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+                    NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    //NpgsqlDataReader rd = cmd.ExecuteReader();
+                    da.Fill(dt);
+                    if(dt.Rows.Count > 0)
+                    {
+                        cmd.Dispose();
+                        connection.Close();
+                        return RedirectToPage("./Privacy");
+                    }
+
+                    
+                    cmd.Dispose();
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                Console.WriteLine(ex.Message.ToString());
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            }
+            /*returnUrl ??= Url.Content("~/");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         
@@ -102,7 +147,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                     return Page();
                 }
             }
-
+            */
             // If we got this far, something failed, redisplay form
             return Page();
         }

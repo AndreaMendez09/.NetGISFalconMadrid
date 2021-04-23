@@ -31,7 +31,7 @@ namespace Net_Gis_Falcon.Controllers
 
         public IActionResult Privacy()
         {
-            List<Usuario> usuarios = (from Usuarios in this.Context.Usuarios select Usuarios).ToList();
+            List<Persona> personas = (from Personas in this.Context.Personas select Personas).ToList();
             /*String connectionString = "Data Source=localhost;" +
                "Initial Catalog=test;" +
                "User id=postgres;" +
@@ -60,7 +60,7 @@ namespace Net_Gis_Falcon.Controllers
              }*/
 
             // return View(model);
-            return View(usuarios);
+            return View(personas);
 
         }
 

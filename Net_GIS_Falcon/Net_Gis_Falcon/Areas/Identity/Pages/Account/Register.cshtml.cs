@@ -120,7 +120,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                     cmd.CommandText = "Insert into personas values(@id_persona,@nombre,@apellido,@email,@genero,@idioma,@contraseña)";
                     cmd.CommandType = CommandType.Text;
 
-                    cmd.Parameters.Add(new NpgsqlParameter("@id_persona", 1));
+                    cmd.Parameters.Add(new NpgsqlParameter("@id_persona", 3));
                     cmd.Parameters.Add(new NpgsqlParameter("@nombre", Input.Name.ToString()));
                     cmd.Parameters.Add(new NpgsqlParameter("@apellido", Input.Surname.ToString()));
                     cmd.Parameters.Add(new NpgsqlParameter("@email", Input.Email.ToString()));
