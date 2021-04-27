@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,9 +32,9 @@ namespace Net_Gis_Falcon
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));*/
             services.AddEntityFrameworkNpgsql().AddDbContext<testContext>(options =>
-                {
-                    options.UseNpgsql(Configuration.GetConnectionString("SegundaConnection"));
-                });
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("SegundaConnection"));
+            });
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -41,6 +42,12 @@ namespace Net_Gis_Falcon
                 .AddEntityFrameworkStores<testContext>();
             services.AddControllersWithViews();
             //services.AddEntityFrameworkNpgsql
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Identity/Account/Login";
+                });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

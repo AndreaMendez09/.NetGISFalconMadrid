@@ -8,6 +8,11 @@
 
 <p>Use this page to detail your site's privacy policy.</p>
 
+@if (Context.User.Identity.IsAuthenticated)
+{
+    <p>Hola Lo veo si estoy autenticado</p>
+}
+
 
 <h4>Usuarios</h4>
 <hr />

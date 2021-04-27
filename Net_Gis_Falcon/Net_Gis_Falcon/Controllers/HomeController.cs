@@ -10,6 +10,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 using Npgsql;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Net_Gis_Falcon.Controllers
 {
@@ -66,7 +70,7 @@ namespace Net_Gis_Falcon.Controllers
 
         public IActionResult Register()
         {
-            
+
 
             return View();
         }
@@ -76,17 +80,38 @@ namespace Net_Gis_Falcon.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        [Authorize]
+        public IActionResult Secured()
+        {
+            return View();
+        }
+
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(Usuario userModel)
+        public async Task<IActionResult> Login(Usuario userModel, string returnUrl)
         {
-            return View();
+            if (userModel.Email == "Andrea@gmail.com" && userModel.Contraseña == "A1234a@")
+            {
+                var claims = new List<Claim>();
+                claims.Add(new Claim("username", userModel.Email));
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, userModel.Email));
+                var CLAIMSiDENTITY = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var claimsPrincipal = new ClaimsPrincipal(CLAIMSiDENTITY);
+                await HttpContext.SignInAsync(claimsPrincipal);
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                Console.WriteLine(returnUrl);
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                return Redirect(returnUrl);
+            }
+
+            return BadRequest();
         }
 
 
