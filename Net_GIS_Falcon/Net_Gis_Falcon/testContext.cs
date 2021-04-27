@@ -136,7 +136,8 @@ namespace Net_Gis_Falcon
 
             modelBuilder.Entity<Usuario>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdPersona)
+                    .HasName("personas_pkey");
 
                 entity.ToTable("usuarios");
 

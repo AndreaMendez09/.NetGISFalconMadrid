@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -7,6 +8,7 @@ namespace Net_Gis_Falcon
 {
     public partial class Usuario
     {
+        [Key]
         public int IdPersona { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
