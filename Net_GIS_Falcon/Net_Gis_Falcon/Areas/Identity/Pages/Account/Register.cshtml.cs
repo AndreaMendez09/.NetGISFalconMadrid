@@ -18,6 +18,7 @@ using Microsoft.Extensions.Logging;
 using Npgsql;
 using Microsoft.IdentityModel.Protocols;
 using System.Security.Cryptography;
+using Net_Gis_Falcon.Data;
 
 namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 {
@@ -114,7 +115,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                 /* Insertion After Validations*/
                 using (NpgsqlConnection connection = new NpgsqlConnection())
                 {
-                    connection.ConnectionString = "host=localhost;port=5432;username=postgres;password=ADMIN;database=test";
+                    connection.ConnectionString = BdConnection.connectionString;
                     connection.Open();
                     NpgsqlCommand cmd = new NpgsqlCommand();
                     cmd.Connection = connection;
