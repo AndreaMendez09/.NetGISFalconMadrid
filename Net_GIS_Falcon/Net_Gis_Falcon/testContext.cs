@@ -84,7 +84,8 @@ namespace Net_Gis_Falcon
 
             modelBuilder.Entity<Personasistema>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdPersona)
+                    .HasName("personas_pkey");
 
                 entity.ToTable("personasistema");
 
