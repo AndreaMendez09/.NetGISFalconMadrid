@@ -119,7 +119,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                     connection.Open();
                     NpgsqlCommand cmd = new NpgsqlCommand();
                     cmd.Connection = connection;
-                    cmd.CommandText = "Insert into personas values(@id_persona,@nombre,@apellido,@email,@genero,@idioma,@contraseña)";
+                    cmd.CommandText = "Insert into personas(nombre,apellido,email,genero,idioma,contraseña) values(@nombre,@apellido,@email,@genero,@idioma,@contraseña)";
                     cmd.CommandType = CommandType.Text;
 
                     MD5 md5 = new MD5CryptoServiceProvider();
@@ -140,7 +140,6 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 
                     Input.Password = strBuilder.ToString();
 
-                    cmd.Parameters.Add(new NpgsqlParameter("@id_persona", 3));
                     cmd.Parameters.Add(new NpgsqlParameter("@nombre", Input.Name.ToString()));
                     cmd.Parameters.Add(new NpgsqlParameter("@apellido", Input.Surname.ToString()));
                     cmd.Parameters.Add(new NpgsqlParameter("@email", Input.Email.ToString()));
