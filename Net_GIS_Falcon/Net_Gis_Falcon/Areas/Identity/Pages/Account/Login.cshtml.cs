@@ -15,6 +15,8 @@ using Npgsql;
 using System.Data;
 using System.Security.Claims;
 using Net_Gis_Falcon.Controllers;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 {
@@ -123,11 +125,28 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
         // Insertion After Validations
         using (NpgsqlConnection connection = new NpgsqlConnection())
         {
-            connection.ConnectionString = "host=localhost;port=5432;username=postgres;password=ADMIN;database=test";
+            connection.ConnectionString = "host=localhost;port=5433;username=postgres;password=1234;database=demo";
             connection.Open();
             NpgsqlCommand cmd = new NpgsqlCommand();
             cmd.Connection = connection;
-            cmd.CommandText = "Select * from personas where email= '" + Input.Email.ToString() + "' and contraseña='" + Input.Password.ToString() + "'";
+                    MD5 md5 = new MD5CryptoServiceProvider();
+
+                    //compute hash from the bytes of text  
+                    md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(Input.Password));
+
+                    //get hash result after compute it  
+                    byte[] result = md5.Hash;
+
+                    StringBuilder strBuilder = new StringBuilder();
+                    for (int i = 0; i < result.Length; i++)
+                    {
+                        //change it into 2 hexadecimal digits  
+                        //for each byte  
+                        strBuilder.Append(result[i].ToString("x2"));
+                    }
+
+                    Input.Password = strBuilder.ToString();
+                    cmd.CommandText = "Select * from personas where email= '" + Input.Email.ToString() + "' and contraseña='" + Input.Password.ToString() + "'";
             cmd.CommandType = CommandType.Text;
 
             Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");

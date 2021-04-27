@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Npgsql;
 using Microsoft.IdentityModel.Protocols;
+using System.Security.Cryptography;
 
 namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 {
@@ -119,6 +120,24 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                     cmd.Connection = connection;
                     cmd.CommandText = "Insert into personas values(@id_persona,@nombre,@apellido,@email,@genero,@idioma,@contraseña)";
                     cmd.CommandType = CommandType.Text;
+
+                    MD5 md5 = new MD5CryptoServiceProvider();
+
+                    //compute hash from the bytes of text  
+                    md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(Input.Password));
+
+                    //get hash result after compute it  
+                    byte[] result = md5.Hash;
+
+                    StringBuilder strBuilder = new StringBuilder();
+                    for (int i = 0; i < result.Length; i++)
+                    {
+                        //change it into 2 hexadecimal digits  
+                        //for each byte  
+                        strBuilder.Append(result[i].ToString("x2"));
+                    }
+
+                    Input.Password = strBuilder.ToString();
 
                     cmd.Parameters.Add(new NpgsqlParameter("@id_persona", 3));
                     cmd.Parameters.Add(new NpgsqlParameter("@nombre", Input.Name.ToString()));
