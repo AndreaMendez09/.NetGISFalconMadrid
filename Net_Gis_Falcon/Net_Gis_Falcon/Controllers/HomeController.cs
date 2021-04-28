@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Net_Gis_Falcon.Services.Bussines;
 
 namespace Net_Gis_Falcon.Controllers
 {
@@ -116,5 +117,20 @@ namespace Net_Gis_Falcon.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return Redirect("/Home");
         }
+
+        //GET: Login
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
+
+
+
+
+
+
     }
 }

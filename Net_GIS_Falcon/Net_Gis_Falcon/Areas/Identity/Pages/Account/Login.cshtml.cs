@@ -18,6 +18,8 @@ using Net_Gis_Falcon.Controllers;
 using System.Security.Cryptography;
 using System.Text;
 using Net_Gis_Falcon.Data;
+using Net_Gis_Falcon.Services.Bussines;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 {
@@ -109,20 +111,47 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
             }
         }*/
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        [HttpPost]
+        public async Task<IActionResult> OnPostAsync(Usuario userModel)
+        {
+            SecurityService security = new SecurityService();
+            userModel.Contraseña = Input.Password;
+            Boolean success = security.Authenticate(userModel);
+
+            if (success)
+            {
+                var claims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Name, userModel.Email)
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, "Login");
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+                Console.WriteLine("Si");
+                return Redirect("ConfirmEmail");
+            }
+            else
+            {
+                Console.WriteLine("No");
+                return Page();
+            }
+        }
+
+       /* public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             try
             {
                 returnUrl ??= Url.Content("~/");
 
-                /*var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                *//*var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
                     Console.WriteLine("User logged in.");
                     return LocalRedirect(returnUrl);
-                }*/
+                }*//*
         // Insertion After Validations
         using (NpgsqlConnection connection = new NpgsqlConnection())
         {
@@ -179,7 +208,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
         Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
     }
 
-    /*returnUrl ??= Url.Content("~/");
+    *//*returnUrl ??= Url.Content("~/");
 
     ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
@@ -208,9 +237,9 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
             return Page();
         }
     }
-    */
+    *//*
     // If we got this far, something failed, redisplay form
     return Page();
-}
+}*/
     }
 }

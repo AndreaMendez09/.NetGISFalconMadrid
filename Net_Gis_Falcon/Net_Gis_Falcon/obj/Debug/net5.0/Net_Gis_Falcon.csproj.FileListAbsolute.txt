@@ -659,3 +659,11 @@ C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor
 C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Home\Secured.cshtml.g.cs
 C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
 C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Home\Logout.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Home\Logout.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Home\Secured.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Create.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Delete.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Details.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Edit.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Index.cshtml.g.cs
