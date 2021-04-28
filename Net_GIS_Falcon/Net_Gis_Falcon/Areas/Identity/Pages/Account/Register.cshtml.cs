@@ -19,6 +19,9 @@ using Npgsql;
 using Microsoft.IdentityModel.Protocols;
 using System.Security.Cryptography;
 using Net_Gis_Falcon.Data;
+using Net_Gis_Falcon.Services.Bussines;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 {
@@ -110,52 +113,32 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            try
+            SecurityService security = new SecurityService();
+            Usuario user = new Usuario(Input.Name, Input.Surname, Input.Email, Input.Gender, Input.Language, Input.Password, null, Input.Municipality, DateTime.Parse(Input.BirthDay));
+            Boolean success = security.Create(user);
+            Console.WriteLine(Input.BirthDay);
+            Console.WriteLine(DateTime.Parse(Input.BirthDay));
+
+            if (success)
             {
-                /* Insertion After Validations*/
-                using (NpgsqlConnection connection = new NpgsqlConnection())
+                var claims = new List<Claim>()
                 {
-                    connection.ConnectionString = BdConnection.connectionString;
-                    connection.Open();
-                    NpgsqlCommand cmd = new NpgsqlCommand();
-                    cmd.Connection = connection;
-                    cmd.CommandText = "Insert into usuarios(nombre,apellido,email,genero,idioma,contraseña) values(@nombre,@apellido,@email,@genero,@idioma,@contraseña)";
-                    cmd.CommandType = CommandType.Text;
+                    new Claim(ClaimTypes.Name, user.Nombre),
+                    new Claim(ClaimTypes.Email, user.Email)
+                };
 
-                    MD5 md5 = new MD5CryptoServiceProvider();
-
-                    //compute hash from the bytes of text  
-                    md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(Input.Password));
-
-                    //get hash result after compute it  
-                    byte[] result = md5.Hash;
-
-                    StringBuilder strBuilder = new StringBuilder();
-                    for (int i = 0; i < result.Length; i++)
-                    {
-                        //change it into 2 hexadecimal digits  
-                        //for each byte  
-                        strBuilder.Append(result[i].ToString("x2"));
-                    }
-
-                    Input.Password = strBuilder.ToString();
-
-                    cmd.Parameters.Add(new NpgsqlParameter("@nombre", Input.Name.ToString()));
-                    cmd.Parameters.Add(new NpgsqlParameter("@apellido", Input.Surname.ToString()));
-                    cmd.Parameters.Add(new NpgsqlParameter("@email", Input.Email.ToString()));
-                    cmd.Parameters.Add(new NpgsqlParameter("@genero", Input.Gender.ToString()));
-                    cmd.Parameters.Add(new NpgsqlParameter("@idioma", Input.Language.ToString()));
-                    cmd.Parameters.Add(new NpgsqlParameter("@contraseña", Input.Password.ToString()));
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    connection.Close();
-                }
+                var claimsIdentity = new ClaimsIdentity(claims, "Login");
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+                Console.WriteLine("Si");
+                return Redirect("/Home");
             }
-            catch (Exception ex) {
-                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                Console.WriteLine(ex.Message.ToString());
-                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            else
+            {
+                Console.WriteLine("No");
+                return Page();
             }
+
             /*returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
