@@ -80,6 +80,7 @@ namespace Net_Gis_Falcon.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
         [Authorize]
         public IActionResult Secured()
         {
@@ -87,33 +88,39 @@ namespace Net_Gis_Falcon.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult Login(string returnUrl)
+        [HttpGet("login")]
+        public IActionResult Login(string ReturnUrl)
         {
-            ViewData["ReturnUrl"] = returnUrl;
+            ViewData["ReturnUrl"] = ReturnUrl;
             return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(Usuario userModel, string returnUrl)
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(string username, string password, string ReturnUrl)
         {
-            if (userModel.Email == "Andrea@gmail.com" && userModel.Contraseña == "A1234a@")
+            if (username == "kk" && password == "kk")
             {
-                var claims = new List<Claim>();
-                claims.Add(new Claim("username", userModel.Email));
-                claims.Add(new Claim(ClaimTypes.NameIdentifier, userModel.Email));
-                var CLAIMSiDENTITY = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var claimsPrincipal = new ClaimsPrincipal(CLAIMSiDENTITY);
-                await HttpContext.SignInAsync(claimsPrincipal);
+                var claims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Name, username)
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, "Login");
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
                 Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                Console.WriteLine(returnUrl);
+                Console.WriteLine(ReturnUrl);
                 Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                return Redirect(returnUrl);
+                return Redirect("/Home/Secured");
             }
 
             return BadRequest();
         }
 
-
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index");
+        }
     }
 }

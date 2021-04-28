@@ -45,7 +45,7 @@ namespace Net_Gis_Falcon
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
-                    options.LoginPath = "/Identity/Account/Login";
+                    options.LoginPath = "/login";
                 });
 
         }
