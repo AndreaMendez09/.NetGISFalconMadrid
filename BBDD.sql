@@ -1,16 +1,16 @@
-CREATE DATABASE "GIS_Falcon";
-DROP TABLE IF EXISTS PersonaSistema;
-DROP TABLE IF EXISTS Usuarios;
-DROP TABLE IF EXISTS Personas;
-DROP TABLE IF EXISTS Zona;
-DROP TABLE IF EXISTS Operadores_zona;
-DROP TABLE IF EXISTS Peticion;
-DROP TABLE IF EXISTS Peticion_operadores;
-DROP TABLE IF EXISTS Estado;
-DROP TABLE IF EXISTS Historico_estado;
-DROP TABLE IF EXISTS Direccion;
-DROP TABLE IF EXISTS Nivel;
-DROP TABLE IF EXISTS Respuesta;
+DROP TABLE IF EXISTS PersonaSistema CASCADE;
+DROP TABLE IF EXISTS Usuarios CASCADE;
+DROP TABLE IF EXISTS Personas CASCADE;
+DROP TABLE IF EXISTS Zona CASCADE;
+DROP TABLE IF EXISTS Operadores_zona CASCADE;
+DROP TABLE IF EXISTS Peticion CASCADE;
+DROP TABLE IF EXISTS Peticion_operadores CASCADE;
+DROP TABLE IF EXISTS Estado CASCADE;
+DROP TABLE IF EXISTS Historico_estado CASCADE;
+DROP TABLE IF EXISTS Direccion CASCADE;
+DROP TABLE IF EXISTS Nivel CASCADE;
+DROP TABLE IF EXISTS Respuesta CASCADE;
+
 
 CREATE TABLE Personas(
     id_persona SERIAL PRIMARY KEY,
@@ -23,14 +23,15 @@ CREATE TABLE Personas(
     foto varchar(20)
     );
 CREATE TABLE PersonaSistema(
+	id_personasistema SERIAL primary key REFERENCES Personas(id_persona),
     rol INT,
     zona VARCHAR(10)
 ) INHERITS (Personas);
 
 CREATE TABLE Usuarios(
+	id_usuario SERIAL primary key REFERENCES Personas(id_persona),
     municipio VARCHAR(20),
     fecha_nacimiento DATE
-
 ) INHERITS (Personas);
 
 CREATE TABLE Zona(
@@ -41,7 +42,7 @@ CREATE TABLE Zona(
 );
 
 CREATE TABLE Operadores_zona (
-    operador int not null REFERENCES Personas(id_persona),
+    operador int not null REFERENCES PersonaSistema(id_personasistema),
     zona int not null REFERENCES Zona(id_zona),
     PRIMARY KEY (operador,zona)
 );
@@ -51,14 +52,14 @@ CREATE TABLE Peticion (
     fecha_creacion date not null, 
     localizacion_peticion varchar(255) not null,
     usuario int not null, 
-    FOREIGN KEY (usuario) REFERENCES Personas(id_persona)
+    FOREIGN KEY (usuario) REFERENCES Usuarios(id_usuario)
 );
 
 CREATE TABLE Peticion_operadores (
     operador int not null,
     peticion int not null, 
     PRIMARY KEY (operador,peticion),
-    FOREIGN KEY (operador) REFERENCES Personas (id_persona),
+    FOREIGN KEY (operador) REFERENCES PersonaSistema(id_personasistema),
     FOREIGN KEY (peticion) REFERENCES Peticion(id_peticion)
 );
 
@@ -75,7 +76,7 @@ CREATE TABLE Historico_estado (
     peticion int not null,
     operador int not null, 
     PRIMARY KEY (operador,peticion,estado),
-    FOREIGN KEY (operador) REFERENCES Personas (id_persona),
+    FOREIGN KEY (operador) REFERENCES PersonaSistema(id_personasistema),
     FOREIGN KEY (peticion) REFERENCES Peticion(id_peticion),
     FOREIGN KEY (estado) REFERENCES Estado(id_estado)
 );
@@ -106,4 +107,3 @@ CREATE TABLE Respuesta (
     nivel int not null,
     FOREIGN KEY (nivel) REFERENCES Nivel(id_pregunta)
 );
-
