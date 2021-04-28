@@ -36,33 +36,6 @@ namespace Net_Gis_Falcon.Controllers
         public IActionResult Privacy()
         {
             List<Persona> personas = (from Personas in this.Context.Personas select Personas).ToList();
-            /*String connectionString = "Data Source=localhost;" +
-               "Initial Catalog=test;" +
-               "User id=postgres;" +
-               "Password=ADMIN;";
-             String sql = "SELECT * FROM Usuarios";
-
-             var model = new List<Usuario>();
-             using (SqlConnection conn = new SqlConnection(connectionString))
-             {
-                 SqlCommand cmd = new SqlCommand(sql, conn);
-                 conn.Open();
-                 SqlDataReader rdr = cmd.ExecuteReader();
-                 while (rdr.Read())
-                 {
-                     var usuario = new Usuario();
-                     Console.WriteLine(rdr["id_usuario"] + ",  " + rdr["nombre"]);
-
-                     //usuario.Id = rdr[""];
-                     //usuario.Name = rdr["nombre"];
-
-                     //model.Add(usuario);
-                 }
-                 rdr.Close();
-
-             }*/
-
-            // return View(model);
             return View(personas);
         }
 
@@ -90,27 +63,6 @@ namespace Net_Gis_Falcon.Controllers
             return View();
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login(string username, string password, string ReturnUrl)
-        {
-            if (username == "kk" && password == "kk")
-            {
-                var claims = new List<Claim>()
-                {
-                    new Claim(ClaimTypes.Name, username)
-                };
-
-                var claimsIdentity = new ClaimsIdentity(claims, "Login");
-                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
-                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                Console.WriteLine(ReturnUrl);
-                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                return Redirect("/Home/Secured");
-            }
-            return BadRequest();
-        }
-
         [Authorize]
         public async Task<IActionResult> Logout()
         {
@@ -124,13 +76,5 @@ namespace Net_Gis_Falcon.Controllers
         {
             return View();
         }
-
-
-
-
-
-
-
-
     }
 }

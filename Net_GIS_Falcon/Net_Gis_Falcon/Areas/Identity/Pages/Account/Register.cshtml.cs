@@ -119,7 +119,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                     connection.Open();
                     NpgsqlCommand cmd = new NpgsqlCommand();
                     cmd.Connection = connection;
-                    cmd.CommandText = "Insert into personas(nombre,apellido,email,genero,idioma,contraseña) values(@nombre,@apellido,@email,@genero,@idioma,@contraseña)";
+                    cmd.CommandText = "Insert into usuarios(nombre,apellido,email,genero,idioma,contraseña) values(@nombre,@apellido,@email,@genero,@idioma,@contraseña)";
                     cmd.CommandType = CommandType.Text;
 
                     MD5 md5 = new MD5CryptoServiceProvider();
