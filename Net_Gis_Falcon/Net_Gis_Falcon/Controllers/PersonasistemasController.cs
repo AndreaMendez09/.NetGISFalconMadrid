@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using Net_Gis_Falcon;
 
 namespace Net_Gis_Falcon.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class PersonasistemasController : Controller
     {
         private readonly testContext _context;
@@ -40,6 +42,11 @@ namespace Net_Gis_Falcon.Controllers
             }
 
             return View(personasistema);
+        }
+        [Authorize(Policy = "RequireAdministratorRole")]
+        public IActionResult IndexAdmin()
+        {
+            return View();
         }
 
         // GET: Personasistemas/Create

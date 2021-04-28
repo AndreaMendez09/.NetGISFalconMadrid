@@ -47,6 +47,11 @@ namespace Net_Gis_Falcon
                 {
                     options.LoginPath = "/login";
                 });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdministratorRole",
+                     policy => policy.RequireRole("Administrator"));
+            });
 
         }
 
