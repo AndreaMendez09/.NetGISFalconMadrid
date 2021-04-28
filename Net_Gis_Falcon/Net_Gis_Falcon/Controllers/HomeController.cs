@@ -22,7 +22,6 @@ namespace Net_Gis_Falcon.Controllers
         private readonly ILogger<HomeController> _logger;
         private testContext Context { get; }
 
-
         public HomeController(testContext _context)
         {
             this.Context = _context;
@@ -41,7 +40,6 @@ namespace Net_Gis_Falcon.Controllers
                "User id=postgres;" +
                "Password=ADMIN;";
              String sql = "SELECT * FROM Usuarios";
-
 
              var model = new List<Usuario>();
              using (SqlConnection conn = new SqlConnection(connectionString))
@@ -65,13 +63,10 @@ namespace Net_Gis_Falcon.Controllers
 
             // return View(model);
             return View(personas);
-
         }
 
         public IActionResult Register()
         {
-
-
             return View();
         }
 
@@ -87,13 +82,13 @@ namespace Net_Gis_Falcon.Controllers
             return View();
         }
 
-
         [HttpGet("login")]
         public IActionResult Login(string ReturnUrl)
         {
             ViewData["ReturnUrl"] = ReturnUrl;
             return View();
         }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login(string username, string password, string ReturnUrl)
         {
@@ -112,15 +107,14 @@ namespace Net_Gis_Falcon.Controllers
                 Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
                 return Redirect("/Home/Secured");
             }
-
             return BadRequest();
         }
 
-        [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync();
-            return RedirectToAction("Index");
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("/Home");
         }
     }
 }

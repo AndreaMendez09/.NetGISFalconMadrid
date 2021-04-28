@@ -4,7 +4,6 @@
 @{
     ViewData["Title"] = "LogIn";
     var returnUrl = ViewData["ReturnUrl"] as string;
-    //?ReturnUrl = @System.Net.WebUtility.UrlEncode(returnUrl)
 }
 <h1>Login</h1>
 <form action="/login?ReturnUrl = @System.Net.WebUtility.UrlEncode(returnUrl)" method="post">
