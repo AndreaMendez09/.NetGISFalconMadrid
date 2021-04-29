@@ -13,7 +13,6 @@ DROP TABLE IF EXISTS Respuesta CASCADE;
 
 
 CREATE TABLE Personas(
-    id_persona SERIAL PRIMARY KEY,
     nombre varchar(20) not null,
     apellido varchar(20) not null,
     email varchar(20) not null unique,
@@ -23,13 +22,13 @@ CREATE TABLE Personas(
     foto varchar(20)
     );
 CREATE TABLE PersonaSistema(
-	id_personasistema SERIAL primary key REFERENCES Personas(id_persona),
+	id_personasistema SERIAL primary key,
     rol INT,
     zona VARCHAR(10)
 ) INHERITS (Personas);
 
 CREATE TABLE Usuarios(
-	id_usuario SERIAL primary key REFERENCES Personas(id_persona),
+	id_usuario SERIAL primary key,
     municipio VARCHAR(20),
     fecha_nacimiento DATE
 ) INHERITS (Personas);
