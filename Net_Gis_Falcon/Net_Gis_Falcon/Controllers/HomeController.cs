@@ -76,5 +76,12 @@ namespace Net_Gis_Falcon.Controllers
         {
             return View();
         }
+
+        //GET: LoginADMIN
+        public IActionResult LoginADMIN() {
+            return View();
+        }
+
+
     }
 }

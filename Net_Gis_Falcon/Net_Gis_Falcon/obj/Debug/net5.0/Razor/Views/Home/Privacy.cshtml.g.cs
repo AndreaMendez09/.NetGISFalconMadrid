@@ -20,6 +20,13 @@ using Net_Gis_Falcon;
 #line hidden
 #nullable disable
 #nullable restore
+#line 3 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\Views\_ViewImports.cshtml"
+using Net_Gis_Falcon.Views.Home;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\Views\Home\Privacy.cshtml"
 using Net_Gis_Falcon.Models;
 
@@ -27,7 +34,7 @@ using Net_Gis_Falcon.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"585b2b3a9cdcda8350ef720e41ab54ee1fd36077", @"/Views/Home/Privacy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"85c566102185e311abfadcddba8629d4b791d1b2", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e23e3e7f4b5b82b67ac87070510dbcc42106b494", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Privacy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<Persona>>
     {
         #pragma warning disable 1998

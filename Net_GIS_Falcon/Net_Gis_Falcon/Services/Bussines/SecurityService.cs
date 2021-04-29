@@ -34,5 +34,10 @@ namespace Net_Gis_Falcon.Services.Bussines
         {
             return daoService.UpdateByEmail(user);
         }
+
+        public bool Authenticate(Personasistema p_sistemaModel)
+        {
+            return daoService.FindByPersonaSistema(p_sistemaModel);
+        }
     }
 }
