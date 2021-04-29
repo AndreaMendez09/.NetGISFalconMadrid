@@ -29,5 +29,10 @@ namespace Net_Gis_Falcon.Services.Bussines
         {
             return daoService.InsertAndCreateCookie(user);
         }
+
+        public bool Update(Usuario user)
+        {
+            return daoService.UpdateByEmail(user);
+        }
     }
 }

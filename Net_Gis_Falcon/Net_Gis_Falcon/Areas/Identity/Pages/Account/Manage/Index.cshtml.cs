@@ -124,10 +124,12 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
             else
             {
                 user.Email = User.Identity.Name;
+               
                 Boolean success = security.AuthenticateByEmail(user);
                 if (success)
                 {
                     Console.WriteLine("Dentro");
+                    Id = user.IdUsuario;
                     Name = user.Nombre;
                     Surname = user.Apellido;
                     //Email = user.Email;
@@ -151,34 +153,19 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
-        /*public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
+            Usuario user = new Usuario(Input.Name, Input.Surname, User.Identity.Name.ToString(), Input.Gender, Input.Language, "", "", Input.Municipality, DateTime.Parse(Input.BirthDay));
+            SecurityService security = new SecurityService();
+            Boolean success = security.Update(user);
+            
+            if (success)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            if (!ModelState.IsValid)
-            {
-                await LoadAsync();
+                Console.WriteLine("Actualizado");
                 return Page();
             }
-
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
-                }
-            }
-
-            await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            
             return RedirectToPage();
-        }*/
+        }
     }
 }

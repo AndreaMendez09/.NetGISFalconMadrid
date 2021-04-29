@@ -84,7 +84,7 @@ namespace Net_Gis_Falcon.Services.Data
                 connection.Open();
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = connection;
-                
+
                 string query = "SELECT * FROM usuarios where id_persona='" + user.IdUsuario + "'";
 
                 cmd.CommandText = query;
@@ -217,7 +217,7 @@ namespace Net_Gis_Falcon.Services.Data
                     cmd.Parameters.Add(new NpgsqlParameter("@genero", user.Genero.ToString()));
                     cmd.Parameters.Add(new NpgsqlParameter("@idioma", user.Idioma.ToString()));
                     cmd.Parameters.Add(new NpgsqlParameter("@contraseña", user.Contraseña.ToString()));
-                    
+
                     if (user.Foto != null)
                     {
                         cmd.Parameters.Add(new NpgsqlParameter("@foto", user.Foto.ToString()));
@@ -226,7 +226,7 @@ namespace Net_Gis_Falcon.Services.Data
                     {
                         cmd.Parameters.Add(new NpgsqlParameter("@foto", ""));
                     }
-                    
+
                     cmd.Parameters.Add(new NpgsqlParameter("@municipio", user.Municipio.ToString()));
                     cmd.Parameters.Add(new NpgsqlParameter("@fecha_nacimiento", user.FechaNacimiento));
                     cmd.ExecuteNonQuery();
@@ -243,6 +243,41 @@ namespace Net_Gis_Falcon.Services.Data
                 Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
                 return false;
             }
+        }
+
+        internal bool UpdateByEmail(Usuario user)
+        {
+            bool success = false;
+            using (NpgsqlConnection connection = new NpgsqlConnection())
+            {
+                connection.ConnectionString = BdConnection.connectionString;
+                connection.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand();
+                cmd.Connection = connection;
+
+                string query = "UPDATE usuarios SET nombre='" + user.Nombre + "', apellido='" + user.Apellido + "', genero='" + user.Genero + "', idioma='" + user.Idioma + "', municipio='" + user.Municipio + "', fecha_nacimiento='" + user.FechaNacimiento + "' WHERE email='" + user.Email + "'";
+
+                cmd.CommandText = query;
+                cmd.CommandType = CommandType.Text;
+
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                //Console.WriteLine(cmd.ExecuteNonQuery());
+                Console.WriteLine(cmd.CommandText.ToString());
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    success = true;
+                }
+                else
+                {
+                    success = false;
+                }
+
+                cmd.Dispose();
+                connection.Close();
+            }
+            return success;
         }
     }
 }
