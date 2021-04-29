@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Atos\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj": {}
+    "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj": {}
   },
   "projects": {
-    "C:\\Atos\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj": {
+    "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Atos\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
+        "projectUniqueName": "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
         "projectName": "Net_Gis_Falcon",
-        "projectPath": "C:\\Atos\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
-        "packagesPath": "C:\\Users\\javig\\.nuget\\packages\\",
-        "outputPath": "C:\\Atos\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\obj\\",
+        "projectPath": "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
+        "packagesPath": "C:\\Users\\raul\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\javig\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\raul\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
