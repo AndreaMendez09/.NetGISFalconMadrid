@@ -123,8 +123,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
             {
                 var claims = new List<Claim>()
                 {
-                    new Claim(ClaimTypes.Name, user.Nombre),
-                    new Claim(ClaimTypes.Email, user.Email)
+                    new Claim(ClaimTypes.Name, user.Email)
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");

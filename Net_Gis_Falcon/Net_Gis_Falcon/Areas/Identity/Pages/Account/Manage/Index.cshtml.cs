@@ -100,7 +100,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
             Usuario user = new Usuario();
             if (Id > 0)
             {
-                user.IdPersona = Id;
+                user.IdUsuario = Id;
                 Boolean success = security.AuthenticateById(user);
 
                 if (success)

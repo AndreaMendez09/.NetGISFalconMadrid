@@ -57,8 +57,8 @@ namespace Net_Gis_Falcon.Services.Data
                 if (dt.Rows.Count > 0)
                 {
                     Console.WriteLine(dt);
-                    user.IdPersona = int.Parse(dt.Rows[0][0].ToString());
-                    Console.WriteLine(user.IdPersona);
+                    user.IdUsuario = int.Parse(dt.Rows[0][7].ToString());
+                    Console.WriteLine(user.IdUsuario);
                     success = true;
 
                 }
@@ -85,7 +85,7 @@ namespace Net_Gis_Falcon.Services.Data
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = connection;
                 
-                string query = "SELECT * FROM usuarios where id_persona='" + user.IdPersona + "'";
+                string query = "SELECT * FROM usuarios where id_persona='" + user.IdUsuario + "'";
 
                 cmd.CommandText = query;
                 cmd.CommandType = CommandType.Text;
@@ -155,12 +155,12 @@ namespace Net_Gis_Falcon.Services.Data
                 if (dt.Rows.Count > 0)
                 {
                     Console.WriteLine(dt);
-                    user.IdPersona = int.Parse(dt.Rows[0][0].ToString());
-                    user.Nombre = dt.Rows[0][1].ToString();
-                    user.Apellido = dt.Rows[0][2].ToString();
-                    user.Genero = dt.Rows[0][4].ToString();
-                    user.Idioma = dt.Rows[0][5].ToString();
-                    user.Foto = dt.Rows[0][7].ToString();
+                    user.IdUsuario = int.Parse(dt.Rows[0][7].ToString());
+                    user.Nombre = dt.Rows[0][0].ToString();
+                    user.Apellido = dt.Rows[0][1].ToString();
+                    user.Genero = dt.Rows[0][3].ToString();
+                    user.Idioma = dt.Rows[0][4].ToString();
+                    user.Foto = dt.Rows[0][6].ToString();
                     user.Municipio = dt.Rows[0][8].ToString();
                     user.FechaNacimiento = DateTime.Parse(dt.Rows[0][9].ToString());
                     success = true;
