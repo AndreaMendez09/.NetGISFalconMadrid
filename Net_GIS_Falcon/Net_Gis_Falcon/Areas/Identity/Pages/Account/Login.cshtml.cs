@@ -122,14 +122,17 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
             {
                 var claims = new List<Claim>()
                 {
-                    new Claim(ClaimTypes.Name, userModel.Email)
+                    new Claim(ClaimTypes.Name, userModel.Email),
+                    new Claim(ClaimTypes.NameIdentifier, userModel.IdPersona.ToString())
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
-                Console.WriteLine("Si");
-                return Redirect("ConfirmEmail");
+                return Redirect("/Home");
+                
+                //This return redirect to Profile
+                //return Redirect("./Manage/Index?Id=" + userModel.IdPersona);
             }
             else
             {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Net_Gis_Falcon.Services.Bussines;
 
 namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
 {
@@ -21,7 +22,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
             _userManager = userManager;
             _signInManager = signInManager;
         }
-
+        public int Id { get; set; }
         public string Username { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -40,6 +41,9 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [Display(Name = "Id")]
+            public string Id { get; set; }
+            
             [Required]
             [Display(Name = "Nombre")]
             public string Name { get; set; }
@@ -75,10 +79,11 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
             public string BirthDay { get; set; }
         }
 
-        private async Task LoadAsync(IdentityUser user)
+        private async Task LoadAsync(Usuario user)
         {
-            var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            IdentityUser u = new IdentityUser();
+            var userName = await _userManager.GetUserNameAsync(u);
+            var phoneNumber = await _userManager.GetPhoneNumberAsync(u);
 
             Username = userName;
 
@@ -88,19 +93,65 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
             };
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        [Route("{Id}")]
+        public async Task<IActionResult> OnGetAsync(int Id)
         {
-            var user = await _userManager.GetUserAsync(User);
+            SecurityService security = new SecurityService();
+            Usuario user = new Usuario();
+            if (Id > 0)
+            {
+                user.IdPersona = Id;
+                Boolean success = security.AuthenticateById(user);
+
+                if (success)
+                {
+                    Console.WriteLine("Dentro");
+                    Name = user.Nombre;
+                    Surname = user.Apellido;
+                    //Email = user.Email;
+                    Gender = user.Genero;
+                    Language = user.Idioma;
+                    Municipality = user.Municipio;
+                    BirthDay = user.FechaNacimiento.ToString();
+
+                    return Page();
+                }
+                else
+                {
+                    return Redirect("/Home");
+                }
+            }
+            else
+            {
+                user.Email = User.Identity.Name;
+                Boolean success = security.AuthenticateByEmail(user);
+                if (success)
+                {
+                    Console.WriteLine("Dentro");
+                    Name = user.Nombre;
+                    Surname = user.Apellido;
+                    //Email = user.Email;
+                    Gender = user.Genero;
+                    Language = user.Idioma;
+                    Municipality = user.Municipio;
+                    BirthDay = user.FechaNacimiento.ToString();
+
+                    return Page();
+                }
+            }
+            
+
+            /*var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
+            }*/
 
-            await LoadAsync(user);
+            //await LoadAsync(user);
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        /*public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -110,7 +161,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
 
             if (!ModelState.IsValid)
             {
-                await LoadAsync(user);
+                await LoadAsync();
                 return Page();
             }
 
@@ -128,6 +179,6 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
-        }
+        }*/
     }
 }

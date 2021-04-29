@@ -15,6 +15,16 @@ namespace Net_Gis_Falcon.Services.Bussines
             return daoService.FindByUser(user);
         }
 
+        public bool AuthenticateById(Usuario user)
+        {
+            return daoService.FindById(user);
+        }
+
+        public bool AuthenticateByEmail(Usuario user)
+        {
+            return daoService.FindByEmail(user);
+        }
+
         public bool Create(Usuario user)
         {
             return daoService.InsertAndCreateCookie(user);

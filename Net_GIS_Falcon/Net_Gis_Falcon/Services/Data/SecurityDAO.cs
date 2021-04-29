@@ -53,9 +53,116 @@ namespace Net_Gis_Falcon.Services.Data
                 DataTable dt = new DataTable();
                 //NpgsqlDataReader rd = cmd.ExecuteReader();
                 da.Fill(dt);
+                Console.WriteLine(dt.Rows[0][0].ToString());
                 if (dt.Rows.Count > 0)
                 {
                     Console.WriteLine(dt);
+                    user.IdPersona = int.Parse(dt.Rows[0][0].ToString());
+                    Console.WriteLine(user.IdPersona);
+                    success = true;
+
+                }
+                else
+                {
+                    success = false;
+                }
+
+
+                cmd.Dispose();
+                connection.Close();
+            }
+
+            return success;
+        }
+
+        internal bool FindById(Usuario user)
+        {
+            bool success = false;
+            using (NpgsqlConnection connection = new NpgsqlConnection())
+            {
+                connection.ConnectionString = BdConnection.connectionString;
+                connection.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand();
+                cmd.Connection = connection;
+                
+                string query = "SELECT * FROM usuarios where id_persona='" + user.IdPersona + "'";
+
+                cmd.CommandText = query;
+                cmd.CommandType = CommandType.Text;
+
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                Console.WriteLine(cmd.ExecuteNonQuery());
+                Console.WriteLine(cmd.CommandText.ToString());
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                //NpgsqlDataReader rd = cmd.ExecuteReader();
+                da.Fill(dt);
+                Console.WriteLine(dt.Rows[0][0].ToString());
+                if (dt.Rows.Count > 0)
+                {
+                    Console.WriteLine(dt);
+                    user.Nombre = dt.Rows[0][1].ToString();
+                    user.Apellido = dt.Rows[0][2].ToString();
+                    user.Email = dt.Rows[0][3].ToString();
+                    user.Genero = dt.Rows[0][4].ToString();
+                    user.Idioma = dt.Rows[0][5].ToString();
+                    user.Foto = dt.Rows[0][7].ToString();
+                    user.Municipio = dt.Rows[0][8].ToString();
+                    user.FechaNacimiento = DateTime.Parse(dt.Rows[0][9].ToString());
+                    success = true;
+
+                }
+                else
+                {
+                    success = false;
+                }
+
+
+                cmd.Dispose();
+                connection.Close();
+            }
+
+            return success;
+        }
+
+        internal bool FindByEmail(Usuario user)
+        {
+            bool success = false;
+            using (NpgsqlConnection connection = new NpgsqlConnection())
+            {
+                connection.ConnectionString = BdConnection.connectionString;
+                connection.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand();
+                cmd.Connection = connection;
+
+                string query = "SELECT * FROM usuarios where email='" + user.Email + "'";
+
+                cmd.CommandText = query;
+                cmd.CommandType = CommandType.Text;
+
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                Console.WriteLine(cmd.ExecuteNonQuery());
+                Console.WriteLine(cmd.CommandText.ToString());
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                //NpgsqlDataReader rd = cmd.ExecuteReader();
+                da.Fill(dt);
+                Console.WriteLine(dt.Rows[0][0].ToString());
+                if (dt.Rows.Count > 0)
+                {
+                    Console.WriteLine(dt);
+                    user.IdPersona = int.Parse(dt.Rows[0][0].ToString());
+                    user.Nombre = dt.Rows[0][1].ToString();
+                    user.Apellido = dt.Rows[0][2].ToString();
+                    user.Genero = dt.Rows[0][4].ToString();
+                    user.Idioma = dt.Rows[0][5].ToString();
+                    user.Foto = dt.Rows[0][7].ToString();
+                    user.Municipio = dt.Rows[0][8].ToString();
+                    user.FechaNacimiento = DateTime.Parse(dt.Rows[0][9].ToString());
                     success = true;
 
                 }
