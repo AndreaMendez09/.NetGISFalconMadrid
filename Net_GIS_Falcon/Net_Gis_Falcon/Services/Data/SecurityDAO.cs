@@ -137,7 +137,7 @@ namespace Net_Gis_Falcon.Services.Data
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = connection;
 
-                string query = "SELECT * FROM usuarios where email='" + user.Email + "'";
+                string query = "SELECT * FROM personas where email='" + user.Email + "'";
 
                 cmd.CommandText = query;
                 cmd.CommandType = CommandType.Text;

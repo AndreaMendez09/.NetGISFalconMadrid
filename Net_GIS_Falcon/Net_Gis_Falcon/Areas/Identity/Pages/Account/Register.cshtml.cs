@@ -113,30 +113,37 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            Boolean success = false;
             SecurityService security = new SecurityService();
             Usuario user = new Usuario(Input.Name, Input.Surname, Input.Email, Input.Gender, Input.Language, Input.Password, null, Input.Municipality, DateTime.Parse(Input.BirthDay));
-            Boolean success = security.Create(user);
-            Console.WriteLine(Input.BirthDay);
-            Console.WriteLine(DateTime.Parse(Input.BirthDay));
-
-            if (success)
+            success = security.AuthenticateByEmail(user);
+            if (!success)
             {
-                var claims = new List<Claim>()
+                success = security.Create(user);
+                Console.WriteLine(Input.BirthDay);
+                Console.WriteLine(DateTime.Parse(Input.BirthDay));
+
+
+                if (success)
+                {
+                    var claims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.Name, user.Email)
                 };
 
-                var claimsIdentity = new ClaimsIdentity(claims, "Login");
-                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
-                Console.WriteLine("Si");
-                return Redirect("/Home");
+                    var claimsIdentity = new ClaimsIdentity(claims, "Login");
+                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+                    Console.WriteLine("Si");
+                    return Redirect("/Home");
+                }
+                else
+                {
+                    Console.WriteLine("No");
+                    return Page();
+                }
             }
-            else
-            {
-                Console.WriteLine("No");
-                return Page();
-            }
+
 
             /*returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
