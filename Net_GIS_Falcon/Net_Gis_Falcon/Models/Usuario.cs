@@ -8,6 +8,11 @@ namespace Net_Gis_Falcon
 {
     public partial class Usuario
     {
+        public Usuario()
+        {
+            Peticions = new HashSet<Peticion>();
+        }
+
         public Usuario(string nombre, string apellido, string email, string genero, string idioma, string contraseña, string foto, string municipio, DateTime? fechaNacimiento)
         {
             Nombre = nombre;
@@ -23,7 +28,7 @@ namespace Net_Gis_Falcon
 
         public Usuario(int idPersona, string nombre, string apellido, string email, string genero, string idioma, string contraseña, string foto, string municipio, DateTime? fechaNacimiento)
         {
-            IdPersona = idPersona;
+            IdUsuario = idPersona;
             Nombre = nombre;
             Apellido = apellido;
             Email = email;
@@ -35,8 +40,6 @@ namespace Net_Gis_Falcon
             FechaNacimiento = fechaNacimiento;
         }
 
-        [Key]
-        public int IdPersona { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Email { get; set; }
@@ -44,7 +47,12 @@ namespace Net_Gis_Falcon
         public string Idioma { get; set; }
         public string Contraseña { get; set; }
         public string Foto { get; set; }
+        
+        [Key]
+        public int IdUsuario { get; set; }
         public string Municipio { get; set; }
         public DateTime? FechaNacimiento { get; set; }
+
+        public virtual ICollection<Peticion> Peticions { get; set; }
     }
 }

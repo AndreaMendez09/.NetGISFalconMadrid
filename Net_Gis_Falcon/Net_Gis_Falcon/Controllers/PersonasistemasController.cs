@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +9,6 @@ using Net_Gis_Falcon;
 
 namespace Net_Gis_Falcon.Controllers
 {
-    [Authorize(Roles = "Administrator")]
     public class PersonasistemasController : Controller
     {
         private readonly testContext _context;
@@ -35,18 +33,13 @@ namespace Net_Gis_Falcon.Controllers
             }
 
             var personasistema = await _context.Personasistemas
-                .FirstOrDefaultAsync(m => m.IdPersona == id);
+                .FirstOrDefaultAsync(m => m.IdPersonasistema == id);
             if (personasistema == null)
             {
                 return NotFound();
             }
 
             return View(personasistema);
-        }
-        [Authorize(Policy = "RequireAdministratorRole")]
-        public IActionResult IndexAdmin()
-        {
-            return View();
         }
 
         // GET: Personasistemas/Create
@@ -60,7 +53,7 @@ namespace Net_Gis_Falcon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPersona,Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,Rol,Zona")] Personasistema personasistema)
+        public async Task<IActionResult> Create([Bind("Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,IdPersonasistema,Rol,Zona")] Personasistema personasistema)
         {
             if (ModelState.IsValid)
             {
@@ -92,9 +85,9 @@ namespace Net_Gis_Falcon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPersona,Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,Rol,Zona")] Personasistema personasistema)
+        public async Task<IActionResult> Edit(int id, [Bind("Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,IdPersonasistema,Rol,Zona")] Personasistema personasistema)
         {
-            if (id != personasistema.IdPersona)
+            if (id != personasistema.IdPersonasistema)
             {
                 return NotFound();
             }
@@ -108,7 +101,7 @@ namespace Net_Gis_Falcon.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PersonasistemaExists(personasistema.IdPersona))
+                    if (!PersonasistemaExists(personasistema.IdPersonasistema))
                     {
                         return NotFound();
                     }
@@ -131,7 +124,7 @@ namespace Net_Gis_Falcon.Controllers
             }
 
             var personasistema = await _context.Personasistemas
-                .FirstOrDefaultAsync(m => m.IdPersona == id);
+                .FirstOrDefaultAsync(m => m.IdPersonasistema == id);
             if (personasistema == null)
             {
                 return NotFound();
@@ -153,7 +146,7 @@ namespace Net_Gis_Falcon.Controllers
 
         private bool PersonasistemaExists(int id)
         {
-            return _context.Personasistemas.Any(e => e.IdPersona == id);
+            return _context.Personasistemas.Any(e => e.IdPersonasistema == id);
         }
     }
 }

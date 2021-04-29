@@ -33,7 +33,7 @@ namespace Net_Gis_Falcon.Controllers
             }
 
             var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.IdPersona == id);
+                .FirstOrDefaultAsync(m => m.IdUsuario == id);
             if (usuario == null)
             {
                 return NotFound();
@@ -53,7 +53,7 @@ namespace Net_Gis_Falcon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPersona,Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,Municipio,FechaNacimiento")] Usuario usuario)
+        public async Task<IActionResult> Create([Bind("Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,IdUsuario,Municipio,FechaNacimiento")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -85,9 +85,9 @@ namespace Net_Gis_Falcon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPersona,Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,Municipio,FechaNacimiento")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,IdUsuario,Municipio,FechaNacimiento")] Usuario usuario)
         {
-            if (id != usuario.IdPersona)
+            if (id != usuario.IdUsuario)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace Net_Gis_Falcon.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsuarioExists(usuario.IdPersona))
+                    if (!UsuarioExists(usuario.IdUsuario))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace Net_Gis_Falcon.Controllers
             }
 
             var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.IdPersona == id);
+                .FirstOrDefaultAsync(m => m.IdUsuario == id);
             if (usuario == null)
             {
                 return NotFound();
@@ -146,7 +146,7 @@ namespace Net_Gis_Falcon.Controllers
 
         private bool UsuarioExists(int id)
         {
-            return _context.Usuarios.Any(e => e.IdPersona == id);
+            return _context.Usuarios.Any(e => e.IdUsuario == id);
         }
     }
 }
