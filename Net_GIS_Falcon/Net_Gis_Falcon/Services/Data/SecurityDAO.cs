@@ -101,7 +101,7 @@ namespace Net_Gis_Falcon.Services.Data
                 }
 
                 p_sistemaModel.Contraseña = strBuilder.ToString();
-                string query = "SELECT * FROM personasistema where email='" + p_sistemaModel.Email.ToString() + "' AND contraseña='" + p_sistemaModel.Contraseña.ToString() + "'";
+                string query = "SELECT * FROM personasistema where email='" + p_sistemaModel.Email.ToString() + "' AND contrase単a='" + p_sistemaModel.Contraseña.ToString() + "'";
 
                 cmd.CommandText = query;
                 cmd.CommandType = CommandType.Text;
@@ -199,7 +199,7 @@ namespace Net_Gis_Falcon.Services.Data
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = connection;
 
-                string query = "SELECT * FROM usuarios where email='" + user.Email + "'";
+                string query = "SELECT * FROM personas where email='" + user.Email + "'";
 
                 cmd.CommandText = query;
                 cmd.CommandType = CommandType.Text;
@@ -227,6 +227,47 @@ namespace Net_Gis_Falcon.Services.Data
                     user.FechaNacimiento = DateTime.Parse(dt.Rows[0][9].ToString());
                     success = true;
 
+                }
+                else
+                {
+                    success = false;
+                }
+
+
+                cmd.Dispose();
+                connection.Close();
+            }
+
+            return success;
+        }
+
+        internal bool CompareEmail(Usuario user)
+        {
+            bool success = false;
+            using (NpgsqlConnection connection = new NpgsqlConnection())
+            {
+                connection.ConnectionString = BdConnection.connectionString;
+                connection.Open();
+                NpgsqlCommand cmd = new NpgsqlCommand();
+                cmd.Connection = connection;
+
+                string query = "SELECT * FROM personas where email='" + user.Email + "'";
+
+                cmd.CommandText = query;
+                cmd.CommandType = CommandType.Text;
+
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                Console.WriteLine(cmd.ExecuteNonQuery());
+                Console.WriteLine(cmd.CommandText.ToString());
+                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                //NpgsqlDataReader rd = cmd.ExecuteReader();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    success = true;
                 }
                 else
                 {

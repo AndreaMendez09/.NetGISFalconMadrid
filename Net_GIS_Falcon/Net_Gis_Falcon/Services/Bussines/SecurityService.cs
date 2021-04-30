@@ -15,6 +15,11 @@ namespace Net_Gis_Falcon.Services.Bussines
             return daoService.FindByUser(user);
         }
 
+        public bool Authenticate(Personasistema p_sistemaModel)
+        {
+            return daoService.FindByPersonaSistema(p_sistemaModel);
+        }
+
         public bool AuthenticateById(Usuario user)
         {
             return daoService.FindById(user);
@@ -23,6 +28,11 @@ namespace Net_Gis_Falcon.Services.Bussines
         public bool AuthenticateByEmail(Usuario user)
         {
             return daoService.FindByEmail(user);
+        }
+        
+        public bool AuthenticateAndCompareByEmail(Usuario user)
+        {
+            return daoService.CompareEmail(user);
         }
 
         public bool Create(Usuario user)
@@ -33,11 +43,6 @@ namespace Net_Gis_Falcon.Services.Bussines
         public bool Update(Usuario user)
         {
             return daoService.UpdateByEmail(user);
-        }
-
-        public bool Authenticate(Personasistema p_sistemaModel)
-        {
-            return daoService.FindByPersonaSistema(p_sistemaModel);
         }
     }
 }

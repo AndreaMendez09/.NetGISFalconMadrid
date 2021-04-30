@@ -30,6 +30,7 @@ namespace Net_Gis_Falcon.Views.Home
 
         }
 
+        [HttpPost]
         public async Task<IActionResult> OnPostAsync(Personasistema p_sistemaModel)
         {
             SecurityService security = new SecurityService();

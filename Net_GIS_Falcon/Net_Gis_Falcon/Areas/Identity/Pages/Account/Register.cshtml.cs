@@ -116,7 +116,8 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
             Boolean success = false;
             SecurityService security = new SecurityService();
             Usuario user = new Usuario(Input.Name, Input.Surname, Input.Email, Input.Gender, Input.Language, Input.Password, null, Input.Municipality, DateTime.Parse(Input.BirthDay));
-            success = security.AuthenticateByEmail(user);
+            success = security.AuthenticateAndCompareByEmail(user);
+            
             if (!success)
             {
                 success = security.Create(user);
@@ -143,7 +144,10 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                     return Page();
                 }
             }
-
+            else
+            {
+                ViewData["Error"] = "Error al registrarse. El correo eléctrónico ya está en uso.";
+            }
 
             /*returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
