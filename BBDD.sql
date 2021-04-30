@@ -51,7 +51,7 @@ CREATE TABLE Peticion_operadores (
     operador int not null,
     peticion int not null, 
     PRIMARY KEY (operador,peticion),
-    FOREIGN KEY (operador) REFERENCES PersonaSistema(id_personasistema),
+    FOREIGN KEY (operador) REFERENCES Usuarios(id_usuario),
     FOREIGN KEY (peticion) REFERENCES Peticion(id_peticion)
 );
 
@@ -68,7 +68,7 @@ CREATE TABLE Historico_estado (
     peticion int not null,
     operador int not null, 
     PRIMARY KEY (operador,peticion,estado),
-    FOREIGN KEY (operador) REFERENCES PersonaSistema(id_personasistema),
+    FOREIGN KEY (operador) REFERENCES Usuarios(id_usuario),
     FOREIGN KEY (peticion) REFERENCES Peticion(id_peticion),
     FOREIGN KEY (estado) REFERENCES Estado(id_estado)
 );
