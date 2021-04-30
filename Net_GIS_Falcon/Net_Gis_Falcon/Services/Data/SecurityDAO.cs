@@ -53,74 +53,12 @@ namespace Net_Gis_Falcon.Services.Data
                 DataTable dt = new DataTable();
                 //NpgsqlDataReader rd = cmd.ExecuteReader();
                 da.Fill(dt);
-                Console.WriteLine(dt.Rows[0][0].ToString());
+                //Console.WriteLine(dt.Rows[0][0].ToString());
                 if (dt.Rows.Count > 0)
                 {
                     Console.WriteLine(dt);
-                    user.IdUsuario = int.Parse(dt.Rows[0][7].ToString());
+                    user.IdUsuario = int.Parse(dt.Rows[0][0].ToString());
                     Console.WriteLine(user.IdUsuario);
-                    success = true;
-
-                }
-                else
-                {
-                    success = false;
-                }
-
-
-                cmd.Dispose();
-                connection.Close();
-            }
-
-            return success;
-        }
-
-        internal bool FindByPersonaSistema(Personasistema p_sistemaModel)
-        {
-            bool success = false;
-            using (NpgsqlConnection connection = new NpgsqlConnection())
-            {
-                connection.ConnectionString = BdConnection.connectionString;
-                connection.Open();
-                NpgsqlCommand cmd = new NpgsqlCommand();
-                cmd.Connection = connection;
-                MD5 md5 = new MD5CryptoServiceProvider();
-
-                //compute hash from the bytes of text  
-                md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(p_sistemaModel.Contraseña));
-
-                //get hash result after compute it  
-                byte[] result = md5.Hash;
-
-                StringBuilder strBuilder = new StringBuilder();
-                for (int i = 0; i < result.Length; i++)
-                {
-                    //change it into 2 hexadecimal digits  
-                    //for each byte  
-                    strBuilder.Append(result[i].ToString("x2"));
-                }
-
-                p_sistemaModel.Contraseña = strBuilder.ToString();
-                string query = "SELECT * FROM personasistema where email='" + p_sistemaModel.Email.ToString() + "' AND contrase単a='" + p_sistemaModel.Contraseña.ToString() + "'";
-
-                cmd.CommandText = query;
-                cmd.CommandType = CommandType.Text;
-
-                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                Console.WriteLine(cmd.ExecuteNonQuery());
-                Console.WriteLine(cmd.CommandText.ToString());
-                Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-
-                NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                //NpgsqlDataReader rd = cmd.ExecuteReader();
-                da.Fill(dt);
-                Console.WriteLine(dt.Rows[0][0].ToString());
-                if (dt.Rows.Count > 0)
-                {
-                    Console.WriteLine(dt);
-                    p_sistemaModel.IdPersonasistema = int.Parse(dt.Rows[0][7].ToString());
-                    Console.WriteLine(p_sistemaModel.IdPersonasistema);
                     success = true;
 
                 }
@@ -147,7 +85,7 @@ namespace Net_Gis_Falcon.Services.Data
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = connection;
 
-                string query = "SELECT * FROM usuarios where id_persona='" + user.IdUsuario + "'";
+                string query = "SELECT * FROM usuarios where id_usuario='" + user.IdUsuario + "'";
 
                 cmd.CommandText = query;
                 cmd.CommandType = CommandType.Text;
@@ -161,7 +99,7 @@ namespace Net_Gis_Falcon.Services.Data
                 DataTable dt = new DataTable();
                 //NpgsqlDataReader rd = cmd.ExecuteReader();
                 da.Fill(dt);
-                Console.WriteLine(dt.Rows[0][0].ToString());
+                //Console.WriteLine(dt.Rows[0][0].ToString());
                 if (dt.Rows.Count > 0)
                 {
                     Console.WriteLine(dt);
@@ -199,7 +137,7 @@ namespace Net_Gis_Falcon.Services.Data
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = connection;
 
-                string query = "SELECT * FROM personas where email='" + user.Email + "'";
+                string query = "SELECT * FROM usuarios where email='" + user.Email + "'";
 
                 cmd.CommandText = query;
                 cmd.CommandType = CommandType.Text;
@@ -251,7 +189,7 @@ namespace Net_Gis_Falcon.Services.Data
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = connection;
 
-                string query = "SELECT * FROM personas where email='" + user.Email + "'";
+                string query = "SELECT * FROM usuarios where email='" + user.Email + "'";
 
                 cmd.CommandText = query;
                 cmd.CommandType = CommandType.Text;

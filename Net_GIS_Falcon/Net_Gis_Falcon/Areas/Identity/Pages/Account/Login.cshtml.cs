@@ -124,7 +124,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                 {
                     new Claim(ClaimTypes.Name, userModel.Email),
                     new Claim(ClaimTypes.NameIdentifier, userModel.IdUsuario.ToString()),
-                    new Claim(ClaimTypes.Role, "admin")
+                    new Claim(ClaimTypes.Role, "operador")
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");

@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Net_Gis_Falcon.Migrations
 {
     [DbContext(typeof(testContext))]
-    [Migration("20210429075103_BBDD")]
-    partial class BBDD
+    [Migration("20210430114714_sin Herencia2")]
+    partial class sinHerencia2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -185,121 +185,6 @@ namespace Net_Gis_Falcon.Migrations
                     b.ToTable("operadores_zona");
                 });
 
-            modelBuilder.Entity("Net_Gis_Falcon.Persona", b =>
-                {
-                    b.Property<string>("Apellido")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("apellido");
-
-                    b.Property<string>("Contraseña")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("contraseña");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("email");
-
-                    b.Property<string>("Foto")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("foto");
-
-                    b.Property<string>("Genero")
-                        .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("character(5)")
-                        .HasColumnName("genero")
-                        .IsFixedLength(true);
-
-                    b.Property<string>("Idioma")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("idioma");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("nombre");
-
-                    b.HasIndex(new[] { "Email" }, "personas_email_key")
-                        .IsUnique();
-
-                    b.ToTable("personas");
-                });
-
-            modelBuilder.Entity("Net_Gis_Falcon.Personasistema", b =>
-                {
-                    b.Property<int>("IdPersonasistema")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id_personasistema")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Apellido")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("apellido");
-
-                    b.Property<string>("Contraseña")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("contraseña");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("email");
-
-                    b.Property<string>("Foto")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("foto");
-
-                    b.Property<string>("Genero")
-                        .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("character(5)")
-                        .HasColumnName("genero")
-                        .IsFixedLength(true);
-
-                    b.Property<string>("Idioma")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("idioma");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("nombre");
-
-                    b.Property<int?>("Rol")
-                        .HasColumnType("integer")
-                        .HasColumnName("rol");
-
-                    b.Property<string>("Zona")
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)")
-                        .HasColumnName("zona");
-
-                    b.HasKey("IdPersonasistema")
-                        .HasName("personasistema_pkey");
-
-                    b.ToTable("personasistema");
-                });
-
             modelBuilder.Entity("Net_Gis_Falcon.Peticion", b =>
                 {
                     b.Property<int>("IdPeticion")
@@ -437,8 +322,15 @@ namespace Net_Gis_Falcon.Migrations
                         .HasColumnType("character varying(20)")
                         .HasColumnName("nombre");
 
+                    b.Property<int?>("Rol")
+                        .HasColumnType("integer")
+                        .HasColumnName("rol");
+
                     b.HasKey("IdUsuario")
                         .HasName("usuarios_pkey");
+
+                    b.HasIndex(new[] { "Email" }, "usuarios_email_key")
+                        .IsUnique();
 
                     b.ToTable("usuarios");
                 });
@@ -483,7 +375,7 @@ namespace Net_Gis_Falcon.Migrations
                         .HasConstraintName("historico_estado_estado_fkey")
                         .IsRequired();
 
-                    b.HasOne("Net_Gis_Falcon.Personasistema", "OperadorNavigation")
+                    b.HasOne("Net_Gis_Falcon.Usuario", "OperadorNavigation")
                         .WithMany("HistoricoEstados")
                         .HasForeignKey("Operador")
                         .HasConstraintName("historico_estado_operador_fkey")
@@ -504,7 +396,7 @@ namespace Net_Gis_Falcon.Migrations
 
             modelBuilder.Entity("Net_Gis_Falcon.OperadoresZona", b =>
                 {
-                    b.HasOne("Net_Gis_Falcon.Personasistema", "OperadorNavigation")
+                    b.HasOne("Net_Gis_Falcon.Usuario", "OperadorNavigation")
                         .WithMany("OperadoresZonas")
                         .HasForeignKey("Operador")
                         .HasConstraintName("operadores_zona_operador_fkey")
@@ -534,7 +426,7 @@ namespace Net_Gis_Falcon.Migrations
 
             modelBuilder.Entity("Net_Gis_Falcon.PeticionOperadore", b =>
                 {
-                    b.HasOne("Net_Gis_Falcon.Personasistema", "OperadorNavigation")
+                    b.HasOne("Net_Gis_Falcon.Usuario", "OperadorNavigation")
                         .WithMany("PeticionOperadores")
                         .HasForeignKey("Operador")
                         .HasConstraintName("peticion_operadores_operador_fkey")
@@ -572,15 +464,6 @@ namespace Net_Gis_Falcon.Migrations
                     b.Navigation("Respuesta");
                 });
 
-            modelBuilder.Entity("Net_Gis_Falcon.Personasistema", b =>
-                {
-                    b.Navigation("HistoricoEstados");
-
-                    b.Navigation("OperadoresZonas");
-
-                    b.Navigation("PeticionOperadores");
-                });
-
             modelBuilder.Entity("Net_Gis_Falcon.Peticion", b =>
                 {
                     b.Navigation("HistoricoEstados");
@@ -590,6 +473,12 @@ namespace Net_Gis_Falcon.Migrations
 
             modelBuilder.Entity("Net_Gis_Falcon.Usuario", b =>
                 {
+                    b.Navigation("HistoricoEstados");
+
+                    b.Navigation("OperadoresZonas");
+
+                    b.Navigation("PeticionOperadores");
+
                     b.Navigation("Peticions");
                 });
 

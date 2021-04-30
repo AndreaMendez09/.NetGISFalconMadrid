@@ -10,7 +10,7 @@ namespace Net_Gis_Falcon
         public int Operador { get; set; }
         public int Zona { get; set; }
 
-        public virtual Personasistema OperadorNavigation { get; set; }
+        public virtual Usuario OperadorNavigation { get; set; }
         public virtual Zona ZonaNavigation { get; set; }
     }
 }

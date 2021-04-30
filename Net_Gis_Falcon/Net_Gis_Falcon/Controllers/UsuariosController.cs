@@ -53,7 +53,7 @@ namespace Net_Gis_Falcon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,IdUsuario,Municipio,FechaNacimiento")] Usuario usuario)
+        public async Task<IActionResult> Create([Bind("IdUsuario,Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,Municipio,FechaNacimiento,Rol")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace Net_Gis_Falcon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,IdUsuario,Municipio,FechaNacimiento")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("IdUsuario,Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,Municipio,FechaNacimiento,Rol")] Usuario usuario)
         {
             if (id != usuario.IdUsuario)
             {

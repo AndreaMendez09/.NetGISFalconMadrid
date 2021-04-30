@@ -22,8 +22,6 @@ namespace Net_Gis_Falcon
         public virtual DbSet<HistoricoEstado> HistoricoEstados { get; set; }
         public virtual DbSet<Nivel> Nivels { get; set; }
         public virtual DbSet<OperadoresZona> OperadoresZonas { get; set; }
-        public virtual DbSet<Persona> Personas { get; set; }
-        public virtual DbSet<Personasistema> Personasistemas { get; set; }
         public virtual DbSet<Peticion> Peticions { get; set; }
         public virtual DbSet<PeticionOperadore> PeticionOperadores { get; set; }
         public virtual DbSet<Respuestum> Respuesta { get; set; }
@@ -35,7 +33,7 @@ namespace Net_Gis_Falcon
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=localhost;Database=test;Username=postgres;Password=admin");
+                optionsBuilder.UseNpgsql("Host=localhost;Database=test;Username=postgres;Password=ADMIN");
             }
         }
 
@@ -192,102 +190,6 @@ namespace Net_Gis_Falcon
                     .HasConstraintName("operadores_zona_zona_fkey");
             });
 
-            modelBuilder.Entity<Persona>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("personas");
-
-                entity.HasIndex(e => e.Email, "personas_email_key")
-                    .IsUnique();
-
-                entity.Property(e => e.Apellido)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .HasColumnName("apellido");
-
-                entity.Property(e => e.Contraseña)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .HasColumnName("contraseña");
-
-                entity.Property(e => e.Email)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .HasColumnName("email");
-
-                entity.Property(e => e.Foto)
-                    .HasMaxLength(20)
-                    .HasColumnName("foto");
-
-                entity.Property(e => e.Genero)
-                    .IsRequired()
-                    .HasMaxLength(5)
-                    .HasColumnName("genero")
-                    .IsFixedLength(true);
-
-                entity.Property(e => e.Idioma)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .HasColumnName("idioma");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .HasColumnName("nombre");
-            });
-
-            modelBuilder.Entity<Personasistema>(entity =>
-            {
-                entity.HasKey(e => e.IdPersonasistema)
-                    .HasName("personasistema_pkey");
-
-                entity.ToTable("personasistema");
-
-                entity.Property(e => e.IdPersonasistema).HasColumnName("id_personasistema");
-
-                entity.Property(e => e.Apellido)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .HasColumnName("apellido");
-
-                entity.Property(e => e.Contraseña)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .HasColumnName("contraseña");
-
-                entity.Property(e => e.Email)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .HasColumnName("email");
-
-                entity.Property(e => e.Foto)
-                    .HasMaxLength(20)
-                    .HasColumnName("foto");
-
-                entity.Property(e => e.Genero)
-                    .IsRequired()
-                    .HasMaxLength(5)
-                    .HasColumnName("genero")
-                    .IsFixedLength(true);
-
-                entity.Property(e => e.Idioma)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .HasColumnName("idioma");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .HasColumnName("nombre");
-
-                entity.Property(e => e.Rol).HasColumnName("rol");
-
-                entity.Property(e => e.Zona)
-                    .HasMaxLength(10)
-                    .HasColumnName("zona");
-            });
-
             modelBuilder.Entity<Peticion>(entity =>
             {
                 entity.HasKey(e => e.IdPeticion)
@@ -371,6 +273,9 @@ namespace Net_Gis_Falcon
 
                 entity.ToTable("usuarios");
 
+                entity.HasIndex(e => e.Email, "usuarios_email_key")
+                    .IsUnique();
+
                 entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
 
                 entity.Property(e => e.Apellido)
@@ -415,6 +320,8 @@ namespace Net_Gis_Falcon
                     .IsRequired()
                     .HasMaxLength(20)
                     .HasColumnName("nombre");
+
+                entity.Property(e => e.Rol).HasColumnName("rol");
             });
 
             modelBuilder.Entity<Zona>(entity =>

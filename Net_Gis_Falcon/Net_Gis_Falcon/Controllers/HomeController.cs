@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
-using Net_Gis_Falcon.Services.Bussines;
 
 namespace Net_Gis_Falcon.Controllers
 {
@@ -35,8 +34,9 @@ namespace Net_Gis_Falcon.Controllers
 
         public IActionResult Privacy()
         {
-            List<Persona> personas = (from Personas in this.Context.Personas select Personas).ToList();
-            return View(personas);
+            //List<Persona> personas = (from Personas in this.Context.Personas select Personas).ToList();
+            //return View(personas);
+            return View();
         }
 
         public IActionResult Register()

@@ -13,7 +13,7 @@ namespace Net_Gis_Falcon
         public int Operador { get; set; }
 
         public virtual Estado EstadoNavigation { get; set; }
-        public virtual Personasistema OperadorNavigation { get; set; }
+        public virtual Usuario OperadorNavigation { get; set; }
         public virtual Peticion PeticionNavigation { get; set; }
     }
 }

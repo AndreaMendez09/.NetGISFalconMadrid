@@ -9,22 +9,22 @@ using Net_Gis_Falcon;
 
 namespace Net_Gis_Falcon.Controllers
 {
-    public class PersonasistemasController : Controller
+    public class EstadoesController : Controller
     {
         private readonly testContext _context;
 
-        public PersonasistemasController(testContext context)
+        public EstadoesController(testContext context)
         {
             _context = context;
         }
 
-        // GET: Personasistemas
+        // GET: Estadoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Personasistemas.ToListAsync());
+            return View(await _context.Estados.ToListAsync());
         }
 
-        // GET: Personasistemas/Details/5
+        // GET: Estadoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace Net_Gis_Falcon.Controllers
                 return NotFound();
             }
 
-            var personasistema = await _context.Personasistemas
-                .FirstOrDefaultAsync(m => m.IdPersonasistema == id);
-            if (personasistema == null)
+            var estado = await _context.Estados
+                .FirstOrDefaultAsync(m => m.IdEstado == id);
+            if (estado == null)
             {
                 return NotFound();
             }
 
-            return View(personasistema);
+            return View(estado);
         }
 
-        // GET: Personasistemas/Create
+        // GET: Estadoes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Personasistemas/Create
+        // POST: Estadoes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,IdPersonasistema,Rol,Zona")] Personasistema personasistema)
+        public async Task<IActionResult> Create([Bind("IdEstado,NombreEstado,Esfinal,ColorEstado")] Estado estado)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(personasistema);
+                _context.Add(estado);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(personasistema);
+            return View(estado);
         }
 
-        // GET: Personasistemas/Edit/5
+        // GET: Estadoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace Net_Gis_Falcon.Controllers
                 return NotFound();
             }
 
-            var personasistema = await _context.Personasistemas.FindAsync(id);
-            if (personasistema == null)
+            var estado = await _context.Estados.FindAsync(id);
+            if (estado == null)
             {
                 return NotFound();
             }
-            return View(personasistema);
+            return View(estado);
         }
 
-        // POST: Personasistemas/Edit/5
+        // POST: Estadoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Nombre,Apellido,Email,Genero,Idioma,Contraseña,Foto,IdPersonasistema,Rol,Zona")] Personasistema personasistema)
+        public async Task<IActionResult> Edit(int id, [Bind("IdEstado,NombreEstado,Esfinal,ColorEstado")] Estado estado)
         {
-            if (id != personasistema.IdPersonasistema)
+            if (id != estado.IdEstado)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace Net_Gis_Falcon.Controllers
             {
                 try
                 {
-                    _context.Update(personasistema);
+                    _context.Update(estado);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PersonasistemaExists(personasistema.IdPersonasistema))
+                    if (!EstadoExists(estado.IdEstado))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace Net_Gis_Falcon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(personasistema);
+            return View(estado);
         }
 
-        // GET: Personasistemas/Delete/5
+        // GET: Estadoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace Net_Gis_Falcon.Controllers
                 return NotFound();
             }
 
-            var personasistema = await _context.Personasistemas
-                .FirstOrDefaultAsync(m => m.IdPersonasistema == id);
-            if (personasistema == null)
+            var estado = await _context.Estados
+                .FirstOrDefaultAsync(m => m.IdEstado == id);
+            if (estado == null)
             {
                 return NotFound();
             }
 
-            return View(personasistema);
+            return View(estado);
         }
 
-        // POST: Personasistemas/Delete/5
+        // POST: Estadoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var personasistema = await _context.Personasistemas.FindAsync(id);
-            _context.Personasistemas.Remove(personasistema);
+            var estado = await _context.Estados.FindAsync(id);
+            _context.Estados.Remove(estado);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PersonasistemaExists(int id)
+        private bool EstadoExists(int id)
         {
-            return _context.Personasistemas.Any(e => e.IdPersonasistema == id);
+            return _context.Estados.Any(e => e.IdEstado == id);
         }
     }
 }

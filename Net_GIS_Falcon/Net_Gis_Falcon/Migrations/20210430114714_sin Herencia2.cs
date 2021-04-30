@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Net_Gis_Falcon.Migrations
 {
-    public partial class BBDD : Migration
+    public partial class sinHerencia2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -62,43 +62,6 @@ namespace Net_Gis_Falcon.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "personas",
-                columns: table => new
-                {
-                    nombre = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    apellido = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    email = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    genero = table.Column<string>(type: "character(5)", fixedLength: true, maxLength: 5, nullable: false),
-                    idioma = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    contraseña = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    foto = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true)
-                },
-                constraints: table =>
-                {
-                });
-
-            migrationBuilder.CreateTable(
-                name: "personasistema",
-                columns: table => new
-                {
-                    id_personasistema = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    nombre = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    apellido = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    email = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    genero = table.Column<string>(type: "character(5)", fixedLength: true, maxLength: 5, nullable: false),
-                    idioma = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    contraseña = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    foto = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
-                    rol = table.Column<int>(type: "integer", nullable: true),
-                    zona = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("personasistema_pkey", x => x.id_personasistema);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "usuarios",
                 columns: table => new
                 {
@@ -112,7 +75,8 @@ namespace Net_Gis_Falcon.Migrations
                     contraseña = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     foto = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     municipio = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
-                    fecha_nacimiento = table.Column<DateTime>(type: "date", nullable: true)
+                    fecha_nacimiento = table.Column<DateTime>(type: "date", nullable: true),
+                    rol = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -189,8 +153,8 @@ namespace Net_Gis_Falcon.Migrations
                     table.ForeignKey(
                         name: "operadores_zona_operador_fkey",
                         column: x => x.operador,
-                        principalTable: "personasistema",
-                        principalColumn: "id_personasistema",
+                        principalTable: "usuarios",
+                        principalColumn: "id_usuario",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "operadores_zona_zona_fkey",
@@ -221,8 +185,8 @@ namespace Net_Gis_Falcon.Migrations
                     table.ForeignKey(
                         name: "historico_estado_operador_fkey",
                         column: x => x.operador,
-                        principalTable: "personasistema",
-                        principalColumn: "id_personasistema",
+                        principalTable: "usuarios",
+                        principalColumn: "id_usuario",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "historico_estado_peticion_fkey",
@@ -245,8 +209,8 @@ namespace Net_Gis_Falcon.Migrations
                     table.ForeignKey(
                         name: "peticion_operadores_operador_fkey",
                         column: x => x.operador,
-                        principalTable: "personasistema",
-                        principalColumn: "id_personasistema",
+                        principalTable: "usuarios",
+                        principalColumn: "id_usuario",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "peticion_operadores_peticion_fkey",
@@ -272,12 +236,6 @@ namespace Net_Gis_Falcon.Migrations
                 column: "zona");
 
             migrationBuilder.CreateIndex(
-                name: "personas_email_key",
-                table: "personas",
-                column: "email",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_peticion_usuario",
                 table: "peticion",
                 column: "usuario");
@@ -291,6 +249,12 @@ namespace Net_Gis_Falcon.Migrations
                 name: "IX_respuesta_nivel",
                 table: "respuesta",
                 column: "nivel");
+
+            migrationBuilder.CreateIndex(
+                name: "usuarios_email_key",
+                table: "usuarios",
+                column: "email",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -305,9 +269,6 @@ namespace Net_Gis_Falcon.Migrations
                 name: "operadores_zona");
 
             migrationBuilder.DropTable(
-                name: "personas");
-
-            migrationBuilder.DropTable(
                 name: "peticion_operadores");
 
             migrationBuilder.DropTable(
@@ -318,9 +279,6 @@ namespace Net_Gis_Falcon.Migrations
 
             migrationBuilder.DropTable(
                 name: "zona");
-
-            migrationBuilder.DropTable(
-                name: "personasistema");
 
             migrationBuilder.DropTable(
                 name: "peticion");
