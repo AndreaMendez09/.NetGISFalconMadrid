@@ -28,9 +28,6 @@
                 @Html.DisplayNameFor(model => model.Idioma)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Contraseña)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Foto)
             </th>
             <th>
@@ -61,9 +58,6 @@
                 @Html.DisplayFor(modelItem => item.Idioma)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Contraseña)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Foto)
             </td>
             <td>
@@ -72,11 +66,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Zona)
             </td>
+            @if(item.Rol == 1) { 
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdPersonasistema">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.IdPersonasistema">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.IdPersonasistema">Delete</a>
             </td>
+            }
         </tr>
 }
     </tbody>

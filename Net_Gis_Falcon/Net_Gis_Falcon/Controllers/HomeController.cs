@@ -82,6 +82,12 @@ namespace Net_Gis_Falcon.Controllers
             return View();
         }
 
+        //GET: /ListaEstados
+        public IActionResult ListaEstados()
+        {
+            return View();
+        }
+
 
     }
 }
