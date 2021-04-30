@@ -12,26 +12,19 @@ DROP TABLE IF EXISTS Nivel CASCADE;
 DROP TABLE IF EXISTS Respuesta CASCADE;
 
 
-CREATE TABLE Personas(
+CREATE TABLE Usuarios(
+    id_usuario SERIAL primary key,
     nombre varchar(20) not null,
     apellido varchar(20) not null,
     email varchar(20) not null unique,
     genero char(5) not null,
     idioma varchar(20) not null,
     contraseña varchar(255)not null,
-    foto varchar(20)
-    );
-CREATE TABLE PersonaSistema(
-	id_personasistema SERIAL primary key,
-    rol INT,
-    zona VARCHAR(10)
-) INHERITS (Personas);
-
-CREATE TABLE Usuarios(
-	id_usuario SERIAL primary key,
+    foto varchar(20),
     municipio VARCHAR(20),
-    fecha_nacimiento DATE
-) INHERITS (Personas);
+    fecha_nacimiento DATE,
+    rol INT
+);
 
 CREATE TABLE Zona(
     id_zona SERIAL PRIMARY KEY,
@@ -41,7 +34,7 @@ CREATE TABLE Zona(
 );
 
 CREATE TABLE Operadores_zona (
-    operador int not null REFERENCES PersonaSistema(id_personasistema),
+    operador int not null REFERENCES Usuarios(id_usuario),
     zona int not null REFERENCES Zona(id_zona),
     PRIMARY KEY (operador,zona)
 );
