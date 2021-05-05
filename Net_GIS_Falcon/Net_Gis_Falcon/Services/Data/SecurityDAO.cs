@@ -155,14 +155,17 @@ namespace Net_Gis_Falcon.Services.Data
                 if (dt.Rows.Count > 0)
                 {
                     Console.WriteLine(dt);
-                    user.IdUsuario = int.Parse(dt.Rows[0][7].ToString());
-                    user.Nombre = dt.Rows[0][0].ToString();
-                    user.Apellido = dt.Rows[0][1].ToString();
-                    user.Genero = dt.Rows[0][3].ToString();
-                    user.Idioma = dt.Rows[0][4].ToString();
-                    user.Foto = dt.Rows[0][6].ToString();
+                    user.IdUsuario = int.Parse(dt.Rows[0][0].ToString());
+                    user.Nombre = dt.Rows[0][1].ToString();
+                    user.Apellido = dt.Rows[0][2].ToString();
+                    user.Genero = dt.Rows[0][4].ToString();
+                    user.Idioma = dt.Rows[0][5].ToString();
+                    user.Foto = dt.Rows[0][7].ToString();
                     user.Municipio = dt.Rows[0][8].ToString();
                     user.FechaNacimiento = DateTime.Parse(dt.Rows[0][9].ToString());
+                    Console.WriteLine("JJJJJJJJJJJJJJJJJJJJJJJJJJ");
+                    Console.WriteLine(dt.Rows[0][10].ToString());
+                    user.Rol = int.Parse(dt.Rows[0][10].ToString());
                     success = true;
 
                 }
@@ -296,14 +299,14 @@ namespace Net_Gis_Falcon.Services.Data
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = connection;
 
-                string query = "UPDATE usuarios SET nombre='" + user.Nombre + "', apellido='" + user.Apellido + "', genero='" + user.Genero + "', idioma='" + user.Idioma + "', municipio='" + user.Municipio + "', fecha_nacimiento='" + user.FechaNacimiento + "' WHERE email='" + user.Email + "'";
+                string query = "UPDATE usuarios SET nombre='" + user.Nombre + "', apellido='" + user.Apellido + "', genero='" + user.Genero + "', idioma='" + user.Idioma + "', municipio='" + user.Municipio + "', fecha_nacimiento='" + user.FechaNacimiento + ", rol=" + user.Rol + " WHERE email='" + user.Email + "'";
 
                 cmd.CommandText = query;
                 cmd.CommandType = CommandType.Text;
 
                 Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
                 //Console.WriteLine(cmd.ExecuteNonQuery());
-                Console.WriteLine(cmd.CommandText.ToString());
+                //Console.WriteLine(cmd.ExecuteNonQuery().ToString());
                 Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
                 if (cmd.ExecuteNonQuery() == 1)

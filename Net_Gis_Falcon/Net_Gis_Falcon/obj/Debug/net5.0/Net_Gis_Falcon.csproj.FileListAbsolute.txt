@@ -628,11 +628,6 @@ C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Net_G
 C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\ref\Net_Gis_Falcon.dll
 C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Net_Gis_Falcon.pdb
 C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Net_Gis_Falcon.genruntimeconfig.cache
-C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Personasistemas\Create.cshtml.g.cs
-C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Personasistemas\Delete.cshtml.g.cs
-C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Personasistemas\Details.cshtml.g.cs
-C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Personasistemas\Edit.cshtml.g.cs
-C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Personasistemas\Index.cshtml.g.cs
 C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Create.cshtml.g.cs
 C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Delete.cshtml.g.cs
 C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Details.cshtml.g.cs
@@ -856,7 +851,6 @@ C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_Gis_Falcon\Net_Gis_Falcon
 C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_Gis_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Details.cshtml.g.cs
 C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_Gis_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Edit.cshtml.g.cs
 C:\Users\raul\Documents\GitHub\.NetGISFalconMadrid\Net_Gis_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Index.cshtml.g.cs
-C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Home\LoginADMIN.cshtml.g.cs
 D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Create.cshtml.g.cs
 D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Delete.cshtml.g.cs
 D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Usuarios\Details.cshtml.g.cs
@@ -870,3 +864,8 @@ D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Deb
 D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Estadoes\Details.cshtml.g.cs
 D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Estadoes\Edit.cshtml.g.cs
 D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Estadoes\Index.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Estadoes\Create.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Estadoes\Delete.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Estadoes\Details.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Estadoes\Edit.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Estadoes\Index.cshtml.g.cs

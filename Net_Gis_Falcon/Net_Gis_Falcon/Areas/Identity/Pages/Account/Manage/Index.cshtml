@@ -11,34 +11,30 @@
     <div class="col-md-6">
         <form id="profile-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <!--<div class="form-group">
-                <label asp-for="Username"></label>
-                <input asp-for="Username" class="form-control" disabled />
-            </div>-->
             <div class="form-group">
                 <label asp-for="Name"></label>
-                <input asp-for="Name" class="form-control"/>
+                <input asp-for="Name" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="Surname"></label>
-                <input asp-for="Surname" class="form-control" />          
+                <input asp-for="Surname" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="PhoneNumber"></label>
-                <input asp-for="PhoneNumber" class="form-control" />              
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="Gender"></label>
-                <input asp-for="Gender" class="form-control" />               
+                <input asp-for="Gender" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="Language"></label>
                 <input asp-for="Language" class="form-control" />
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Direction"></label>
                 <input asp-for="Direction" class="form-control" />
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Municipality"></label>
                 <input asp-for="Municipality" class="form-control" />
@@ -46,6 +42,10 @@
             <div class="form-group">
                 <label asp-for="BirthDay"></label>
                 <input asp-for="BirthDay" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Role"></label>
+                <input asp-for="Role" class="form-control" max="3" min="1"/>
             </div>
             <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
         </form>

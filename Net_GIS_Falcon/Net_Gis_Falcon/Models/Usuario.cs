@@ -29,17 +29,17 @@ namespace Net_Gis_Falcon
             Rol = rol;
         }
 
-        public Usuario(string nombre, string apellido, string email, string genero, string idioma, string contraseña, string foto, string municipio, DateTime? fechaNacimiento)
+        public Usuario(string nombre, string apellido, string email, string genero, string idioma, string foto, string municipio, DateTime? fechaNacimiento, int? rol)
         {
             Nombre = nombre;
             Apellido = apellido;
             Email = email;
             Genero = genero;
             Idioma = idioma;
-            Contraseña = contraseña;
             Foto = foto;
             Municipio = municipio;
             FechaNacimiento = fechaNacimiento;
+            Rol = rol;
         }
 
         public int IdUsuario { get; set; }

@@ -26,12 +26,14 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
         public string Username { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Gender { get; set; }
         public string Language { get; set; }
         public string Direction { get; set; }
         public string Municipality { get; set; }
         public string BirthDay { get; set; }
+        public int Role { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -53,6 +55,10 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
             public string Surname { get; set; }
 
             [Required]
+            [Display(Name = "Email")]
+            public string Email { get; set; }
+
+            [Required]
             [DataType(DataType.PhoneNumber)]
             [Display(Name = "NumeroDeTLF")]
             public string PhoneNumber { get; set; }
@@ -65,9 +71,9 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Idioma")]
             public string Language { get; set; }
 
-            [Required]
-            [Display(Name = "Direccion")]
-            public string Direction { get; set; }
+            //[Required]
+            //[Display(Name = "Direccion")]
+            //public string Direction { get; set; }
 
             [Required]
             [Display(Name = "Municipio")]
@@ -77,6 +83,10 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
             [DataType(DataType.Date)]
             [Display(Name = "FechaDeNacimiento")]
             public string BirthDay { get; set; }
+
+            [Required]
+            [Display(Name = "Rol")]
+            public int Role { get; set; }
         }
 
         private async Task LoadAsync(Usuario user)
@@ -108,11 +118,12 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
                     Console.WriteLine("Dentro");
                     Name = user.Nombre;
                     Surname = user.Apellido;
-                    //Email = user.Email;
+                    Email = user.Email;
                     Gender = user.Genero;
                     Language = user.Idioma;
                     Municipality = user.Municipio;
                     BirthDay = user.FechaNacimiento.ToString();
+                    Role = (int) user.Rol;
 
                     return Page();
                 }
@@ -132,11 +143,12 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
                     Id = user.IdUsuario;
                     Name = user.Nombre;
                     Surname = user.Apellido;
-                    //Email = user.Email;
+                    Email = user.Email;
                     Gender = user.Genero;
                     Language = user.Idioma;
                     Municipality = user.Municipio;
                     BirthDay = user.FechaNacimiento.ToString();
+                    Role = (int)user.Rol;
 
                     return Page();
                 }
@@ -155,7 +167,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPostAsync()
         {
-            Usuario user = new Usuario(Input.Name, Input.Surname, User.Identity.Name.ToString(), Input.Gender, Input.Language, "", "", Input.Municipality, DateTime.Parse(Input.BirthDay));
+            Usuario user = new Usuario(Input.Name, Input.Surname, User.Identity.Name.ToString(), Input.Gender, Input.Language, "", Input.Municipality, DateTime.Parse(Input.BirthDay), Input.Role);
             SecurityService security = new SecurityService();
             Boolean success = security.Update(user);
             
