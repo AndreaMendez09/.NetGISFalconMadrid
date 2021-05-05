@@ -235,7 +235,7 @@ namespace Net_Gis_Falcon.Services.Data
                     connection.Open();
                     NpgsqlCommand cmd = new NpgsqlCommand();
                     cmd.Connection = connection;
-                    cmd.CommandText = "Insert into usuarios(nombre,apellido,email,genero,idioma,contraseña,foto,municipio,fecha_nacimiento) values(@nombre,@apellido,@email,@genero,@idioma,@contraseña,@foto,@municipio,@fecha_nacimiento)";
+                    cmd.CommandText = "Insert into usuarios(nombre,apellido,email,genero,idioma,contraseña,foto,municipio,fecha_nacimiento,rol) values(@nombre,@apellido,@email,@genero,@idioma,@contraseña,@foto,@municipio,@fecha_nacimiento,@rol)";
                     cmd.CommandType = CommandType.Text;
 
                     MD5 md5 = new MD5CryptoServiceProvider();
@@ -274,6 +274,7 @@ namespace Net_Gis_Falcon.Services.Data
 
                     cmd.Parameters.Add(new NpgsqlParameter("@municipio", user.Municipio.ToString()));
                     cmd.Parameters.Add(new NpgsqlParameter("@fecha_nacimiento", user.FechaNacimiento));
+                    cmd.Parameters.Add(new NpgsqlParameter("@rol", user.Rol));
                     cmd.ExecuteNonQuery();
 
                     cmd.Dispose();
