@@ -299,7 +299,7 @@ namespace Net_Gis_Falcon.Services.Data
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = connection;
 
-                string query = "UPDATE usuarios SET nombre='" + user.Nombre + "', apellido='" + user.Apellido + "', genero='" + user.Genero + "', idioma='" + user.Idioma + "', municipio='" + user.Municipio + "', fecha_nacimiento='" + user.FechaNacimiento + ", rol=" + user.Rol + " WHERE email='" + user.Email + "'";
+                string query = "UPDATE usuarios SET nombre='" + user.Nombre + "', apellido='" + user.Apellido + "', genero='" + user.Genero + "', idioma='" + user.Idioma + "', municipio='" + user.Municipio + "', fecha_nacimiento='" + user.FechaNacimiento + "', rol=" + user.Rol + " WHERE email='" + user.Email + "'";
 
                 cmd.CommandText = query;
                 cmd.CommandType = CommandType.Text;
