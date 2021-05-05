@@ -58,6 +58,7 @@ namespace Net_Gis_Falcon.Services.Data
                 {
                     Console.WriteLine(dt);
                     user.IdUsuario = int.Parse(dt.Rows[0][0].ToString());
+                    user.Rol = int.Parse(dt.Rows[0][10].ToString());
                     Console.WriteLine(user.IdUsuario);
                     success = true;
 

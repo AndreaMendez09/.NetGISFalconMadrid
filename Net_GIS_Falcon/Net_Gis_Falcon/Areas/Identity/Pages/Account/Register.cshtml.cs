@@ -115,7 +115,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
         {
             Boolean success = false;
             SecurityService security = new SecurityService();
-            Usuario user = new Usuario(Input.Name, Input.Surname, Input.Email, Input.Gender, Input.Language, Input.Password, null, Input.Municipality, DateTime.Parse(Input.BirthDay), 1);
+            Usuario user = new Usuario(Input.Name, Input.Surname, Input.Email, Input.Gender, Input.Language, Input.Password, null, Input.Municipality, DateTime.Parse(Input.BirthDay), 3);
             success = security.AuthenticateAndCompareByEmail(user);
             if (!success)
             {

@@ -24,9 +24,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Gestión usuarios</a>
-                        </li>
                         @foreach (var c in User.Claims)
                         {
                             @if (c.Value == "operador")
@@ -38,13 +35,17 @@
                             @if (c.Value == "admin")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Personasistemas" asp-action="Index">Gestión de operadores</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Gestión usuarios</a>
                                 </li>
                             }
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Estadoes" asp-action="Index">Gestión de estados</a>
-                        </li>
+                            @if (c.Value == "admin" || c.Value == "operador")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Estadoes" asp-action="Index">Gestión de estados</a>
+                                </li>
+                            }
+                         }
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

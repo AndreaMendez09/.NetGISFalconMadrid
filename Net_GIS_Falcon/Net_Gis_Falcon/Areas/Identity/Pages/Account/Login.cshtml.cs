@@ -118,13 +118,22 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
             userModel.Contraseña = Input.Password;
             Boolean success = security.Authenticate(userModel);
 
+
             if (success)
             {
+                var rol = "";
+                if (userModel.Rol == 1)
+                    rol = "operador";
+                else if (userModel.Rol == 2)
+                    rol = "admin";
+                else
+                    rol = "usuario";
+
                 var claims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.Name, userModel.Email),
                     new Claim(ClaimTypes.NameIdentifier, userModel.IdUsuario.ToString()),
-                    new Claim(ClaimTypes.Role, "operador")
+                    new Claim(ClaimTypes.Role, rol)
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");
