@@ -14,7 +14,6 @@ namespace Net_Gis_Falcon
             PeticionOperadores = new HashSet<PeticionOperadore>();
             Peticions = new HashSet<Peticion>();
         }
-
         public Usuario(string nombre, string apellido, string email, string genero, string idioma, string contraseña, string foto, string municipio, DateTime? fechaNacimiento, int? rol)
         {
             Nombre = nombre;

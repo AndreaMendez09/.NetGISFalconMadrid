@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -111,14 +111,6 @@ namespace Net_Gis_Falcon
                     .IsRequired()
                     .HasMaxLength(20)
                     .HasColumnName("nombre_estado");
-
-                entity.Property(e => e.Padre).HasColumnName("padre");
-
-                entity.HasOne(d => d.PadreNavigation)
-                    .WithMany(p => p.InversePadreNavigation)
-                    .HasForeignKey(d => d.Padre)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("estado_padre_fkey");
             });
 
             modelBuilder.Entity<HistoricoEstado>(entity =>
@@ -205,16 +197,16 @@ namespace Net_Gis_Falcon
 
                 entity.ToTable("peticion");
 
-                entity.HasIndex(e => e.LocalizacionPeticion, "idx_code_peticion_geom")
-                    .HasMethod("gist");
-
                 entity.Property(e => e.IdPeticion).HasColumnName("id_peticion");
 
                 entity.Property(e => e.FechaCreacion)
                     .HasColumnType("date")
                     .HasColumnName("fecha_creacion");
 
-                entity.Property(e => e.LocalizacionPeticion).HasColumnName("localizacion_peticion");
+                entity.Property(e => e.LocalizacionPeticion)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnName("localizacion_peticion");
 
                 entity.Property(e => e.Usuario).HasColumnName("usuario");
 
@@ -281,9 +273,6 @@ namespace Net_Gis_Falcon
 
                 entity.ToTable("usuarios");
 
-                entity.HasIndex(e => e.Email, "idx_usuarios_unique")
-                    .IsUnique();
-
                 entity.HasIndex(e => e.Email, "usuarios_email_key")
                     .IsUnique();
 
@@ -301,7 +290,7 @@ namespace Net_Gis_Falcon
 
                 entity.Property(e => e.Email)
                     .IsRequired()
-                    .HasMaxLength(255)
+                    .HasMaxLength(20)
                     .HasColumnName("email");
 
                 entity.Property(e => e.FechaNacimiento)
@@ -342,9 +331,6 @@ namespace Net_Gis_Falcon
 
                 entity.ToTable("zona");
 
-                entity.HasIndex(e => e.GeometriaZona, "idx_code_zona_geom")
-                    .HasMethod("gist");
-
                 entity.Property(e => e.IdZona).HasColumnName("id_zona");
 
                 entity.Property(e => e.DescripcionZona)
@@ -352,7 +338,10 @@ namespace Net_Gis_Falcon
                     .HasMaxLength(100)
                     .HasColumnName("descripcion_zona");
 
-                entity.Property(e => e.GeometriaZona).HasColumnName("geometria_zona");
+                entity.Property(e => e.GeometriaZona)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .HasColumnName("geometria_zona");
 
                 entity.Property(e => e.NombreZona)
                     .IsRequired()

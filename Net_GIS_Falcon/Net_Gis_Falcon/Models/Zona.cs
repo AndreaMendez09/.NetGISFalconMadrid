@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NpgsqlTypes;
 
 #nullable disable
 
@@ -15,7 +16,7 @@ namespace Net_Gis_Falcon
         public int IdZona { get; set; }
         public string NombreZona { get; set; }
         public string DescripcionZona { get; set; }
-        public string GeometriaZona { get; set; }
+        public NpgsqlPolygon GeometriaZona { get; set; }
 
         public virtual ICollection<OperadoresZona> OperadoresZonas { get; set; }
     }

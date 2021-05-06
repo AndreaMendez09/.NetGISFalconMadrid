@@ -16,7 +16,7 @@ CREATE TABLE Usuarios(
     id_usuario SERIAL primary key,
     nombre varchar(20) not null,
     apellido varchar(20) not null,
-    email varchar(20) not null unique,
+    email varchar(255) not null unique,
     genero char(5) not null,
     idioma varchar(20) not null,
     contraseña varchar(255)not null,
@@ -30,7 +30,7 @@ CREATE TABLE Zona(
     id_zona SERIAL PRIMARY KEY,
     nombre_zona varchar(20) not null,
     descripcion_zona varchar (100) not null,
-    geometria_zona varchar(255) not null
+    geometria_zona geometry not null
 );
 
 CREATE TABLE Operadores_zona (
@@ -42,7 +42,7 @@ CREATE TABLE Operadores_zona (
 CREATE TABLE Peticion (
     id_peticion SERIAL PRIMARY KEY,
     fecha_creacion date not null, 
-    localizacion_peticion varchar(255) not null,
+    localizacion_peticion point not null,
     usuario int not null, 
     FOREIGN KEY (usuario) REFERENCES Usuarios(id_usuario)
 );
@@ -59,7 +59,9 @@ CREATE TABLE Estado(
     id_estado SERIAL PRIMARY KEY, 
     nombre_estado varchar(20) not null, 
     EsFinal boolean not null,
-    color_estado varchar(5)
+    color_estado varchar(5),
+	padre int not null, 
+	FOREIGN KEY (padre) REFERENCES Estado(id_estado)
 );
 
 CREATE TABLE Historico_estado (
@@ -99,3 +101,7 @@ CREATE TABLE Respuesta (
     nivel int not null,
     FOREIGN KEY (nivel) REFERENCES Nivel(id_pregunta)
 );
+
+CREATE INDEX idx_code_Zona_geom ON Zona USING gist(geometria_zona);
+CREATE INDEX idx_code_Peticion_geom ON Peticion USING gist(localizacion_peticion);
+CREATE UNIQUE INDEX idx_Usuarios_unique ON Usuarios(email); 

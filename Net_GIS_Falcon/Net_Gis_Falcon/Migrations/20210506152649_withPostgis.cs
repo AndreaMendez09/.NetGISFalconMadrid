@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using NpgsqlTypes;
 
 namespace Net_Gis_Falcon.Migrations
 {
-    public partial class sinHerencia2 : Migration
+    public partial class withPostgis : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,11 +41,18 @@ namespace Net_Gis_Falcon.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     nombre_estado = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     esfinal = table.Column<bool>(type: "boolean", nullable: false),
-                    color_estado = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: true)
+                    color_estado = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: true),
+                    padre = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("estado_pkey", x => x.id_estado);
+                    table.ForeignKey(
+                        name: "estado_padre_fkey",
+                        column: x => x.padre,
+                        principalTable: "estado",
+                        principalColumn: "id_estado",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,7 +77,7 @@ namespace Net_Gis_Falcon.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     nombre = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     apellido = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    email = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     genero = table.Column<string>(type: "character(5)", fixedLength: true, maxLength: 5, nullable: false),
                     idioma = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     contraseña = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
@@ -91,7 +99,7 @@ namespace Net_Gis_Falcon.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     nombre_zona = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     descripcion_zona = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    geometria_zona = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    geometria_zona = table.Column<NpgsqlPolygon>(type: "polygon", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -126,7 +134,7 @@ namespace Net_Gis_Falcon.Migrations
                     id_peticion = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     fecha_creacion = table.Column<DateTime>(type: "date", nullable: false),
-                    localizacion_peticion = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    localizacion_peticion = table.Column<NpgsqlPoint>(type: "point", nullable: false),
                     usuario = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -221,6 +229,11 @@ namespace Net_Gis_Falcon.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_estado_padre",
+                table: "estado",
+                column: "padre");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_historico_estado_estado",
                 table: "historico_estado",
                 column: "estado");
@@ -234,6 +247,12 @@ namespace Net_Gis_Falcon.Migrations
                 name: "IX_operadores_zona_zona",
                 table: "operadores_zona",
                 column: "zona");
+
+            migrationBuilder.CreateIndex(
+                name: "idx_code_peticion_geom",
+                table: "peticion",
+                column: "localizacion_peticion")
+                .Annotation("Npgsql:IndexMethod", "gist");
 
             migrationBuilder.CreateIndex(
                 name: "IX_peticion_usuario",
@@ -251,10 +270,22 @@ namespace Net_Gis_Falcon.Migrations
                 column: "nivel");
 
             migrationBuilder.CreateIndex(
+                name: "idx_usuarios_unique",
+                table: "usuarios",
+                column: "email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "usuarios_email_key",
                 table: "usuarios",
                 column: "email",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "idx_code_zona_geom",
+                table: "zona",
+                column: "geometria_zona")
+                .Annotation("Npgsql:IndexMethod", "gist");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

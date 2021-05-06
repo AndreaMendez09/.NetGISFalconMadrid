@@ -6,12 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Net_Gis_Falcon;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using NpgsqlTypes;
 
 namespace Net_Gis_Falcon.Migrations
 {
     [DbContext(typeof(testContext))]
-    [Migration("20210430114714_sin Herencia2")]
-    partial class sinHerencia2
+    [Migration("20210506152649_withPostgis")]
+    partial class withPostgis
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -109,8 +110,14 @@ namespace Net_Gis_Falcon.Migrations
                         .HasColumnType("character varying(20)")
                         .HasColumnName("nombre_estado");
 
+                    b.Property<int>("Padre")
+                        .HasColumnType("integer")
+                        .HasColumnName("padre");
+
                     b.HasKey("IdEstado")
                         .HasName("estado_pkey");
+
+                    b.HasIndex("Padre");
 
                     b.ToTable("estado");
                 });
@@ -197,10 +204,8 @@ namespace Net_Gis_Falcon.Migrations
                         .HasColumnType("date")
                         .HasColumnName("fecha_creacion");
 
-                    b.Property<string>("LocalizacionPeticion")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
+                    b.Property<NpgsqlPoint>("LocalizacionPeticion")
+                        .HasColumnType("point")
                         .HasColumnName("localizacion_peticion");
 
                     b.Property<int>("Usuario")
@@ -211,6 +216,9 @@ namespace Net_Gis_Falcon.Migrations
                         .HasName("peticion_pkey");
 
                     b.HasIndex("Usuario");
+
+                    b.HasIndex(new[] { "LocalizacionPeticion" }, "idx_code_peticion_geom")
+                        .HasMethod("gist");
 
                     b.ToTable("peticion");
                 });
@@ -285,8 +293,8 @@ namespace Net_Gis_Falcon.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
                         .HasColumnName("email");
 
                     b.Property<DateTime?>("FechaNacimiento")
@@ -329,6 +337,9 @@ namespace Net_Gis_Falcon.Migrations
                     b.HasKey("IdUsuario")
                         .HasName("usuarios_pkey");
 
+                    b.HasIndex(new[] { "Email" }, "idx_usuarios_unique")
+                        .IsUnique();
+
                     b.HasIndex(new[] { "Email" }, "usuarios_email_key")
                         .IsUnique();
 
@@ -349,10 +360,8 @@ namespace Net_Gis_Falcon.Migrations
                         .HasColumnType("character varying(100)")
                         .HasColumnName("descripcion_zona");
 
-                    b.Property<string>("GeometriaZona")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
+                    b.Property<NpgsqlPolygon>("GeometriaZona")
+                        .HasColumnType("polygon")
                         .HasColumnName("geometria_zona");
 
                     b.Property<string>("NombreZona")
@@ -364,7 +373,21 @@ namespace Net_Gis_Falcon.Migrations
                     b.HasKey("IdZona")
                         .HasName("zona_pkey");
 
+                    b.HasIndex(new[] { "GeometriaZona" }, "idx_code_zona_geom")
+                        .HasMethod("gist");
+
                     b.ToTable("zona");
+                });
+
+            modelBuilder.Entity("Net_Gis_Falcon.Estado", b =>
+                {
+                    b.HasOne("Net_Gis_Falcon.Estado", "PadreNavigation")
+                        .WithMany("InversePadreNavigation")
+                        .HasForeignKey("Padre")
+                        .HasConstraintName("estado_padre_fkey")
+                        .IsRequired();
+
+                    b.Navigation("PadreNavigation");
                 });
 
             modelBuilder.Entity("Net_Gis_Falcon.HistoricoEstado", b =>
@@ -457,6 +480,8 @@ namespace Net_Gis_Falcon.Migrations
             modelBuilder.Entity("Net_Gis_Falcon.Estado", b =>
                 {
                     b.Navigation("HistoricoEstados");
+
+                    b.Navigation("InversePadreNavigation");
                 });
 
             modelBuilder.Entity("Net_Gis_Falcon.Nivel", b =>

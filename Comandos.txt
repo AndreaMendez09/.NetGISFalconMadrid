@@ -1,3 +1,5 @@
 Actualizar el context
 dotnet ef dbcontext scaffold "Host=localhost;Database=test;Username=postgres;Password=ADMIN" Npgsql.EntityFrameworkCore.PostgreSQL -c testContext -f
 ------
+Para añadir el indice cuando creamos la geometria
+CREATE INDEX idx_code_prueba_geom ON prueba USING gist(geom);
