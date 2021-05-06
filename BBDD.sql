@@ -30,7 +30,7 @@ CREATE TABLE Zona(
     id_zona SERIAL PRIMARY KEY,
     nombre_zona varchar(20) not null,
     descripcion_zona varchar (100) not null,
-    geometria_zona geometry not null
+    geometria_zona POLYGON not null
 );
 
 CREATE TABLE Operadores_zona (
