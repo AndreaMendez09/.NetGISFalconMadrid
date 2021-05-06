@@ -1,0 +1,45 @@
+﻿@model Net_Gis_Falcon.HistoricoEstado
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Crear nuevo historico</h1>
+
+<h4>Historico Estado</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FechaModificacion" class="control-label">Fecha de modificacion</label>
+                <input asp-for="FechaModificacion" class="form-control" />
+                <span asp-validation-for="FechaModificacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estado" class="control-label"></label>
+                <select asp-for="Estado" class ="form-control" asp-items="ViewBag.Estado"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Peticion" class="control-label"></label>
+                <select asp-for="Peticion" class ="form-control" asp-items="ViewBag.Peticion"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Operador" class="control-label"></label>
+                <select asp-for="Operador" class ="form-control" asp-items="ViewBag.Operador"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

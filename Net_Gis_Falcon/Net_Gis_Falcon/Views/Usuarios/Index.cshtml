@@ -4,13 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Gestión de usuarios</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear nuevo usuario</a>
 </p>
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
@@ -81,9 +81,9 @@
             </td>
             <td>
                 @if (!(item.Rol == 2)) { 
-                <a asp-action="Edit" asp-route-id="@item.IdUsuario">Edit</a> 
-                <a asp-action="Details" asp-route-id="@item.IdUsuario">Details</a> 
-                <a asp-action="Delete" asp-route-id="@item.IdUsuario">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdUsuario">Editar</a> 
+                <a asp-action="Details" asp-route-id="@item.IdUsuario">Detalles</a> 
+                <a asp-action="Delete" asp-route-id="@item.IdUsuario">Eliminar</a>
                 }
             </td>
         </tr>

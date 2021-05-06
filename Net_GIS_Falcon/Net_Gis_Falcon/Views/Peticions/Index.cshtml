@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Net_Gis_Falcon.Peticion>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Mis peticiones</h1>
+
+<p>
+    <a asp-action="Create">Crear nueva peticion</a>
+</p>
+<table class="table">
+    <thead  class="thead-dark">
+        <tr>
+            <th>Fecha de creacion</th>
+            <th>Localizacion</th>
+            <th>Usuario </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocalizacionPeticion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioNavigation.Apellido)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPeticion">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdPeticion">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPeticion">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

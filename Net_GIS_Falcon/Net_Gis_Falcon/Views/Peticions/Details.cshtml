@@ -1,0 +1,30 @@
+﻿@model Net_Gis_Falcon.Peticion
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Peticion</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">Fecha de creación</dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+        <dt class = "col-sm-2">Localización </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocalizacionPeticion)
+        </dd>
+        <dt class = "col-sm-2">Usuario</dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UsuarioNavigation.Apellido)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdPeticion">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

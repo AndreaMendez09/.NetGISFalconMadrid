@@ -4,13 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Gestión de Estados</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear nuevo estado</a>
 </p>
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th>Nombre del estado</th>
             <th>¿Es final?</th>
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.ColorEstado)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdEstado">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdEstado">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdEstado">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdEstado">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdEstado">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdEstado">Eliminar</a>
             </td>
         </tr>
 }

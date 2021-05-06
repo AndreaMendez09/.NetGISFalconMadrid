@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Net_Gis_Falcon.HistoricoEstado>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Historico de Estados</h1>
+<p>
+    <a asp-action="Create">Crear nuevo</a>
+</p>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Fecha Modificacion </th>
+            <th>Estado</th>
+            <th>Operador Asignado</th>
+            <th>Peticion</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaModificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoNavigation.NombreEstado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OperadorNavigation.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PeticionNavigation.LocalizacionPeticion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
