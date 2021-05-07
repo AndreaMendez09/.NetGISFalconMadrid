@@ -7,6 +7,6 @@ namespace Net_Gis_Falcon.Data
 {
     public static class BdConnection
     {
-        public static string connectionString = "host=localhost;port=5432;username=postgres;password=ADMIN;database=test";
+        public static string connectionString = "host=localhost;port=5433;username=postgres;password=admin;database=test";
     }
 }

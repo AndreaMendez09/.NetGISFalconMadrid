@@ -29,6 +29,11 @@
                 <span asp-validation-for="ColorEstado" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Padre" class="control-label"></label>
+                <select asp-for="Padre" class="form-control" asp-items="ViewBag.Padre"></select>
+                <span asp-validation-for="Padre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

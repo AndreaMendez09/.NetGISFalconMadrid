@@ -21,7 +21,8 @@ namespace Net_Gis_Falcon.Controllers
         // GET: Estadoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Estados.ToListAsync());
+            var testContext = _context.Estados.Include(e => e.PadreNavigation);
+            return View(await testContext.ToListAsync());
         }
 
         // GET: Estadoes/Details/5
@@ -33,6 +34,7 @@ namespace Net_Gis_Falcon.Controllers
             }
 
             var estado = await _context.Estados
+                .Include(e => e.PadreNavigation)
                 .FirstOrDefaultAsync(m => m.IdEstado == id);
             if (estado == null)
             {
@@ -45,6 +47,7 @@ namespace Net_Gis_Falcon.Controllers
         // GET: Estadoes/Create
         public IActionResult Create()
         {
+            ViewData["Padre"] = new SelectList(_context.Estados, "IdEstado", "NombreEstado");
             return View();
         }
 
@@ -53,7 +56,7 @@ namespace Net_Gis_Falcon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdEstado,NombreEstado,Esfinal,ColorEstado")] Estado estado)
+        public async Task<IActionResult> Create([Bind("IdEstado,NombreEstado,Esfinal,ColorEstado,Padre")] Estado estado)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +64,7 @@ namespace Net_Gis_Falcon.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Padre"] = new SelectList(_context.Estados, "IdEstado", "NombreEstado", estado.Padre);
             return View(estado);
         }
 
@@ -77,6 +81,7 @@ namespace Net_Gis_Falcon.Controllers
             {
                 return NotFound();
             }
+            ViewData["Padre"] = new SelectList(_context.Estados, "IdEstado", "NombreEstado", estado.Padre);
             return View(estado);
         }
 
@@ -85,7 +90,7 @@ namespace Net_Gis_Falcon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdEstado,NombreEstado,Esfinal,ColorEstado")] Estado estado)
+        public async Task<IActionResult> Edit(int id, [Bind("IdEstado,NombreEstado,Esfinal,ColorEstado,Padre")] Estado estado)
         {
             if (id != estado.IdEstado)
             {
@@ -112,6 +117,7 @@ namespace Net_Gis_Falcon.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Padre"] = new SelectList(_context.Estados, "IdEstado", "NombreEstado", estado.Padre);
             return View(estado);
         }
 
@@ -124,6 +130,7 @@ namespace Net_Gis_Falcon.Controllers
             }
 
             var estado = await _context.Estados
+                .Include(e => e.PadreNavigation)
                 .FirstOrDefaultAsync(m => m.IdEstado == id);
             if (estado == null)
             {

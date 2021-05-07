@@ -4,17 +4,26 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Gestión de Estados</h1>
+<h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Crear nuevo estado</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead class="thead-dark">
+    <thead>
         <tr>
-            <th>Nombre del estado</th>
-            <th>¿Es final?</th>
-            <th>Color</th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreEstado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Esfinal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ColorEstado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PadreNavigation)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -31,9 +40,12 @@
                 @Html.DisplayFor(modelItem => item.ColorEstado)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdEstado">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.IdEstado">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdEstado">Eliminar</a>
+                @Html.DisplayFor(modelItem => item.PadreNavigation.NombreEstado)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdEstado">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdEstado">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdEstado">Delete</a>
             </td>
         </tr>
 }
