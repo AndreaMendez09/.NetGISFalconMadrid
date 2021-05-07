@@ -17,7 +17,7 @@ namespace Net_Gis_Falcon
         public string NombreEstado { get; set; }
         public bool Esfinal { get; set; }
         public string ColorEstado { get; set; }
-        public int Padre { get; set; }
+        public int? Padre { get; set; }
 
         public virtual Estado PadreNavigation { get; set; }
         public virtual ICollection<HistoricoEstado> HistoricoEstados { get; set; }

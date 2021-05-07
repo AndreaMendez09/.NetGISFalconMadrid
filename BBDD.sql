@@ -23,13 +23,13 @@ CREATE TABLE Usuarios(
     foto varchar(20),
     municipio VARCHAR(20),
     fecha_nacimiento DATE,
-    rol INT
+    rol INT not null
 );
 
 CREATE TABLE Zona(
     id_zona SERIAL PRIMARY KEY,
     nombre_zona varchar(20) not null,
-    descripcion_zona varchar (100) not null,
+    descripcion_zona varchar (100),
     geometria_zona POLYGON not null
 );
 
@@ -60,7 +60,7 @@ CREATE TABLE Estado(
     nombre_estado varchar(20) not null, 
     EsFinal boolean not null,
     color_estado varchar(5),
-	padre int not null, 
+	padre int, 
 	FOREIGN KEY (padre) REFERENCES Estado(id_estado)
 );
 
@@ -99,6 +99,8 @@ CREATE TABLE Respuesta (
     cuerpo_respuesta varchar(25) not null,
     principal boolean not null, 
     nivel int not null,
+	respuesta_padre int, 
+	FOREIGN KEY (respuesta_padre) REFERENCES Respuesta(id_respuesta),
     FOREIGN KEY (nivel) REFERENCES Nivel(id_pregunta)
 );
 

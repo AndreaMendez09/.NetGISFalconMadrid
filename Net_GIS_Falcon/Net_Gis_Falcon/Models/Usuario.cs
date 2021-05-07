@@ -14,7 +14,8 @@ namespace Net_Gis_Falcon
             PeticionOperadores = new HashSet<PeticionOperadore>();
             Peticions = new HashSet<Peticion>();
         }
-        public Usuario(string nombre, string apellido, string email, string genero, string idioma, string contraseña, string foto, string municipio, DateTime? fechaNacimiento, int? rol)
+
+        public Usuario(string nombre, string apellido, string email, string genero, string idioma, string contraseña, string foto, string municipio, DateTime? fechaNacimiento, int rol)
         {
             Nombre = nombre;
             Apellido = apellido;
@@ -28,7 +29,7 @@ namespace Net_Gis_Falcon
             Rol = rol;
         }
 
-        public Usuario(string nombre, string apellido, string email, string genero, string idioma, string foto, string municipio, DateTime? fechaNacimiento, int? rol)
+        public Usuario(string nombre, string apellido, string email, string genero, string idioma, string foto, string municipio, DateTime? fechaNacimiento, int rol)
         {
             Nombre = nombre;
             Apellido = apellido;
@@ -51,7 +52,7 @@ namespace Net_Gis_Falcon
         public string Foto { get; set; }
         public string Municipio { get; set; }
         public DateTime? FechaNacimiento { get; set; }
-        public int? Rol { get; set; }
+        public int Rol { get; set; }
 
         public virtual ICollection<HistoricoEstado> HistoricoEstados { get; set; }
         public virtual ICollection<OperadoresZona> OperadoresZonas { get; set; }
