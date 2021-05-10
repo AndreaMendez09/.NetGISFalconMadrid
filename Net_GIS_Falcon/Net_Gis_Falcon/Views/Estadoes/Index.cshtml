@@ -4,26 +4,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Gestión de estados</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreEstado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Esfinal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ColorEstado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PadreNavigation)
-            </th>
+            <th>Nombre de estado</th>
+            <th>Es final?</th>
+            <th>Color estado</th>
+            <th>Padre</th>
             <th></th>
         </tr>
     </thead>

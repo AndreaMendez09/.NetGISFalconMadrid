@@ -13,17 +13,17 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NombreEstado" class="control-label"></label>
+                <label asp-for="NombreEstado" class="control-label">Nombre estado</label>
                 <input asp-for="NombreEstado" class="form-control" />
                 <span asp-validation-for="NombreEstado" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Esfinal" /> @Html.DisplayNameFor(model => model.Esfinal)
+                    <input class="form-check-input" asp-for="Esfinal" /> Es final ?
                 </label>
             </div>
             <div class="form-group">
-                <label asp-for="ColorEstado" class="control-label"></label>
+                <label asp-for="ColorEstado" class="control-label">Color estado</label>
                 <input asp-for="ColorEstado" class="form-control" />
                 <span asp-validation-for="ColorEstado" class="text-danger"></span>
             </div>
