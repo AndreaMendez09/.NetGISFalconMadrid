@@ -42,6 +42,7 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
           "Npgsql": "5.0.4",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.5",
+          "OpenLayers": "4.6.4",
           "System.Configuration.ConfigurationManager": "5.0.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
@@ -1246,6 +1247,7 @@
           "lib/netstandard2.1/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {}
         }
       },
+      "OpenLayers/4.6.4": {},
       "runtime.native.System/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "5.0.0",
@@ -4071,6 +4073,13 @@
       "sha512": "sha512-sxmLlqjeNgpMAHIyQj62fXtaP/jfJMUrHzXfrXsk1N9NvIbfqTbX/GMkscq/Cqi4JCH+zc1vxnS02KT0Zn5dFg==",
       "path": "npgsql.entityframeworkcore.postgresql/5.0.5",
       "hashPath": "npgsql.entityframeworkcore.postgresql.5.0.5.nupkg.sha512"
+    },
+    "OpenLayers/4.6.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Sob9vV6zK7lwO8HC6hzVEJ+VjDSCwmnTXSh2OsybJ5Ql36BCrjj+SwTxTyxQFwuVMrze8FlVd4SKhBRtemuEDA==",
+      "path": "openlayers/4.6.4",
+      "hashPath": "openlayers.4.6.4.nupkg.sha512"
     },
     "runtime.native.System/4.3.0": {
       "type": "package",

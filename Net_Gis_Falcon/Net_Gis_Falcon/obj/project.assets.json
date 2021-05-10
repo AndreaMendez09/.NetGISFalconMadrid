@@ -1012,6 +1012,9 @@
           "lib/netstandard2.1/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {}
         }
       },
+      "OpenLayers/4.6.4": {
+        "type": "package"
+      },
       "runtime.native.System/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -3942,6 +3945,20 @@
         "npgsql.entityframeworkcore.postgresql.5.0.5.nupkg.sha512",
         "npgsql.entityframeworkcore.postgresql.nuspec",
         "postgresql.png"
+      ]
+    },
+    "OpenLayers/4.6.4": {
+      "sha512": "Sob9vV6zK7lwO8HC6hzVEJ+VjDSCwmnTXSh2OsybJ5Ql36BCrjj+SwTxTyxQFwuVMrze8FlVd4SKhBRtemuEDA==",
+      "type": "package",
+      "path": "openlayers/4.6.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/scripts/ol-debug.js",
+        "content/scripts/ol.css",
+        "content/scripts/ol.js",
+        "openlayers.4.6.4.nupkg.sha512",
+        "openlayers.nuspec"
       ]
     },
     "runtime.native.System/4.3.0": {
@@ -7565,23 +7582,24 @@
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
       "Npgsql >= 5.0.4",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 5.0.5",
+      "OpenLayers >= 4.6.4",
       "System.Configuration.ConfigurationManager >= 5.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Familia\\.nuget\\packages\\": {}
+    "C:\\Users\\andre\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FTC_ATOS_DAM\\ProyectoGIS\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
+      "projectUniqueName": "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
       "projectName": "Net_Gis_Falcon",
-      "projectPath": "D:\\FTC_ATOS_DAM\\ProyectoGIS\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
-      "packagesPath": "C:\\Users\\Familia\\.nuget\\packages\\",
-      "outputPath": "D:\\FTC_ATOS_DAM\\ProyectoGIS\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\obj\\",
+      "projectPath": "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+      "outputPath": "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Familia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7645,6 +7663,10 @@
             "target": "Package",
             "version": "[5.0.5, )"
           },
+          "OpenLayers": {
+            "target": "Package",
+            "version": "[4.6.4, )"
+          },
           "System.Configuration.ConfigurationManager": {
             "target": "Package",
             "version": "[5.0.0, )"
@@ -7668,7 +7690,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
