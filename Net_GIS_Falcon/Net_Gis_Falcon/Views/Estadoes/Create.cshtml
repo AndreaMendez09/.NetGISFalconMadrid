@@ -24,7 +24,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="ColorEstado" class="control-label">Color estado</label>
-                <input asp-for="ColorEstado" class="form-control" />
+                <select asp-for="ColorEstado" class="form-control">
+                    <option value="#ef5350">Rojo</option>
+                    <option value="#66bb6a">Verde</option>
+                    <option value="#ffca28">Amarillo</option>
+                    <option value="#42a5f5">Azul</option>
+                    <option value="#bdbdbd">Gris</option>
+
+                </select>
                 <span asp-validation-for="ColorEstado" class="text-danger"></span>
             </div>
             <div class="form-group">
