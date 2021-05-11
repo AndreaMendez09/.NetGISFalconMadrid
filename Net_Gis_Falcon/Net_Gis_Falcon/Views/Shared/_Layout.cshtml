@@ -27,12 +27,12 @@
                 </button>
                 <div class="navbar-collapse collapse d-md-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        </li>-->
                         
                         @foreach (var c in User.Claims)
                         {
@@ -53,6 +53,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Gestión usuarios</a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Zonas" asp-action="Index">Gestión de zonas</a>
+                                </li>
                             }
                             @if (c.Value == "admin" || c.Value == "operador")
                             {
@@ -63,6 +67,8 @@
                                     <a class="nav-link text-dark" asp-area="" asp-controller="HistoricoEstadoes" asp-action="Index">Historial de peticiones</a>
                                 </li>
                             }
+
+
                         }
 
                     </ul>

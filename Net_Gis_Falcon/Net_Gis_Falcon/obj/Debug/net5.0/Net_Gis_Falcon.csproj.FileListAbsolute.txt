@@ -895,3 +895,10 @@ C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor
 C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Peticions\Index.cshtml.g.cs
 C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\bin\Debug\net5.0\package.json
 C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\bin\Debug\net5.0\package-lock.json
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\bin\Debug\net5.0\package-lock.json
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\bin\Debug\net5.0\package.json
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Zonas\Create.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Zonas\Delete.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Zonas\Details.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Zonas\Edit.cshtml.g.cs
+D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Zonas\Index.cshtml.g.cs

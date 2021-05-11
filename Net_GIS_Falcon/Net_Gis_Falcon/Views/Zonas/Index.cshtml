@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Net_Gis_Falcon.Zona>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Gestión de zonas</h1>
+
+<p>
+    <a asp-action="Create">Crear nueva zona</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre de la zona
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Geometria (pruebas)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreZona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionZona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeometriaZona)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdZona">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdZona">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdZona">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

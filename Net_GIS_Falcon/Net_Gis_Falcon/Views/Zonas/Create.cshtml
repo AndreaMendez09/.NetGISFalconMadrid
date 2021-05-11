@@ -1,0 +1,60 @@
+﻿@model Net_Gis_Falcon.Zona
+
+@{
+    ViewData["Title"] = "Create";
+}
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+
+<h1>Crear zona</h1>
+<div id="map" class="map"></div>
+<form class="form-inline">
+    <label for="type">Shape type: &nbsp;</label>
+    <select class="form-control mr-2 mb-2 mt-2" id="type">
+        <option value="Circle">Circle</option>
+        <option value="Square">Square</option>
+        <option value="Box">Box</option>
+        <option value="Star">Star</option>
+        <option value="Polygon">Custom</option>
+        <option value="None">None</option>
+    </select>
+    <input class="form-control mr-2 mb-2 mt-2" type="button" value="Borrar" id="undo">
+</form>
+<script src="~/js/MapaZonas.js"></script>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NombreZona" class="control-label">Nombre de la zona</label>
+                <input asp-for="NombreZona" class="form-control" />
+                <span asp-validation-for="NombreZona" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescripcionZona" class="control-label">Descripción</label>
+                <textarea asp-for="DescripcionZona" class="form-control" placeholder="(máx 100 caracteres)" style="resize: none">
+                </textarea>
+                <span asp-validation-for="DescripcionZona" class="text-danger"></span>
+            </div>
+            <!--<div class="form-group">
+                <label asp-for="GeometriaZona" class="control-label"></label>
+                <input asp-for="GeometriaZona" class="form-control" />
+                <span asp-validation-for="GeometriaZona" class="text-danger"></span>
+            </div>-->
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Crear zona" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver a la gestión de zonas</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
