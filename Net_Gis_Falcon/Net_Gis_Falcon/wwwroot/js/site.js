@@ -26,10 +26,10 @@ function addInteraction() {
         var geometryFunction;
         if (value === 'Square') {
             value = 'Circle';
-            geometryFunction = createRegularPolygon(4);
+            geometryFunction = ol.interaction.Draw.createRegularPolygon(4);
         } else if (value === 'Box') {
             value = 'Circle';
-            geometryFunction = createBox();
+            geometryFunction = ol.interaction.Draw.createBox();
         } else if (value === 'Star') {
             value = 'Circle';
             geometryFunction = function (coordinates, geometry) {
@@ -50,13 +50,14 @@ function addInteraction() {
                 }
                 newCoordinates.push(newCoordinates[0].slice());
                 if (!geometry) {
-                    geometry = new Polygon([newCoordinates]);
+                    geometry = new ol.geom.Polygon([newCoordinates]);
                 } else {
                     geometry.setCoordinates([newCoordinates]);
                 }
                 return geometry;
             };
         }
+
         draw = new ol.interaction.Draw({
             source: source,
             type: value,
