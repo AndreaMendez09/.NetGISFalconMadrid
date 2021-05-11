@@ -4,22 +4,17 @@
 <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core HOLA</a>.</p>
-    <script src="https://unpkg.com/elm-pep"></script>
-    <style>
-        .map {
-            width: 100%;
-            height: 400px;
-        }
-    </style>
-
+    <!--<h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>-->
     <div id="map" class="map"></div>
+    <div id="info">&nbsp;</div>
+    <div id="demo"></div>
     <form class="form-inline">
         <label for="type">Shape type: &nbsp;</label>
         <select class="form-control mr-2 mb-2 mt-2" id="type">
             <option value="Circle">Circle</option>
             <option value="Square">Square</option>
+            <option value="Point">Point</option>
             <option value="Box">Box</option>
             <option value="Star">Star</option>
             <option value="Polygon">Custom</option>
