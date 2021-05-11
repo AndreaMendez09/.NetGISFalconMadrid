@@ -883,3 +883,14 @@ D:\FTC_ATOS_DAM\ProyectoGIS\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\ob
 D:\FTC_ATOS_DAM\ProyectoGIS\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Estadoes\Details.cshtml.g.cs
 D:\FTC_ATOS_DAM\ProyectoGIS\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Estadoes\Edit.cshtml.g.cs
 D:\FTC_ATOS_DAM\ProyectoGIS\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Estadoes\Index.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\HistoricoEstadoes\Create.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\HistoricoEstadoes\Delete.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\HistoricoEstadoes\Details.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\HistoricoEstadoes\Edit.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\HistoricoEstadoes\Index.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Peticions\Create.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Peticions\Delete.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Peticions\Details.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Peticions\Edit.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\Peticions\Index.cshtml.g.cs
+C:\Atos\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\bin\Debug\net5.0\package.json
