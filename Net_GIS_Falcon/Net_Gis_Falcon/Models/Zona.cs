@@ -17,6 +17,7 @@ namespace Net_Gis_Falcon
         public string NombreZona { get; set; }
         public string DescripcionZona { get; set; }
         public NpgsqlPolygon GeometriaZona { get; set; }
+        public string coordenadas { get; set; }
 
         public virtual ICollection<OperadoresZona> OperadoresZonas { get; set; }
     }

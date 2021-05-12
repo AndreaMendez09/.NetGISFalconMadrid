@@ -15,8 +15,18 @@ source.on('addfeature', function (evt) {
     //array = feature.getGeometry().getCoordinates();
     //var coords = array.join(':');
     //var coords1 = coords[1];
-    document.getElementById('info').value = coords.toString();
-    console.log(coords[0]);
+    var coordinates = "";
+
+    for (var i = 0; i < coords.length; i++) {
+        for (var j = 0; j < coords[i].length; j++) {
+            coordinates += coords[i][j].toString() + ": ";
+        }
+    }
+
+    document.getElementById('info').value = coordinates;
+    /*console.log(coords[0][0]);
+    console.log(coords);
+    console.log(coordinates);*/
 });
 
 var map = new ol.Map({

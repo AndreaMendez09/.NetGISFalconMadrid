@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Net_Gis_Falcon;
+using NpgsqlTypes;
 
 namespace Net_Gis_Falcon.Controllers
 {
@@ -53,13 +54,29 @@ namespace Net_Gis_Falcon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdZona,NombreZona,DescripcionZona,GeometriaZona")] Zona zona)
+        public async Task<IActionResult> Create([Bind("IdZona,NombreZona,DescripcionZona,coordenadas,GeometriaZona")] Zona zona)
         {
             if (ModelState.IsValid)
             {
-                //var texto = $("#info").data("rank");
-                var prueba = @Url.Content("coords");
-                Console.WriteLine(prueba);
+                Console.WriteLine(zona.coordenadas);
+                Console.WriteLine(zona.DescripcionZona);
+
+                var point = new NpgsqlPoint();
+
+                string[] array = zona.coordenadas.Split(": ");
+                var polygon = new NpgsqlPolygon(array.Length - 1);
+                Console.WriteLine(array);
+                string[] array2 = new string[(array.Length-1)*2];
+
+                for (int i = 0; i < array.Length-1; i++)
+                {
+                    array2 = array[i].Split(",");
+                    Console.WriteLine(array2[0]);
+                    Console.WriteLine(array2[1]);
+                    point = new NpgsqlPoint(Convert.ToDouble(array2[0]), Convert.ToDouble(array2[1]));
+                    polygon.Insert(i, point);
+                }
+                zona.GeometriaZona = polygon;
                 _context.Add(zona);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
