@@ -10,6 +10,7 @@
 <form class="form-inline">
     <label for="type">Shape type: &nbsp;</label>
     <select class="form-control mr-2 mb-2 mt-2" id="type">
+        <option value="Point">Point</option>
         <option value="Circle">Circle</option>
         <option value="Square">Square</option>
         <option value="Box">Box</option>
@@ -19,7 +20,7 @@
     </select>
     <input class="form-control mr-2 mb-2 mt-2" type="button" value="Borrar" id="undo">
 </form>
-<script src="~/js/MapaZonas.js"></script>
+<script src="~/js/site.js"></script>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -30,6 +31,12 @@
                 <input asp-for="NombreZona" class="form-control" />
                 <span asp-validation-for="NombreZona" class="text-danger"></span>
             </div>
+            <!--<div class="form-group">
+                <label asp-for="GeometriaZona" class="control-label">Nombre de la zona</label>
+                <input asp-for="GeometriaZona" class="form-control" />
+                <span asp-validation-for="GeometriaZona" class="text-danger"></span>
+            </div>-->
+            <div id="info"></div>
             <div class="form-group">
                 <label asp-for="DescripcionZona" class="control-label">Descripción</label>
                 <textarea asp-for="DescripcionZona" class="form-control" placeholder="(máx 100 caracteres)" style="resize: none">
@@ -37,10 +44,10 @@
                 <span asp-validation-for="DescripcionZona" class="text-danger"></span>
             </div>
             <!--<div class="form-group">
-                <label asp-for="GeometriaZona" class="control-label"></label>
-                <input asp-for="GeometriaZona" class="form-control" />
-                <span asp-validation-for="GeometriaZona" class="text-danger"></span>
-            </div>-->
+        <label asp-for="GeometriaZona" class="control-label"></label>
+        <input asp-for="GeometriaZona" class="form-control" />
+        <span asp-validation-for="GeometriaZona" class="text-danger"></span>
+    </div>-->
 
 
 

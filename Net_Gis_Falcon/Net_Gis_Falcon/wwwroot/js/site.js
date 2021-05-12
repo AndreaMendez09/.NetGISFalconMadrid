@@ -5,9 +5,11 @@
 var source = new ol.source.Vector({ wrapX: false });
 
 source.on('addfeature', function (evt) {
+    
     var feature = evt.feature;
     var coords = feature.getGeometry().getCoordinates();
-
+    //var coords1 = coords[1];
+    document.getElementById('info').innerHTML = coords.toString();
     console.log(coords);
 });
 
@@ -89,12 +91,12 @@ var displayFeatureInfo = function (pixel) {
         return feature;
     });
 
-    var info = document.getElementById('info');
+    /*var info = document.getElementById('info');
     if (feature) {
         info.innerHTML = feature.getId() + ': ' + feature.get('name');
     } else {
         info.innerHTML = '&nbsp;';
-    }
+    }*/
 
     if (feature !== highlight) {
         if (highlight) {

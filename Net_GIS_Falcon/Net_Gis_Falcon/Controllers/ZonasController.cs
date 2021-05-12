@@ -57,6 +57,7 @@ namespace Net_Gis_Falcon.Controllers
         {
             if (ModelState.IsValid)
             {
+                Console.WriteLine(@Url.Content("coords"));
                 _context.Add(zona);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
