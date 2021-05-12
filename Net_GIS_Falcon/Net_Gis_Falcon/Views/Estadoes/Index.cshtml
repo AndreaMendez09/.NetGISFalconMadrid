@@ -7,7 +7,7 @@
 <h1>Gestión de estados</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear nuevo estado</a>
 </p>
 <table class="table">
     <thead class="thead-dark">
@@ -38,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.PadreNavigation.NombreEstado)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdEstado">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdEstado">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdEstado">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdEstado">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdEstado">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdEstado">Eliminar</a>
             </td>
         </tr>
 }
