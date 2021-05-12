@@ -57,7 +57,9 @@ namespace Net_Gis_Falcon.Controllers
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine(@Url.Content("coords"));
+                //var texto = $("#info").data("rank");
+                var prueba = @Url.Content("coords");
+                Console.WriteLine(prueba);
                 _context.Add(zona);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

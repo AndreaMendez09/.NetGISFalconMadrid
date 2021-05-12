@@ -8,6 +8,17 @@ var vector = new ol.layer.Vector({
     source: source,
 });
 
+source.on('addfeature', function (evt) {
+    var feature = evt.feature;
+    //var array = new Array();
+    var coords = feature.getGeometry().getCoordinates();
+    //array = feature.getGeometry().getCoordinates();
+    //var coords = array.join(':');
+    //var coords1 = coords[1];
+    document.getElementById('info').value = coords.toString();
+    console.log(coords[0]);
+});
+
 var map = new ol.Map({
     layers: [raster, vector],
     target: 'map',
