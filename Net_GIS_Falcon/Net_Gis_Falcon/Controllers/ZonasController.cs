@@ -54,16 +54,16 @@ namespace Net_Gis_Falcon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdZona,NombreZona,DescripcionZona,coordenadas,GeometriaZona")] Zona zona)
+        public async Task<IActionResult> Create([Bind("IdZona,NombreZona,DescripcionZona,Coordenadas,GeometriaZona")] Zona zona)
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine(zona.coordenadas);
+                Console.WriteLine(zona.Coordenadas);
                 Console.WriteLine(zona.DescripcionZona);
 
                 var point = new NpgsqlPoint();
 
-                string[] array = zona.coordenadas.Split(": ");
+                string[] array = zona.Coordenadas.Split(": ");
                 var polygon = new NpgsqlPolygon(array.Length - 1);
                 Console.WriteLine(array);
                 string[] array2 = new string[(array.Length-1)*2];
@@ -73,6 +73,8 @@ namespace Net_Gis_Falcon.Controllers
                     array2 = array[i].Split(",");
                     Console.WriteLine(array2[0]);
                     Console.WriteLine(array2[1]);
+                    array2[0] = array2[0].Replace(".",",");
+                    array2[1] = array2[1].Replace(".", ",");
                     point = new NpgsqlPoint(Convert.ToDouble(array2[0]), Convert.ToDouble(array2[1]));
                     polygon.Insert(i, point);
                 }

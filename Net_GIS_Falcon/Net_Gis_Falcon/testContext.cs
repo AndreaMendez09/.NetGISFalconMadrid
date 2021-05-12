@@ -102,7 +102,7 @@ namespace Net_Gis_Falcon
                 entity.Property(e => e.IdEstado).HasColumnName("id_estado");
 
                 entity.Property(e => e.ColorEstado)
-                    .HasMaxLength(5)
+                    .HasMaxLength(7)
                     .HasColumnName("color_estado");
 
                 entity.Property(e => e.Esfinal).HasColumnName("esfinal");
@@ -352,6 +352,10 @@ namespace Net_Gis_Falcon
                     .HasMethod("gist");
 
                 entity.Property(e => e.IdZona).HasColumnName("id_zona");
+
+                entity.Property(e => e.Coordenadas)
+                    .HasMaxLength(30000)
+                    .HasColumnName("coordenadas");
 
                 entity.Property(e => e.DescripcionZona)
                     .HasMaxLength(100)

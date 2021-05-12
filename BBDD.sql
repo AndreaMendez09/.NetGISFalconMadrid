@@ -30,7 +30,8 @@ CREATE TABLE Zona(
     id_zona SERIAL PRIMARY KEY,
     nombre_zona varchar(20) not null,
     descripcion_zona varchar (100),
-    geometria_zona POLYGON not null
+    geometria_zona POLYGON not null,
+	coordenadas varchar(30000)
 );
 
 CREATE TABLE Operadores_zona (
@@ -59,7 +60,7 @@ CREATE TABLE Estado(
     id_estado SERIAL PRIMARY KEY, 
     nombre_estado varchar(20) not null, 
     EsFinal boolean not null,
-    color_estado varchar(5),
+    color_estado varchar(7),
 	padre int, 
 	FOREIGN KEY (padre) REFERENCES Estado(id_estado)
 );
