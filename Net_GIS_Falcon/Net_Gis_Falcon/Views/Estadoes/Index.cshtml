@@ -23,8 +23,9 @@
         @foreach (var item in Model)
         {
                     
-            sacarHijos(item);
-            
+            @if (item.Padre == null) {
+                sacarHijos(item);
+            }
 
 
             <tr>
@@ -54,26 +55,29 @@
 </table>
 
 @functions {
-    void sacarHijos(Estado padre)
+    void sacarHijos(Estado item)
     {
     <ul>
-        @foreach (var hijo in Model)
-        {
-
-            @if (padre.IdEstado == hijo.IdEstado)
+            @if (item.Padre == null)
             {
-                <li>@Html.DisplayFor(modelItem => hijo.NombreEstado)</li>
-                @if (hijo.InversePadreNavigation != null)
+                <li>@Html.DisplayFor(modelItem => item.NombreEstado)</li>
+            }
+                @if (item.InversePadreNavigation.Count != 0)
                 {
                     <ul>
-                        @foreach (var nietos in hijo.InversePadreNavigation)
+                        @foreach (var hijos in item.InversePadreNavigation)
                         {
-                            <li>@Html.DisplayFor(modelItem => nietos.NombreEstado)</li>
+
+                            //Preguntarle por los hijos, de manera recursiva
+                            //@if (nietos.Padre == ) { 
+                            <li>@Html.DisplayFor(modelItem => hijos.NombreEstado)</li>
+                            //}
+                            sacarHijos(hijos);
                         }
                     </ul>
                 }
-            }
-        }
+          
+        
     </ul>
 
         }
