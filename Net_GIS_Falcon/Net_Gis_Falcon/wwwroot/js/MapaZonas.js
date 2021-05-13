@@ -33,8 +33,9 @@ var map = new ol.Map({
     layers: [raster, vector],
     target: 'map',
     view: new ol.View({
-        center: [-11000000, 4600000],
-        zoom: 4,
+        projection: 'EPSG:4326',
+        center: [0, 0],
+        zoom: 7,
     }),
 });
 
