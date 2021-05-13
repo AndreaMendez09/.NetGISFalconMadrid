@@ -20,29 +20,61 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreEstado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Esfinal)
-            </td>
-            <td>
-                <div style="background-color: @Html.DisplayFor(modelItem => item.ColorEstado); 
-                height: 20px; border-radius: 15px; " >
+        @foreach (var item in Model)
+        {
                     
-                </div>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PadreNavigation.NombreEstado)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdEstado">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.IdEstado">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdEstado">Eliminar</a>
-            </td>
-        </tr>
-}
+            sacarHijos(item);
+            
+
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreEstado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Esfinal)
+                </td>
+                <td>
+                    <div style="background-color: @Html.DisplayFor(modelItem => item.ColorEstado);
+                height: 20px; border-radius: 15px; ">
+
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PadreNavigation.NombreEstado)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdEstado">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdEstado">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdEstado">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@functions {
+    void sacarHijos(Estado padre)
+    {
+    <ul>
+        @foreach (var hijo in Model)
+        {
+
+            @if (padre.IdEstado == hijo.IdEstado)
+            {
+                <li>@Html.DisplayFor(modelItem => hijo.NombreEstado)</li>
+                @if (hijo.InversePadreNavigation != null)
+                {
+                    <ul>
+                        @foreach (var nietos in hijo.InversePadreNavigation)
+                        {
+                            <li>@Html.DisplayFor(modelItem => nietos.NombreEstado)</li>
+                        }
+                    </ul>
+                }
+            }
+        }
+    </ul>
+
+        }
+    }
