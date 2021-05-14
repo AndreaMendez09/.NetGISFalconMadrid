@@ -62,7 +62,7 @@ CREATE TABLE Estado(
     EsFinal boolean not null,
     color_estado varchar(7),
 	padre int, 
-	FOREIGN KEY (padre) REFERENCES Estado(id_estado)
+	FOREIGN KEY (padre) REFERENCES Estado(id_estado) ON DELETE CASCADE
 );
 
 CREATE TABLE Historico_estado (
@@ -102,9 +102,18 @@ CREATE TABLE Respuesta (
     nivel int not null,
 	respuesta_padre int, 
 	FOREIGN KEY (respuesta_padre) REFERENCES Respuesta(id_respuesta),
-    FOREIGN KEY (nivel) REFERENCES Nivel(id_pregunta)
+    FOREIGN KEY (nivel) REFERENCES Nivel(id_pregunta) ON DELETE CASCADE 
 );
 
 CREATE INDEX idx_code_Zona_geom ON Zona USING gist(geometria_zona);
 CREATE INDEX idx_code_Peticion_geom ON Peticion USING gist(localizacion_peticion);
 CREATE UNIQUE INDEX idx_Usuarios_unique ON Usuarios(email); 
+
+CREATE VIEW view_peticion AS SELECT peticion.id_peticion,
+    peticion.fecha_creacion,
+    st_geometryfromtext(st_astext(peticion.localizacion_peticion::geometry), 4326) AS localizacion
+   FROM peticion;
+CREATE VIEW view_zona AS SELECT zona.id_zona,
+    zona.nombre_zona,
+    st_geometryfromtext(st_astext(zona.geometria_zona::geometry), 4326) AS zona
+   FROM zona;

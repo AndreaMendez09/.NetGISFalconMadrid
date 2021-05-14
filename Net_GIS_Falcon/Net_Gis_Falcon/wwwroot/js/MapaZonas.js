@@ -34,7 +34,7 @@ var map = new ol.Map({
     target: 'map',
     view: new ol.View({
         projection: 'EPSG:4326',
-        center: [0, 0],
+        center: [5, 27],
         zoom: 7,
     }),
 });

@@ -3,6 +3,45 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    ul, #myUL {
+        list-style-type: none;
+    }
+
+    #myUL {
+        margin: 0;
+        padding: 0;
+    }
+
+    .caret {
+        cursor: pointer;
+        -webkit-user-select: none; /* Safari 3.1+ */
+        -moz-user-select: none; /* Firefox 2+ */
+        -ms-user-select: none; /* IE 10+ */
+        user-select: none;
+    }
+
+        .caret::before {
+            content: "\25B6";
+            color: black;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+    .caret-down::before {
+        -ms-transform: rotate(90deg); /* IE 9 */
+        -webkit-transform: rotate(90deg); /* Safari */
+        ' transform: rotate(90deg);
+    }
+
+    .nested {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+</style>
 <h1>Árbol de estados</h1>
 @foreach (var item in Model)
 {
@@ -12,78 +51,93 @@
         sacarHijos(item);
     }
 }
-    <h1>Gestión de estados</h1>
+<h1>Gestión de estados</h1>
 
-    <p>
-        <a asp-action="Create">Crear nuevo estado</a>
-    </p>
-    <table class="table">
-        <thead class="thead-dark">
+<p>
+    <a asp-action="Create">Crear nuevo estado</a>
+</p>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Nombre de estado</th>
+            <th>Es final?</th>
+            <th>Color estado</th>
+            <th>Padre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+
+
             <tr>
-                <th>Nombre de estado</th>
-                <th>Es final?</th>
-                <th>Color estado</th>
-                <th>Padre</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-
-
-
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NombreEstado)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Esfinal)
-                    </td>
-                    <td>
-                        <div style="background-color: @Html.DisplayFor(modelItem => item.ColorEstado);
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreEstado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Esfinal)
+                </td>
+                <td>
+                    <div style="background-color: @Html.DisplayFor(modelItem => item.ColorEstado);
                 height: 20px; border-radius: 15px; ">
 
-                        </div>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PadreNavigation.NombreEstado)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.IdEstado">Editar</a> |
-                        <a asp-action="Details" asp-route-id="@item.IdEstado">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.IdEstado">Eliminar</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    @functions {
-        void sacarHijos(Estado item)
-        {
-            <ul>
-                @if (item.Padre == null)
-                {
-                    <li>@Html.DisplayFor(modelItem => item.NombreEstado)</li>
-                }
-                @if (item.InversePadreNavigation.Count != 0)
-                {
-                    <ul>
-                        @foreach (var hijos in item.InversePadreNavigation)
-                        {
-
-                            //Preguntarle por los hijos, de manera recursiva
-                            //@if (nietos.Padre == ) {
-                            <li>@Html.DisplayFor(modelItem => hijos.NombreEstado)</li>
-                            //}
-                            sacarHijos(hijos);
-                        }
-                    </ul>
-                }
-
-
-            </ul>
-
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PadreNavigation.NombreEstado)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdEstado">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdEstado">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdEstado">Eliminar</a>
+                </td>
+            </tr>
         }
+    </tbody>
+</table>
+<script>
+    var toggler = document.getElementsByClassName("caret");
+    var i;
+
+    for (i = 0; i < toggler.length; i++) {
+        toggler[i].addEventListener("click", function () {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-down");
+        });
     }
+</script>
+
+@functions {
+    void sacarHijos(Estado item)
+    {
+        <ul id="myUL">
+
+            @if (item.Padre == null)
+            {
+                <li class="caret">
+                    @Html.DisplayFor(modelItem => item.NombreEstado)
+                </li>
+            }
+
+            @if (item.InversePadreNavigation.Count != 0)
+            {
+                <ul class="nested">
+                    @foreach (var hijos in item.InversePadreNavigation)
+                    {
+
+                        //Preguntarle por los hijos, de manera recursiva
+
+                        <li class="caret">@Html.DisplayFor(modelItem => hijos.NombreEstado)</li>
+
+                        sacarHijos(hijos);
+                    }
+                </ul>
+            }
+
+
+        </ul>
+
+    }
+}

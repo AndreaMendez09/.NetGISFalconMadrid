@@ -117,6 +117,7 @@ namespace Net_Gis_Falcon
                 entity.HasOne(d => d.PadreNavigation)
                     .WithMany(p => p.InversePadreNavigation)
                     .HasForeignKey(d => d.Padre)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("estado_padre_fkey");
             });
 
@@ -271,7 +272,6 @@ namespace Net_Gis_Falcon
                 entity.HasOne(d => d.NivelNavigation)
                     .WithMany(p => p.Respuesta)
                     .HasForeignKey(d => d.Nivel)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("respuesta_nivel_fkey");
 
                 entity.HasOne(d => d.RespuestaPadreNavigation)
@@ -341,6 +341,7 @@ namespace Net_Gis_Falcon
                 entity.Property(e => e.Rol).HasColumnName("rol");
             });
 
+            
             modelBuilder.Entity<Zona>(entity =>
             {
                 entity.HasKey(e => e.IdZona)

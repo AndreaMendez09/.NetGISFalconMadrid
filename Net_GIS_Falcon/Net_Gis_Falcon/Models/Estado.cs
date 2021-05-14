@@ -22,8 +22,5 @@ namespace Net_Gis_Falcon
         public virtual Estado PadreNavigation { get; set; }
         public virtual ICollection<HistoricoEstado> HistoricoEstados { get; set; }
         public virtual ICollection<Estado> InversePadreNavigation { get; set; }
-
-
-
     }
 }

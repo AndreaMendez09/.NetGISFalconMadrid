@@ -25,9 +25,21 @@
             </div>
             <div class="form-group">
                 <label asp-for="ColorEstado" class="control-label">Color de estado</label>
-                <input asp-for="ColorEstado" class="form-control" />
+                <select asp-for="ColorEstado" class="form-control">
+                    <option value="#ef5350">Rojo</option>
+                    <option value="#66bb6a">Verde</option>
+                    <option value="#ffca28">Amarillo</option>
+                    <option value="#42a5f5">Azul</option>
+                    <option value="#bdbdbd">Gris</option>
+                </select>
                 <span asp-validation-for="ColorEstado" class="text-danger"></span>
             </div>
+            @if (@Model.InversePadreNavigation.Count != 0)
+            {
+                <br />
+                <p>Si cambia el padre, moverá consigo la siguiente estructura:</p>
+                sacarHijos(Model);
+            }
             <div class="form-group">
                 <label asp-for="Padre" class="control-label"></label>
                 <select asp-for="Padre" class="form-control" asp-items="ViewBag.Padre">
@@ -49,3 +61,33 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+@functions {
+    void sacarHijos(Estado item)
+    {
+        <ul>
+            @if (item.Padre == null)
+            {
+                <li>@Html.DisplayFor(modelItem => item.NombreEstado)</li>
+            }
+            @if (item.InversePadreNavigation.Count != 0)
+            {
+                <ul>
+                    @foreach (var hijos in item.InversePadreNavigation)
+                    {
+
+                        //Preguntarle por los hijos, de manera recursiva
+                        //@if (nietos.Padre == ) {
+                        <li>@Html.DisplayFor(modelItem => hijos.NombreEstado)</li>
+                        //}
+                        sacarHijos(hijos);
+                    }
+                </ul>
+            }
+
+
+        </ul>
+
+    }
+}
+
