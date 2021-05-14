@@ -126,9 +126,18 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
 
                 if (success)
                 {
+                    var rol = "";
+                    if (user.Rol == 1)
+                        rol = "operador";
+                    else if (user.Rol == 2)
+                        rol = "admin";
+                    else
+                        rol = "usuario";
                     var claims = new List<Claim>()
                 {
-                    new Claim(ClaimTypes.Name, user.Email)
+                    new Claim(ClaimTypes.Name, user.Email),
+                    new Claim(ClaimTypes.NameIdentifier, user.IdUsuario.ToString()),
+                    new Claim(ClaimTypes.Role, rol)
                 };
 
                     var claimsIdentity = new ClaimsIdentity(claims, "Login");
