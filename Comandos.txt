@@ -3,3 +3,6 @@ dotnet ef dbcontext scaffold "Host=localhost;Database=test;Username=postgres;Pas
 ------
 Para añadir el indice cuando creamos la geometria
 CREATE INDEX idx_code_prueba_geom ON prueba USING gist(geom);
+------
+Comando para hacer scaffolding
+dotnet aspnet-codegenerator controller -m MyModel -dc MyDbContext -name MyModelssController -async
