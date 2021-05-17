@@ -1,10 +1,10 @@
-﻿var raster = new ol.layer.Tile({
+﻿var baseMapLayer = new ol.layer.Tile({
     source: new ol.source.OSM(),
 });
 
-var source = new ol.source.Vector({ wrapX: false });
+var features = new ol.source.Vector({ wrapX: false });
 
-source.on('addfeature', function (evt) {
+features.on('addfeature', function (evt) {
     var feature = evt.feature;
     //var array = new Array();
     var coords = feature.getGeometry().getCoordinates();
@@ -26,9 +26,9 @@ source.on('addfeature', function (evt) {
 });
 
 var vector = new ol.layer.Vector({
-    source: source,
+    source: features,
 });
-var countryLayer = new ol.layer.Vector({
+var countriesLayer = new ol.layer.Vector({
     source: new ol.source.Vector({
         url: './countries.json',
         format: new ol.format.GeoJSON(),
@@ -40,14 +40,12 @@ var countryLayer = new ol.layer.Vector({
 });
 
 var map = new ol.Map({
-    layers: [raster, vector, countryLayer],
+    layers: [baseMapLayer, vector, countriesLayer],
     target: 'map',
     view: new ol.View({
-        projection: 'EPSG:4326',
-        center: [5, 27],
-        unit: 'degrees',
+        center: [-412270.1806743107, 4926716.659837265],
         zoom: 5,
-    }),
+    })
 });
 
 var typeSelect = document.getElementById('type');
@@ -92,7 +90,7 @@ function addInteraction() {
         }
 
         draw = new ol.interaction.Draw({
-            source: source,
+            source: features,
             type: value,
             geometryFunction: geometryFunction,
         });
@@ -111,7 +109,7 @@ typeSelect.onchange = function () {
 
 document.getElementById('undo').addEventListener('click', function () {
     //draw.removeLastPoint();
-        source.clear();  // implicit remove of last feature
+        features.clear();  // implicit remove of last feature
 });
 
 

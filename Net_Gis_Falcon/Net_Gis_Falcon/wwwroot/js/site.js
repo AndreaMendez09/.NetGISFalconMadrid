@@ -1,34 +1,29 @@
-﻿var raster = new ol.layer.Tile({
+﻿var baseMapLayer = new ol.layer.Tile({
     source: new ol.source.OSM(),
 });
 
-var source = new ol.source.Vector({ wrapX: false });
-
-source.on('addfeature', function (evt) {
-    
-    var feature = evt.feature;
-    var coords = feature.getGeometry().getCoordinates();
-    //var coords1 = coords[1];
-    document.getElementById('info').innerHTML = coords.toString();
-    console.log(coords);
-});
+var features = new ol.source.Vector({ wrapX: false });
 
 var vector = new ol.layer.Vector({
-    source: source,
+    source: features,
 });
-var countryLayer = new ol.layer.Vector({
+var countriesLayer = new ol.layer.Vector({
     source: new ol.source.Vector({
-        url: './countries.json',
+        //url: './georef-spain-municipio.json',    //Municipios (Demasiado grande, tarda mucho en cargar, no lo recomiendo)
+        //url: './countries.json',                 //Países
+        url: './provincias-espanolas.json',        //Provincias
         format: new ol.format.GeoJSON(),
     }),
     style: function (feature) {
-        style.getText().setText(feature.get('name'));
+        //style.getText().setText(feature.get('acom_name'));   //Municipios
+        //style.getText().setText(feature.get('name'));        //Países
+        style.getText().setText(feature.get('provincia'));   //Provincias
         return style;
     },
 });
 
 var map = new ol.Map({
-    layers: [raster, vector, countryLayer],
+    layers: [baseMapLayer, countriesLayer],
     target: 'map',
     view: new ol.View({
         center: [-412270.1806743107, 4926716.659837265],
@@ -80,7 +75,9 @@ var featureOverlay = new ol.layer.Vector({
     source: new ol.source.Vector(),
     map: map,
     style: function (feature) {
-        highlightStyle.getText().setText(feature.get('name'));
+        //highlightStyle.getText().setText(feature.get('acom_name'));   //Municipios
+        //highlightStyle.getText().setText(feature.get('name'));        //Países
+        highlightStyle.getText().setText(feature.get('provincia'));     //´Provincias
         return highlightStyle;
     },
 });
@@ -91,12 +88,14 @@ var displayFeatureInfo = function (pixel) {
         return feature;
     });
 
-    /*var info = document.getElementById('info');
+    var info = document.getElementById('info');
     if (feature) {
-        info.innerHTML = feature.getId() + ': ' + feature.get('name');
+        //info.innerHTML = feature.get('acom_name');   //Municipios
+        //info.innerHTML = feature.get('name');        //Países
+        info.innerHTML = feature.get('provincia');     //Provincias
     } else {
         info.innerHTML = '&nbsp;';
-    }*/
+    }
 
     if (feature !== highlight) {
         if (highlight) {
@@ -116,74 +115,8 @@ map.on('pointermove', function (evt) {
     var pixel = map.getEventPixel(evt.originalEvent);
     displayFeatureInfo(pixel);
 });
+
 map.on('click', function (evt) {
     displayFeatureInfo(evt.pixel);
 });
 
-var typeSelect = document.getElementById('type');
-
-var draw; // global so we can remove it later
-var geometryFunction;
-function addInteraction() {
-    var value = typeSelect.value;
-    if (value !== 'None') {
-        if (value === 'Square') {
-            value = 'Circle';
-            geometryFunction = ol.interaction.Draw.createRegularPolygon(4);
-        } else if (value === 'Point') {
-            value = 'Point';
-            geometryFunction = null;
-        } else if (value === 'Box') {
-            value = 'Circle';
-            geometryFunction = ol.interaction.Draw.createBox();
-        } else if (value === 'Star') {
-            value = 'Circle';
-            geometryFunction = function (coordinates, geometry) {
-                var center = coordinates[0];
-                var last = coordinates[coordinates.length - 1];
-                var dx = center[0] - last[0];
-                var dy = center[1] - last[1];
-                var radius = Math.sqrt(dx * dx + dy * dy);
-                var rotation = Math.atan2(dy, dx);
-                var newCoordinates = [];
-                var numPoints = 12;
-                for (var i = 0; i < numPoints; ++i) {
-                    var angle = rotation + (i * 2 * Math.PI) / numPoints;
-                    var fraction = i % 2 === 0 ? 1 : 0.5;
-                    var offsetX = radius * fraction * Math.cos(angle);
-                    var offsetY = radius * fraction * Math.sin(angle);
-                    newCoordinates.push([center[0] + offsetX, center[1] + offsetY]);
-                }
-                newCoordinates.push(newCoordinates[0].slice());
-                if (!geometry) {
-                    geometry = new ol.geom.Polygon([newCoordinates]);
-                } else {
-                    geometry.setCoordinates([newCoordinates]);
-                }
-
-                return geometry;
-            };
-        }
-
-        draw = new ol.interaction.Draw({
-            source: source,
-            type: value,
-            geometryFunction: geometryFunction,
-        });
-        map.addInteraction(draw);
-    }
-}
-
-/**
- * Handle change event.
- */
-typeSelect.onchange = function () {
-    map.removeInteraction(draw);
-    addInteraction();
-};
-
-document.getElementById('undo').addEventListener('click', function () {
-    draw.removeLastPoint();
-});
-
-addInteraction();
