@@ -18,7 +18,7 @@ var vector = new ol.layer.Vector({
 });
 var countryLayer = new ol.layer.Vector({
     source: new ol.source.Vector({
-        url: './countries.geojson',
+        url: './countries.json',
         format: new ol.format.GeoJSON(),
     }),
     style: function (feature) {

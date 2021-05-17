@@ -4,10 +4,6 @@
 
 var source = new ol.source.Vector({ wrapX: false });
 
-var vector = new ol.layer.Vector({
-    source: source,
-});
-
 source.on('addfeature', function (evt) {
     var feature = evt.feature;
     //var array = new Array();
@@ -29,13 +25,28 @@ source.on('addfeature', function (evt) {
     console.log(coordinates);*/
 });
 
+var vector = new ol.layer.Vector({
+    source: source,
+});
+var countryLayer = new ol.layer.Vector({
+    source: new ol.source.Vector({
+        url: './countries.json',
+        format: new ol.format.GeoJSON(),
+    }),
+    style: function (feature) {
+        style.getText().setText(feature.get('name'));
+        return style;
+    },
+});
+
 var map = new ol.Map({
-    layers: [raster, vector],
+    layers: [raster, vector, countryLayer],
     target: 'map',
     view: new ol.View({
         projection: 'EPSG:4326',
         center: [5, 27],
-        zoom: 7,
+        unit: 'degrees',
+        zoom: 5,
     }),
 });
 
