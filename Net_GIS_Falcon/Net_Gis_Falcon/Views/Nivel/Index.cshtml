@@ -1,49 +1,38 @@
 @model IEnumerable<Net_Gis_Falcon.Nivel>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Index";
 }
 
-<!DOCTYPE html>
+<h1>Niveles</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear un nuevo nivel</a>
 </p>
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DescripcionPregunta)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nivel1)
-            </th>
+            <th>Descripcion pregunta</th>
+            <th>Nivel</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DescripcionPregunta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nivel1)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdPregunta">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdPregunta">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdPregunta">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescripcionPregunta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nivel1)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdPregunta">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdPregunta">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdPregunta">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
-</body>
-</html>

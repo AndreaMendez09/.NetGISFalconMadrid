@@ -43,7 +43,8 @@ var map = new ol.Map({
     layers: [baseMapLayer, vector, countriesLayer],
     target: 'map',
     view: new ol.View({
-        center: [-412270.1806743107, 4926716.659837265],
+        projection: 'EPSG:4326',
+        center: [0, 0],
         zoom: 5,
     })
 });

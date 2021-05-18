@@ -1,61 +1,47 @@
 @model IEnumerable<Net_Gis_Falcon.Respuestum>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Index";
 }
 
-<!DOCTYPE html>
+<h1>Respuestas</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear una nueva respuesta</a>
 </p>
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CuerpoRespuesta)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Principal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NivelNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RespuestaPadreNavigation)
-            </th>
+            <th>Cuerpo de la respuesta </th>
+            <th>¿Es principal? </th>
+            <th>Nivel</th>
+            <th>Respuesta del padre</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CuerpoRespuesta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Principal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NivelNavigation.DescripcionPregunta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RespuestaPadreNavigation.CuerpoRespuesta)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdRespuesta">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdRespuesta">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdRespuesta">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CuerpoRespuesta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Principal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NivelNavigation.DescripcionPregunta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RespuestaPadreNavigation.CuerpoRespuesta)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdRespuesta">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdRespuesta">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdRespuesta">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
-</body>
-</html>
+
