@@ -29,7 +29,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Genero" class="control-label"></label>
-                <input asp-for="Genero" class="form-control" />
+                <select asp-for="Genero" class="form-control">
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                    <option value="NB">No binario</option>
+                    <option value="O">Otro</option>
+                </select>
                 <span asp-validation-for="Genero" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -59,9 +64,21 @@
             </div>
             <div class="form-group">
                 <label asp-for="Rol" class="control-label"></label>
-                <input asp-for="Rol" class="form-control" />
+                <select asp-for="Rol" class="form-control" id="rol_persona" onchange="alCambiar()">
+                    <option value="1">Operador</option>
+                    <option value="2">Administrador</option>
+                </select>
                 <span asp-validation-for="Rol" class="text-danger"></span>
             </div>
+
+            <div class="form-group" id="zona">
+                <label asp-for="OperadoresZonas" class="control-label"></label>
+                <select asp-for="OperadoresZonas" class="form-control" asp-items="ViewBag.Zona">
+                    <option value="">Sin padre</option>
+                </select>
+                <span asp-validation-for="OperadoresZonas" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -72,6 +89,21 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script>
+    function alCambiar() {
+        var rol_seleccionado = $('#rol_persona').val();
+        if (rol_seleccionado == 1) {
+            $('#zona').show();
+        } else {
+            $('#zona').hide();
+        }
+    }
+
+    function ocultar() {
+        $('#zona').hide();
+    }
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

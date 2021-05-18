@@ -44,7 +44,7 @@ var map = new ol.Map({
     target: 'map',
     view: new ol.View({
         projection: 'EPSG:4326',
-        center: [0, 0],
+        center: [-3, 40],
         zoom: 5,
     })
 });
@@ -108,9 +108,11 @@ typeSelect.onchange = function () {
     addInteraction();
 };
 
+
 document.getElementById('undo').addEventListener('click', function () {
     //draw.removeLastPoint();
-        features.clear();  // implicit remove of last feature
+    features.clear();  // implicit remove of last feature
+    document.getElementById('info').value = "";
 });
 
 
