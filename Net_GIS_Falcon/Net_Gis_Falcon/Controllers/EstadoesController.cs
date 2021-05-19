@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,14 +18,14 @@ namespace Net_Gis_Falcon.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles = "operador,admin")]
         // GET: Estadoes
         public async Task<IActionResult> Index()
         {
             var testContext = _context.Estados.Include(e => e.PadreNavigation);
             return View(await testContext.ToListAsync());
         }
-
+        [Authorize(Roles = "operador,admin")]
         // GET: Estadoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -43,7 +44,7 @@ namespace Net_Gis_Falcon.Controllers
 
             return View(estado);
         }
-
+        [Authorize(Roles = "operador")]
         // GET: Estadoes/Create
         public IActionResult Create()
         {
@@ -67,7 +68,7 @@ namespace Net_Gis_Falcon.Controllers
             ViewData["Padre"] = new SelectList(_context.Estados, "IdEstado", "NombreEstado", estado.Padre);
             return View(estado);
         }
-
+        [Authorize(Roles = "operador")]
         // GET: Estadoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -120,7 +121,7 @@ namespace Net_Gis_Falcon.Controllers
             ViewData["Padre"] = new SelectList(_context.Estados, "IdEstado", "NombreEstado", estado.Padre);
             return View(estado);
         }
-
+        [Authorize(Roles = "operador")]
         // GET: Estadoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

@@ -147,5 +147,6 @@ namespace Net_Gis_Falcon
         {
             return _context.Nivels.Any(e => e.IdPregunta == id);
         }
+
     }
 }

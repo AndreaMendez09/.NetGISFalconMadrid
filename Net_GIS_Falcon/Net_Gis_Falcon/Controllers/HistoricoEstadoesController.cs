@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,14 +18,14 @@ namespace Net_Gis_Falcon.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles = "operador,admin")]
         // GET: HistoricoEstadoes
         public async Task<IActionResult> Index()
         {
             var testContext = _context.HistoricoEstados.Include(h => h.EstadoNavigation).Include(h => h.OperadorNavigation).Include(h => h.PeticionNavigation);
             return View(await testContext.ToListAsync());
         }
-
+        [Authorize(Roles = "operador,admin")]
         // GET: HistoricoEstadoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -45,7 +46,7 @@ namespace Net_Gis_Falcon.Controllers
 
             return View(historicoEstado);
         }
-
+        [Authorize(Roles = "operador,admin")]
         // GET: HistoricoEstadoes/Create
         public IActionResult Create()
         {
@@ -73,7 +74,7 @@ namespace Net_Gis_Falcon.Controllers
             ViewData["Peticion"] = new SelectList(_context.Peticions, "IdPeticion", "LocalizacionPeticion", historicoEstado.Peticion);
             return View(historicoEstado);
         }
-
+        [Authorize(Roles = "operador,admin")]
         // GET: HistoricoEstadoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -130,7 +131,7 @@ namespace Net_Gis_Falcon.Controllers
             ViewData["Peticion"] = new SelectList(_context.Peticions, "IdPeticion", "LocalizacionPeticion", historicoEstado.Peticion);
             return View(historicoEstado);
         }
-
+        [Authorize(Roles = "operador")]
         // GET: HistoricoEstadoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

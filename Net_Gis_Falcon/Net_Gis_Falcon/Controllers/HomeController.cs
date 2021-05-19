@@ -47,10 +47,11 @@ namespace Net_Gis_Falcon.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return Redirect("/Home");
         }
 
         [Authorize]
+        //[Route("secured")]
         public IActionResult Secured()
         {
             return View();

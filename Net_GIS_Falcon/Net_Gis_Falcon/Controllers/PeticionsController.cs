@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,14 +18,15 @@ namespace Net_Gis_Falcon.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles = "usuario")]
         // GET: Peticions
         public async Task<IActionResult> Index()
         {
+           
             var testContext = _context.Peticions.Include(p => p.UsuarioNavigation);
             return View(await testContext.ToListAsync());
         }
-
+        [Authorize]
         // GET: Peticions/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -43,7 +45,7 @@ namespace Net_Gis_Falcon.Controllers
 
             return View(peticion);
         }
-
+        [Authorize(Roles = "usuario")]
         // GET: Peticions/Create
         public IActionResult Create()
         {
@@ -67,7 +69,7 @@ namespace Net_Gis_Falcon.Controllers
             ViewData["Usuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Apellido", peticion.Usuario);
             return View(peticion);
         }
-
+        [Authorize]
         // GET: Peticions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -120,7 +122,7 @@ namespace Net_Gis_Falcon.Controllers
             ViewData["Usuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Apellido", peticion.Usuario);
             return View(peticion);
         }
-
+        [Authorize]
         // GET: Peticions/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

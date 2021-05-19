@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,7 @@ namespace Net_Gis_Falcon.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles = "operador,admin")]
         // GET: Zonas
         public async Task<IActionResult> Index()
         {
@@ -42,7 +43,7 @@ namespace Net_Gis_Falcon.Controllers
 
             return View(zona);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: Zonas/Create
         public IActionResult Create()
         {
@@ -85,7 +86,7 @@ namespace Net_Gis_Falcon.Controllers
             }
             return View(zona);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: Zonas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -136,7 +137,7 @@ namespace Net_Gis_Falcon.Controllers
             }
             return View(zona);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: Zonas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
