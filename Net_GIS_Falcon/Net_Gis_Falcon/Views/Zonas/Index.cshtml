@@ -8,21 +8,26 @@
 
 <h1>Gestión de zonas</h1>
 <style>
-    .map{
+    .map {
         width: 100%;
         height: 80vh;
     }
 
-    .zonas{
+    .zonas {
         opacity: 50%;
     }
 </style>
 
 <div id="map" class="map"></div>
-
-<p>
-    <a asp-action="Create">Crear nueva zona</a>
-</p>
+@foreach (var c in User.Claims)
+{
+    @if (c.Value == "admin")
+    {
+        <p>
+            <a asp-action="Create">Crear nueva zona</a>
+        </p>
+    }
+}
 <table class="table">
     <thead>
         <tr>

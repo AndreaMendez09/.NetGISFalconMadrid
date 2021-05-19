@@ -53,9 +53,15 @@
 }
 <h1>Gestión de estados</h1>
 
-<p>
-    <a asp-action="Create">Crear nuevo estado</a>
-</p>
+@foreach (var c in User.Claims)
+{
+    @if (c.Value == "admin")
+    {
+        <p>
+            <a asp-action="Create">Crear nueva zona</a>
+        </p>
+    }
+}
 <table class="table">
     <thead class="thead-dark">
         <tr>
