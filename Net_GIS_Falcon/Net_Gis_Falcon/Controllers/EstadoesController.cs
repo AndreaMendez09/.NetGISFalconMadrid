@@ -44,7 +44,7 @@ namespace Net_Gis_Falcon.Controllers
 
             return View(estado);
         }
-        [Authorize(Roles = "operador")]
+        [Authorize(Roles = "admin")]
         // GET: Estadoes/Create
         public IActionResult Create()
         {
@@ -68,7 +68,7 @@ namespace Net_Gis_Falcon.Controllers
             ViewData["Padre"] = new SelectList(_context.Estados, "IdEstado", "NombreEstado", estado.Padre);
             return View(estado);
         }
-        [Authorize(Roles = "operador")]
+        [Authorize(Roles = "admin")]
         // GET: Estadoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -121,7 +121,7 @@ namespace Net_Gis_Falcon.Controllers
             ViewData["Padre"] = new SelectList(_context.Estados, "IdEstado", "NombreEstado", estado.Padre);
             return View(estado);
         }
-        [Authorize(Roles = "operador")]
+        [Authorize(Roles = "admin")]
         // GET: Estadoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

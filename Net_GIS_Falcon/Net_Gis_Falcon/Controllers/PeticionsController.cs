@@ -18,7 +18,7 @@ namespace Net_Gis_Falcon.Controllers
         {
             _context = context;
         }
-        [Authorize(Roles = "usuario")]
+        [Authorize(Roles = "usuario,operador")]
         // GET: Peticions
         public async Task<IActionResult> Index()
         {
