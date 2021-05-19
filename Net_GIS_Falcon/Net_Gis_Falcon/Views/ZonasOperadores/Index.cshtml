@@ -1,49 +1,39 @@
 @model IEnumerable<Net_Gis_Falcon.OperadoresZona>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Create";
 }
 
-<!DOCTYPE html>
+<h1>Operadores de Zonas</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Asignar</a>
 </p>
 <table class="table">
-    <thead>
+    <thead  class="thead-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.OperadorNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ZonaNavigation)
-            </th>
+            <th>Operadores</th>
+            <th>Zona</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OperadorNavigation.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZonaNavigation.NombreZona)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OperadorNavigation.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZonaNavigation.NombreZona)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
-</body>
-</html>
+
