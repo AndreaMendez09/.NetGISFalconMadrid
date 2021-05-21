@@ -47,7 +47,8 @@ namespace Net_Gis_Falcon
         // GET: ZonasOperadores/Create
         public IActionResult Create()
         {
-            ViewData["Operador"] = new SelectList(_context.Usuarios, "IdUsuario", "Apellido");
+            ViewData["Operador"] = new SelectList(_context.Usuarios.Where(g => g.Rol == 1), "IdUsuario", "Apellido");
+            ViewBag.Cuantos = new SelectList(_context.Usuarios.Where(g => g.Rol == 1), "IdUsuario", "Apellido").Count();
             ViewData["Zona"] = new SelectList(_context.Zonas, "IdZona", "NombreZona");
             return View();
         }
@@ -65,7 +66,8 @@ namespace Net_Gis_Falcon
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Operador"] = new SelectList(_context.Usuarios, "IdUsuario", "Apellido", operadoresZona.Operador);
+
+            ViewData["Operador"] = new SelectList(_context.Usuarios.Where(g => g.Rol == 1), "IdUsuario", "Apellido", operadoresZona.Operador);
             ViewData["Zona"] = new SelectList(_context.Zonas, "IdZona", "NombreZona", operadoresZona.Zona);
             return View(operadoresZona);
         }

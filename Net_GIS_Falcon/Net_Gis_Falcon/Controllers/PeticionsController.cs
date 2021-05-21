@@ -49,7 +49,11 @@ namespace Net_Gis_Falcon.Controllers
         // GET: Peticions/Create
         public IActionResult Create()
         {
-            ViewData["Usuario"] = new SelectList(_context.Usuarios, "IdUsuario", "Apellido");
+
+            foreach(var c in User.Claims)
+            {
+                ViewData["Usuario"] = new SelectList(_context.Usuarios.Where(g => g.IdUsuario.ToString() == c.Value), "IdUsuario", "Apellido");
+            }
             return View();
         }
 

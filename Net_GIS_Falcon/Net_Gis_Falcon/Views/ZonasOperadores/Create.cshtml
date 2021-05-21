@@ -10,6 +10,10 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (ViewBag.Cuantos == 0)
+            {
+                <p class="text-danger">No existen operadores</p>
+            }
             <div class="form-group">
                 <label asp-for="Operador" class="control-label"></label>
                 <select asp-for="Operador" class ="form-control" asp-items="ViewBag.Operador"></select>
