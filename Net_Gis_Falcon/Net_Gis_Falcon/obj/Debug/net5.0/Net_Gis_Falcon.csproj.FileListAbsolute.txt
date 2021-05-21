@@ -951,3 +951,8 @@ D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Deb
 D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\ZonasOperadores\Details.cshtml.g.cs
 D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\ZonasOperadores\Edit.cshtml.g.cs
 D:\Atos\RepositorioGIT\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\ZonasOperadores\Index.cshtml.g.cs
+D:\FTC_ATOS_DAM\ProyectoGIS\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\ZonasOperadores\Create.cshtml.g.cs
+D:\FTC_ATOS_DAM\ProyectoGIS\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\ZonasOperadores\Delete.cshtml.g.cs
+D:\FTC_ATOS_DAM\ProyectoGIS\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\ZonasOperadores\Details.cshtml.g.cs
+D:\FTC_ATOS_DAM\ProyectoGIS\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\ZonasOperadores\Edit.cshtml.g.cs
+D:\FTC_ATOS_DAM\ProyectoGIS\.NetGISFalconMadrid\Net_GIS_Falcon\Net_Gis_Falcon\obj\Debug\net5.0\Razor\Views\ZonasOperadores\Index.cshtml.g.cs
