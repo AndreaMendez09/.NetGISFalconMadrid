@@ -9,11 +9,10 @@
 <p>
     <a asp-action="Create">Crear nueva peticion</a>
 </p>
-<table class="table">
+<table class="table table-responsive-sm">
     <thead  class="thead-dark">
         <tr>
             <th>Fecha de creacion</th>
-            <th>Localizacion</th>
             <th>Usuario </th>
             <th></th>
         </tr>
@@ -24,16 +23,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.FechaCreacion)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LocalizacionPeticion)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.UsuarioNavigation.Apellido)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdPeticion">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.IdPeticion">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdPeticion">Eliminar</a>
+               
+                <a asp-action="Details" asp-route-id="@item.IdPeticion">Detalles</a> 
+             
             </td>
         </tr>
 }
