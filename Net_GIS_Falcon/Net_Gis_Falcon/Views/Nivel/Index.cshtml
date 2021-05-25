@@ -35,4 +35,30 @@
             </tr>
         }
     </tbody>
+<h1>Árbol de nivel</h1>
+@foreach (var item in Model)
+{
+
+    @if (item.Nivel1 == 0)
+    {
+        sacarHijos(item);
+
+    }
+
+}
 </table>
+@functions{
+    void sacarHijos(Nivel item)
+    {
+        <ul id="myUL">
+
+            <li class="caret">
+                @Html.DisplayFor(modelItem => item.DescripcionPregunta)
+            </li>
+            <li class="caret">
+                @Html.DisplayFor(modelItem => item.Respuesta.Count)
+            </li>
+        </ul>
+
+        }
+    }

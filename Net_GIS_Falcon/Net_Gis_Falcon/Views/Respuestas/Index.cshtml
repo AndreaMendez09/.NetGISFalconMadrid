@@ -43,5 +43,31 @@
             </tr>
         }
     </tbody>
+    <h1>Árbol de respuestas</h1>
+    @foreach (var item in Model)
+    {
+
+        @if (item.Nivel != null)
+        {
+            sacarHijos(item);
+        }
+
+    }
 </table>
+@functions{
+    void sacarHijos(Respuestum item)
+    {
+        <ul id="myUL">
+
+            <li class="caret">
+                @Html.DisplayFor(modelItem => item.Nivel)
+
+            </li>
+            <li class="caret">
+                @Html.DisplayFor(modelItem => item.CuerpoRespuesta)
+            </li>
+        </ul>
+
+    }
+}
 
