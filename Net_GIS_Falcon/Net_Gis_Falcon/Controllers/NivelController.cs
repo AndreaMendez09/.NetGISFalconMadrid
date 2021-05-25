@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,7 @@ namespace Net_Gis_Falcon
         {
             _context = context;
         }
-
+        [Authorize(Roles = "admin")]
         // GET: Nivel
         public async Task<IActionResult> Index()
         {
@@ -40,7 +41,7 @@ namespace Net_Gis_Falcon
 
             return View(nivel);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: Nivel/Create
         public IActionResult Create()
         {
@@ -62,7 +63,7 @@ namespace Net_Gis_Falcon
             }
             return View(nivel);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: Nivel/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -113,7 +114,7 @@ namespace Net_Gis_Falcon
             }
             return View(nivel);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: Nivel/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
