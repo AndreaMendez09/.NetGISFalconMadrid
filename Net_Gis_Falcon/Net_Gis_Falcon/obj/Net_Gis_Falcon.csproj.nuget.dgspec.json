@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj": {}
+    "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj": {}
   },
   "projects": {
-    "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj": {
+    "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
+        "projectUniqueName": "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
         "projectName": "Net_Gis_Falcon",
-        "projectPath": "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
-        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-        "outputPath": "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\obj\\",
+        "projectPath": "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
+        "packagesPath": "C:\\Users\\raul\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\raul\\Documents\\GitHub\\.NetGISFalconMadrid\\Net_Gis_Falcon\\Net_Gis_Falcon\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\raul\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -105,7 +105,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
