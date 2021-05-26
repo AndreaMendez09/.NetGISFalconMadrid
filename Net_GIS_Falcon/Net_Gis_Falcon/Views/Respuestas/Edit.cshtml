@@ -30,7 +30,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="RespuestaPadre" class="control-label">Respuesta del padre</label>
-                <select asp-for="RespuestaPadre" class="form-control" asp-items="ViewBag.RespuestaPadre"></select>
+                <select asp-for="RespuestaPadre" class="form-control" asp-items="ViewBag.RespuestaPadre">
+                    <option value="">Sin padre</option>
+                </select>
                 <span asp-validation-for="RespuestaPadre" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -18,21 +18,21 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-3">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Net_Gis_Falcon</a>
             <div>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Net_Gis_Falcon</a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-md-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse justify-content-between">
+                    <ul class="navbar-nav">
                         <!--<li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                </li>-->
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </li>-->
 
                         @foreach (var c in User.Claims)
                         {
@@ -59,16 +59,21 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="ZonasOperadores" asp-action="Index">Gestión de operadores</a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Nivel" asp-action="Index">Gestión de niveles</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Respuestas" asp-action="Index">Gestión de respuestas</a>
+                                </li>
                             }
                             @if (c.Value == "admin" || c.Value == "operador")
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Estadoes" asp-action="Index">Gestión de estados</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="HistoricoEstadoes" asp-action="Index">Historial de peticiones</a>
-                                </li>
+                                <!--<li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="HistoricoEstadoes" asp-action="Index">Historial de peticiones</a>
+                    </li>-->
                             }
                         }
 

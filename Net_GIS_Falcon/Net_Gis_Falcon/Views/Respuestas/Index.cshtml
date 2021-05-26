@@ -3,6 +3,27 @@
 @{
     ViewData["Title"] = "Index";
 }
+<h1>Árbol de respuestas</h1>
+@foreach (var item in Model)
+{
+
+    @if (item.Principal == true)
+    {
+        sacarHijos(item);
+    }
+
+}
+
+<h1>El otro árbol</h1>
+@foreach (var item in Model)
+{
+
+    @if (item.Principal == true)
+    {
+        sacarPadre(item);
+    }
+
+}
 
 <h1>Respuestas</h1>
 
@@ -43,16 +64,7 @@
             </tr>
         }
     </tbody>
-    <h1>Árbol de respuestas</h1>
-    @foreach (var item in Model)
-    {
 
-        @if (item.Nivel != null)
-        {
-            sacarHijos(item);
-        }
-
-    }
 </table>
 @functions{
     void sacarHijos(Respuestum item)
@@ -60,14 +72,48 @@
         <ul id="myUL">
 
             <li class="caret">
-                @Html.DisplayFor(modelItem => item.Nivel)
-
+                @Html.DisplayFor(modelItem => item.NivelNavigation.DescripcionPregunta)
             </li>
-            <li class="caret">
-                @Html.DisplayFor(modelItem => item.CuerpoRespuesta)
-            </li>
+            <ul id="myUL">
+                <li class="caret">
+                    @Html.DisplayFor(modelItem => item.CuerpoRespuesta)
+                </li>
+                @if (item != null) { 
+                    //sacarHijos(item);
+                }
+            </ul>
         </ul>
 
+    }
+
+    void sacarPadre(Respuestum item)
+    {
+        <ul id="myUL">
+
+            @if (item.Principal == true)
+            {
+                <li class="caret">
+                    @Html.DisplayFor(modelItem => item.CuerpoRespuesta)
+                </li>
+            }
+
+            @if (item.InverseRespuestaPadreNavigation.Count != 0)
+            {
+                <ul class="nested">
+                    @foreach (var hijos in item.InverseRespuestaPadreNavigation)
+                    {
+
+                        //Preguntarle por los hijos, de manera recursiva
+
+                        <li class="caret">@Html.DisplayFor(modelItem => hijos.CuerpoRespuesta)</li>
+
+                        sacarPadre(hijos);
+                    }
+                </ul>
+            }
+
+
+        </ul>
     }
 }
 

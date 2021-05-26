@@ -3,6 +3,18 @@
 @{
     ViewData["Title"] = "Index";
 }
+<h1>Árbol de nivel</h1>
+@foreach (var item in Model)
+{
+
+    @if (item.Nivel1 == 0)
+    {
+        sacarHijos(item);
+
+    }
+
+}
+
 
 <h1>Niveles</h1>
 
@@ -35,18 +47,9 @@
             </tr>
         }
     </tbody>
-<h1>Árbol de nivel</h1>
-@foreach (var item in Model)
-{
 
-    @if (item.Nivel1 == 0)
-    {
-        sacarHijos(item);
-
-    }
-
-}
 </table>
+
 @functions{
     void sacarHijos(Nivel item)
     {
@@ -60,5 +63,5 @@
             </li>
         </ul>
 
-        }
     }
+}
