@@ -49,10 +49,13 @@ namespace Net_Gis_Falcon.Controllers
         // GET: Peticions/Create
         public IActionResult Create()
         {
-
+            //Necesario una vista personalizada
+            //O quitarle el campo de usuario y el de posicion, y en la query añadirlos
+            //La posicion debe obtenerse automaticamente al iniciar la aplicacion, guardar en una cookie
+            //Al crear una nueva peticion directamente mostrar las preguntas.
             foreach(var c in User.Claims)
             {
-                ViewData["Usuario"] = new SelectList(_context.Usuarios.Where(g => g.IdUsuario.ToString() == c.Value), "IdUsuario", "Apellido");
+                ViewData["Usuario"] = new SelectList(_context.Usuarios.Where(g => g.Email.ToString() == c.Value), "IdUsuario", "Apellido");
             }
             return View();
         }

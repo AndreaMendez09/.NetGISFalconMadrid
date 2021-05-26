@@ -17,6 +17,7 @@
 <h1>El otro árbol</h1>
 @foreach (var item in Model)
 {
+    //Crear variable fuera del for de inicializar nivel
 
     @if (item.Principal == true)
     {
@@ -89,9 +90,10 @@
     void sacarPadre(Respuestum item)
     {
         <ul id="myUL">
-
             @if (item.Principal == true)
             {
+                //Tener un contador de que en nivel estamos
+
                 <li class="caret">
                     @Html.DisplayFor(modelItem => item.CuerpoRespuesta)
                 </li>
@@ -99,6 +101,7 @@
 
             @if (item.InverseRespuestaPadreNavigation.Count != 0)
             {
+                //Aqui se pinta el nivel, de alguna forma vistosa
                 <ul class="nested">
                     @foreach (var hijos in item.InverseRespuestaPadreNavigation)
                     {
@@ -107,7 +110,7 @@
 
                         <li class="caret">@Html.DisplayFor(modelItem => hijos.CuerpoRespuesta)</li>
 
-                        sacarPadre(hijos);
+                        sacarPadre(hijos); //Añadirle valor de nivel, al pasar argumentos, hacer +1 al nivel
                     }
                 </ul>
             }
