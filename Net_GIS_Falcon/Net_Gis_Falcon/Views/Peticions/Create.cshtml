@@ -24,11 +24,58 @@
             </div>
             <div class="form-group">
                 <label asp-for="Usuario" class="control-label"></label>
-                <select asp-for="Usuario" class ="form-control" asp-items="ViewBag.Usuario"></select>
+                <!--<select asp-for="Usuario" class="form-control" asp-items="ViewBag.Usuario"></select>-->
             </div>
+            <select id="pregunta1" onchange="check();">
+                <option value="urgencia1">1</option>
+                <option value="urgencia2">2</option>
+                <option value="urgencia3">3</option>
+            </select>
+
+            <select id="pregunta2" onchange="check2();">
+                <option value="donde1">Carretera</option>
+                <option value="donde2">Mar</option>
+                <option value="donde3">Casa</option>
+            </select>
+
+            <select id="pregunta3">
+                <option value="tipo1">Pizza sin piña</option>
+                <option value="tipo2">Jamon y queso de toda la vida</option>
+                <option value="tipo3">Carbonara</option>
+            </select>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
+
+
+            <script type="text/javascript">
+
+                function check() {
+                    var dropdown = document.getElementById("pregunta1");
+                    var current_value = dropdown.options[dropdown.selectedIndex].value;
+
+                    if (current_value == "urgencia1") {
+                        document.getElementById("pregunta2").style.display = "block";
+
+                    } else {
+                        document.getElementById("pregunta2").style.display = "none";
+                    }
+                }
+
+                function check2() {
+                    var dropdown2 = document.getElementById("pregunta2");
+                    var current_value2 = dropdown2.options[dropdown2.selectedIndex].value;
+
+                    if (current_value2 == "donde1") {
+                        document.getElementById("Pregunta3").style.display = "block";
+                    } else {
+                        document.getElementById("Pregunta3").style.display = "none";
+                    }
+                }
+
+            </script>
+            
         </form>
     </div>
 </div>
