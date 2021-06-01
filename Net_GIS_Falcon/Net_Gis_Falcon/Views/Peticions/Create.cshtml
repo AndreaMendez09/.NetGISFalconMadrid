@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Create";
 }
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
 
 <h1>Crear una nueva peticion</h1>
 
@@ -19,12 +20,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="LocalizacionPeticion" class="control-label">Localización</label>
-                <input asp-for="LocalizacionPeticion" class="form-control" />
+                <input asp-for="LocalizacionPeticion" id="position" class="form-control" />
                 <span asp-validation-for="LocalizacionPeticion" class="text-danger"></span>
             </div>
+            <label for="track">
+                track position
+                <input id="track" type="checkbox" />
+            </label>
             <div class="form-group">
                 <label asp-for="Usuario" class="control-label"></label>
-                <!--<select asp-for="Usuario" class="form-control" asp-items="ViewBag.Usuario"></select>-->
+                <select asp-for="Usuario" class="form-control" asp-items="ViewBag.Usuario"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
         <form action="form1" target="_blank">
@@ -62,11 +70,6 @@
             <p><input type="button" value="Atras "></p>
         </form>
 
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </div>
-
-
         <script type="text/javascript">
 
             function check() {
@@ -80,6 +83,81 @@
                     document.getElementById("pregunta2").style.display = "none";
                 }
             }
+
+            var view = new ol.View({
+                center: [0, 0],
+                zoom: 2,
+            });
+
+            var map = new ol.Map({
+                layers: [
+                    new ol.layer.Tile({
+                        source: new ol.source.OSM(),
+                    })],
+                target: 'map',
+                view: view,
+            });
+
+            var geolocation = new ol.Geolocation({
+                // enableHighAccuracy must be set to true to have the heading value.
+                trackingOptions: {
+                    enableHighAccuracy: true,
+                },
+                projection: view.getProjection(),
+            });
+
+            function el(id) {
+                return document.getElementById(id);
+            }
+
+            el('track').addEventListener('change', function () {
+                geolocation.setTracking(this.checked);
+            });
+
+            // update the HTML page when the position changes.
+            geolocation.on('change', function () {
+                document.getElementById("position").value = geolocation.getPosition();
+            });
+
+            // handle geolocation error.
+            geolocation.on('error', function (error) {
+                var info = document.getElementById('info');
+                info.innerHTML = error.message;
+                info.style.display = '';
+            });
+
+            var accuracyFeature = new ol.Feature();
+            geolocation.on('change:accuracyGeometry', function () {
+                accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
+            });
+
+            var positionFeature = new ol.Feature();
+            positionFeature.setStyle(
+                new ol.style.Style({
+                    image: new ol.style.Circle({
+                        radius: 6,
+                        fill: new ol.style.Fill({
+                            color: '#3399CC',
+                        }),
+                        stroke: new ol.style.Stroke({
+                            color: '#fff',
+                            width: 2,
+                        }),
+                    }),
+                })
+            );
+
+            geolocation.on('change:position', function () {
+                var coordinates = geolocation.getPosition();
+                positionFeature.setGeometry(coordinates ? new ol.geom.Point(coordinates) : null);
+            });
+
+            new ol.layer.Vector({
+                map: map,
+                source: new ol.source.Vector({
+                    features: [accuracyFeature, positionFeature],
+                }),
+            });
 
         </script>
 
