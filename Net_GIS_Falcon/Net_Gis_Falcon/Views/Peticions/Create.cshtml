@@ -28,6 +28,11 @@
                 <input id="track" type="checkbox" />
             </label>
             <div class="form-group">
+                <label asp-for="PrecisionPeticion" class="control-label"></label>
+                <input asp-for="PrecisionPeticion" id="precision" class="form-control" />
+                <span asp-validation-for="PrecisionPeticion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Usuario" class="control-label"></label>
                 <select asp-for="Usuario" class="form-control" asp-items="ViewBag.Usuario"></select>
             </div>

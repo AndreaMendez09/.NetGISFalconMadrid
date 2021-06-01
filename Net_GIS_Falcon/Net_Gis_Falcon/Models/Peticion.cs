@@ -17,6 +17,7 @@ namespace Net_Gis_Falcon
         public int IdPeticion { get; set; }
         public DateTime FechaCreacion { get; set; }
         public NpgsqlPoint LocalizacionPeticion { get; set; }
+        public int PrecisionPeticion { get; set; }
         public int Usuario { get; set; }
 
         public virtual Usuario UsuarioNavigation { get; set; }

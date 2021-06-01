@@ -216,6 +216,8 @@ namespace Net_Gis_Falcon
 
                 entity.Property(e => e.LocalizacionPeticion).HasColumnName("localizacion_peticion");
 
+                entity.Property(e => e.PrecisionPeticion).HasColumnName("precision_peticion");
+
                 entity.Property(e => e.Usuario).HasColumnName("usuario");
 
                 entity.HasOne(d => d.UsuarioNavigation)
@@ -277,6 +279,7 @@ namespace Net_Gis_Falcon
                 entity.HasOne(d => d.RespuestaPadreNavigation)
                     .WithMany(p => p.InverseRespuestaPadreNavigation)
                     .HasForeignKey(d => d.RespuestaPadre)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("respuesta_respuesta_padre_fkey");
             });
 

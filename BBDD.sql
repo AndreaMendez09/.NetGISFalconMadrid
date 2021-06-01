@@ -44,6 +44,7 @@ CREATE TABLE Peticion (
     id_peticion SERIAL PRIMARY KEY,
     fecha_creacion date not null, 
     localizacion_peticion point not null,
+    precision_peticion int not null,
     usuario int not null, 
     FOREIGN KEY (usuario) REFERENCES Usuarios(id_usuario)
 );
@@ -101,7 +102,7 @@ CREATE TABLE Respuesta (
     principal boolean not null, 
     nivel int not null,
 	respuesta_padre int, 
-	FOREIGN KEY (respuesta_padre) REFERENCES Respuesta(id_respuesta),
+	FOREIGN KEY (respuesta_padre) REFERENCES Respuesta(id_respuesta) ON DELETE CASCADE,
     FOREIGN KEY (nivel) REFERENCES Nivel(id_pregunta) ON DELETE CASCADE 
 );
 
