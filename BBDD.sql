@@ -45,6 +45,7 @@ CREATE TABLE Peticion (
     fecha_creacion date not null, 
     localizacion_peticion point not null,
     precision_peticion int not null,
+    coordenadas varchar(1000) not null,
     usuario int not null, 
     FOREIGN KEY (usuario) REFERENCES Usuarios(id_usuario)
 );

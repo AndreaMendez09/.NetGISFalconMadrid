@@ -210,6 +210,11 @@ namespace Net_Gis_Falcon
 
                 entity.Property(e => e.IdPeticion).HasColumnName("id_peticion");
 
+                entity.Property(e => e.Coordenadas)
+                    .IsRequired()
+                    .HasMaxLength(1000)
+                    .HasColumnName("coordenadas");
+
                 entity.Property(e => e.FechaCreacion)
                     .HasColumnType("date")
                     .HasColumnName("fecha_creacion");
