@@ -7587,19 +7587,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\andre\\.nuget\\packages\\": {}
+    "C:\\Users\\javig\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
+      "projectUniqueName": "C:\\Atos\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
       "projectName": "Net_Gis_Falcon",
-      "projectPath": "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
-      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "D:\\Atos\\RepositorioGIT\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\obj\\",
+      "projectPath": "C:\\Atos\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\Net_Gis_Falcon.csproj",
+      "packagesPath": "C:\\Users\\javig\\.nuget\\packages\\",
+      "outputPath": "C:\\Atos\\.NetGISFalconMadrid\\Net_GIS_Falcon\\Net_Gis_Falcon\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\javig\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7690,7 +7690,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

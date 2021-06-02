@@ -18,7 +18,7 @@
                 <input asp-for="FechaCreacion" class="form-control" />
                 <span asp-validation-for="FechaCreacion" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden >
                 <label asp-for="LocalizacionPeticion" class="control-label">Localización</label>
                 <input asp-for="LocalizacionPeticion" id="position" class="form-control" />
                 <span asp-validation-for="LocalizacionPeticion" class="text-danger"></span>
@@ -97,6 +97,7 @@
             var view = new ol.View({
                 center: [0, 0],
                 zoom: 2,
+                projection: 'EPSG:4326'
             });
 
             var map = new ol.Map({
@@ -126,7 +127,8 @@
 
             // update the HTML page when the position changes.
             geolocation.on('change', function () {
-                document.getElementById("position").value = geolocation.getPosition();
+                document.getElementById("coordenadas").value = geolocation.getPosition();
+                document.getElementById("precision").value = geolocation.getAccuracy();
             });
 
             // handle geolocation error.

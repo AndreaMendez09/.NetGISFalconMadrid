@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Net_Gis_Falcon;
+using NpgsqlTypes;
 
 namespace Net_Gis_Falcon.Controllers
 {
@@ -62,13 +63,21 @@ namespace Net_Gis_Falcon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPeticion,FechaCreacion,LocalizacionPeticion,Usuario")] Peticion peticion)
+        public async Task<IActionResult> Create([Bind("IdPeticion,FechaCreacion,LocalizacionPeticion,Coordenadas,PrecisionPeticion,Usuario")] Peticion peticion)
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine(ViewData["Usuario"].ToString());
-                //_context.Add(peticion);
-                //await _context.SaveChangesAsync();
+                Console.WriteLine("kxrxfcgxurjcjygcjgtrcktrckyc kytciytdiytdkytc");
+                Console.WriteLine(peticion.Coordenadas);
+
+                string[] array = peticion.Coordenadas.Split(",");
+                array[0] = array[0].Replace(".", ",");
+                array[1] = array[1].Replace(".", ",");
+                Console.WriteLine(peticion.Coordenadas);
+                var point = new NpgsqlPoint(Convert.ToDouble(array[0]), Convert.ToDouble(array[1]));
+                peticion.LocalizacionPeticion = point;
+                _context.Add(peticion);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
