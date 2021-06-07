@@ -56,7 +56,8 @@ var layerF = new ol.source.ImageWMS({
 
 var layerFF = new ol.layer.Image({
     source: layerF,
-    visible: true
+    visible: true,
+    className: 'perimetro'
 });
 
 const baseLayerGroup = new ol.layer.Group({
