@@ -33,21 +33,49 @@ var mapQuestOSMLayer = new ol.layer.Tile({
     title: 'OSMHumanitarian'
 });
 
+var layerSource = new ol.source.ImageWMS({
+    url: 'http://localhost:8080/geoserver/wms',
+    params: {
+        'LAYERS': 'view_peticion'
+    },
+    serverType: 'geoserver',
+});
+
+var layerP = new ol.layer.Image({
+    source: layerSource,
+    visible: true
+});
+
+var layerF = new ol.source.ImageWMS({
+    url: 'http://localhost:8080/geoserver/wms',
+    params: {
+        'LAYERS': 'view_radios'
+    },
+    serverType: 'geoserver',
+});
+
+var layerFF = new ol.layer.Image({
+    source: layerF,
+    visible: true
+});
+
 const baseLayerGroup = new ol.layer.Group({
-    layers: [baseMapLayer, mapQuestOSMLayer, countriesLayer]
+    //layers: [baseMapLayer, mapQuestOSMLayer, countriesLayer]
+    layers: [baseMapLayer, layerFF, layerP]
 });
 
 var map = new ol.Map({
     target: 'map',
     view: new ol.View({
-        center: [-412270.1806743107, 4926716.659837265],
+        projection: 'EPSG:4326',
+        center: [-3, 40],
         zoom: 5,
     }),
 });
 
 map.addLayer(baseLayerGroup)
 
-const baseLayerElements = document.querySelectorAll(".sidebar > input[type=radio]");
+/*const baseLayerElements = document.querySelectorAll(".sidebar > input[type=radio]");
 
 for (let baseLayerElement of baseLayerElements) {
     baseLayerElement.addEventListener('change', function () {
@@ -148,5 +176,5 @@ map.on('pointermove', function (evt) {
 
 map.on('click', function (evt) {
     displayFeatureInfo(evt.pixel);
-});
+});*/
 
