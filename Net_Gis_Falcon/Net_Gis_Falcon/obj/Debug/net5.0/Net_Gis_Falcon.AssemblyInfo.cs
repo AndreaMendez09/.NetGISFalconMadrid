@@ -11,7 +11,6 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap4")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-Net_Gis_Falcon-6682C435-A323-48A8-9A1D-6B9C71E15511")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Net_Gis_Falcon")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
