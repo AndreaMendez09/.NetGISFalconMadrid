@@ -18,7 +18,7 @@
                 <input asp-for="FechaCreacion" class="form-control" />
                 <span asp-validation-for="FechaCreacion" class="text-danger"></span>
             </div>
-            <div class="form-group" hidden >
+            <div class="form-group" hidden>
                 <label asp-for="LocalizacionPeticion" class="control-label">Localización</label>
                 <input asp-for="LocalizacionPeticion" id="position" class="form-control" />
                 <span asp-validation-for="LocalizacionPeticion" class="text-danger"></span>
@@ -45,20 +45,24 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
-        <form action="form1" target="_blank">
+        <form action="form1" target="_blank" n>
 
             <p>
                 Respuestas:<br>
-                <input type="radio" name="respuesta" value="respuesta1"> respuesta1<br>
-                <input type="radio" name="respuesta" value="respuesta2"> respuesta2<br>
-                <input type="radio" name="respuesta" value="respuesta3"> respuesta3
+            <p class="nav-link text-dark" title="Manage">
+              
+            </p>
+            <input type="radio" name="respuesta" value="respuesta1"> respuesta1<br>
+            <input type="radio" name="respuesta" value="respuesta2"> respuesta2<br>
+            <input type="radio" name="respuesta" value="respuesta3"> respuesta3
             </p>
             <p><input type="button" value="Siguiente"></p>
             <p><input type="button" value="Atras "></p>
         </form>
-        <form action="form2" target="_blank">
+        <form action="form2" target="_blank" style="visibility:hidden">
 
             <p>
+
                 Respuestas:<br>
                 <input type="radio" name="respuesta2" value="respuesta1.1"> respuesta1.1<br>
                 <input type="radio" name="respuesta2" value="respuesta2.1"> respuesta2.1<br>
@@ -68,7 +72,7 @@
             <p><input type="button" value="Atras "></p>
         </form>
 
-        <form action="form3" target="_blank">
+        <form action="form3" target="_blank" style="visibility:hidden">
 
             <p>
                 Respuestas:<br>
@@ -92,6 +96,7 @@
                 } else {
                     document.getElementById("pregunta2").style.display = "none";
                 }
+
             }
 
             var view = new ol.View({
