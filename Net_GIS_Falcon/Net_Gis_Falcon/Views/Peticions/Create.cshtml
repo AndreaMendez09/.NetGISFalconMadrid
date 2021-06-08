@@ -37,18 +37,15 @@
                 <input asp-for="PrecisionPeticion" id="precision" class="form-control" />
                 <span asp-validation-for="PrecisionPeticion" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Usuario" class="control-label"></label>
                 @{
                     @foreach (var c in User.Claims)
                     {
                         if (c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)
                         {
-                            <input asp-for="Usuario" id="usuario" class="form-control" value="@c.Value"/>
+                            <input asp-for="Usuario" id="usuario" class="form-control" value="@c.Value" hidden/>
                         }
                     }
                 }
-            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
