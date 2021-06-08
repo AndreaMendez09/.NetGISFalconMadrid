@@ -42,6 +42,7 @@ var layerSource = new ol.source.ImageWMS({
 });
 
 var layerP = new ol.layer.Image({
+    title: 'punto',
     source: layerSource,
     visible: true
 });
@@ -55,6 +56,7 @@ var layerF = new ol.source.ImageWMS({
 });
 
 var layerFF = new ol.layer.Image({
+    title: 'perimetro',
     source: layerF,
     visible: true,
     className: 'perimetro'
@@ -62,7 +64,7 @@ var layerFF = new ol.layer.Image({
 
 const baseLayerGroup = new ol.layer.Group({
     //layers: [baseMapLayer, mapQuestOSMLayer, countriesLayer]
-    layers: [baseMapLayer, layerFF, layerP]
+    layers: [baseMapLayer, mapQuestOSMLayer, countriesLayer, layerFF, layerP]
 });
 
 var map = new ol.Map({
@@ -76,15 +78,17 @@ var map = new ol.Map({
 
 map.addLayer(baseLayerGroup)
 
-/*const baseLayerElements = document.querySelectorAll(".sidebar > input[type=radio]");
+const baseLayerElements = document.querySelectorAll(".sidebar > input[type=radio]");
 
 for (let baseLayerElement of baseLayerElements) {
     baseLayerElement.addEventListener('change', function () {
         let baseLayerElementValue = this.value;
         baseLayerGroup.getLayers().forEach(function (element, index, array) {
             let baseLayerTitle = element.get('title');
-            element.setVisible(baseLayerTitle === baseLayerElementValue)
-            console.log(element.get('title'));
+            if (baseLayerTitle != "perimetro" && baseLayerTitle != "punto") {
+                element.setVisible(baseLayerTitle === baseLayerElementValue)
+                console.log(element.get('title'));
+            }
         })
     })
 }
@@ -177,5 +181,5 @@ map.on('pointermove', function (evt) {
 
 map.on('click', function (evt) {
     displayFeatureInfo(evt.pixel);
-});*/
+});
 
