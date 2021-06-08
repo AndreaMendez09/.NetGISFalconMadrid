@@ -122,6 +122,47 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                 success = security.Create(user);
                 Console.WriteLine(Input.BirthDay);
                 Console.WriteLine(DateTime.Parse(Input.BirthDay));
+                var idUsuario = 0;
+                using (NpgsqlConnection connection = new NpgsqlConnection())
+                {
+                    connection.ConnectionString = BdConnection.connectionString;
+                    connection.Open();
+                    NpgsqlCommand cmd = new NpgsqlCommand();
+                    cmd.Connection = connection;
+
+                    cmd.CommandText = "Select id_usuario from usuarios where email= '" + user.Email.ToString() + "'";
+                    cmd.CommandType = CommandType.Text;
+
+                    /*Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                    Console.WriteLine(cmd.ExecuteNonQuery());
+                    Console.WriteLine(cmd.CommandText.ToString());
+                    Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");*/
+                    try
+                    {
+                        NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        idUsuario = int.Parse(dt.Rows[0][0].ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+
+                    //NpgsqlDataReader rd = cmd.ExecuteReader();
+                    /*da.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        Console.WriteLine("Entre");
+                        cmd.Dispose();
+                        connection.Close();
+                        return LocalRedirect(returnUrl + "Home/Privacy");
+                    }*/
+
+
+                    cmd.Dispose();
+                    connection.Close();
+                }
 
 
                 if (success)
@@ -136,7 +177,7 @@ namespace Net_Gis_Falcon.Areas.Identity.Pages.Account
                     var claims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.Name, user.Email),
-                    new Claim(ClaimTypes.NameIdentifier, user.IdUsuario.ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, idUsuario.ToString()),
                     new Claim(ClaimTypes.Role, rol)
                 };
 

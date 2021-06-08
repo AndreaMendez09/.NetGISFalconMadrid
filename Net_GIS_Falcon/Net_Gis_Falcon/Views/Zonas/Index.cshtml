@@ -21,6 +21,7 @@
 <div id="map" class="map"></div>
 @foreach (var c in User.Claims)
 {
+    Console.WriteLine(c.ToString());
     @if (c.Value == "admin")
     {
         <p>
@@ -57,9 +58,14 @@
                     @Html.DisplayFor(modelItem => item.GeometriaZona)
                 </td>
                 <td>
+<<<<<<< Updated upstream
                    
                     <a asp-action="Details" asp-route-id="@item.IdZona">Detalles</a> |
                     <a asp-action="Delete" asp-route-id="@item.IdZona">Eliminar</a>
+=======
+                    <a asp-action="Details" asp-route-id="@item.IdZona">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdZona">Delete</a>
+>>>>>>> Stashed changes
                 </td>
             </tr>
         }
@@ -69,9 +75,13 @@
 <script type="text/javascript">
     // source
     var layerSource = new ol.source.ImageWMS({
-        url: 'http://localhost:8080/geoserver/wms',
+        url: 'http://localhost:8080/geoserver/wms&viewparams=idUsuario:1',
         params: {
+<<<<<<< Updated upstream
             'LAYERS': 'view_zona'
+=======
+            'LAYERS': 'pruebas'
+>>>>>>> Stashed changes
         },
         ratio: 1,
         serverType: 'geoserver',

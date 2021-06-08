@@ -33,26 +33,82 @@ var mapQuestOSMLayer = new ol.layer.Tile({
     title: 'OSMHumanitarian'
 });
 
-var layerSource = new ol.source.ImageWMS({
-    url: 'http://localhost:8080/geoserver/wms',
-    params: {
-        'LAYERS': 'view_peticion'
-    },
-    serverType: 'geoserver',
-});
+var layerSource;
+
+if (document.getElementById('idUser') != null) {
+    /* (GeoServer Query)
+        SELECT peticion.id_peticion,
+            peticion.fecha_creacion,
+            peticion.localizacion_peticion,
+            peticion.precision_peticion,
+            peticion.usuario,
+            st_geomfromtext(st_astext(peticion.localizacion_peticion:: geometry), 4326) AS localizacion
+        FROM peticion WHERE peticion.usuario = %idUsuario%
+        */
+
+
+    var idUser = document.getElementById('idUser').innerHTML;
+    console.log(idUser);
+    layerSource = new ol.source.ImageWMS({
+        url: 'http://localhost:8080/geoserver/wms?viewparams=idUsuario:' + idUser,
+        params: {
+            'LAYERS': 'peticionUsuario'
+            //'LAYERS': 'view_peticion'
+        },
+        serverType: 'geoserver',
+    });
+
+    var layerF = new ol.source.ImageWMS({
+        url: 'http://localhost:8080/geoserver/wms?viewparams=idOperador:' + idUser,
+        params: {
+            'LAYERS': 'operadorZona'
+        },
+        serverType: 'geoserver',
+    });
+} else {
+    layerSource = new ol.source.ImageWMS({
+        url: 'http://localhost:8080/geoserver/wms',
+        params: {
+            'LAYERS': 'peticionUsuario'
+            //'LAYERS': 'view_peticion'
+        },
+        serverType: 'geoserver',
+    });
+
+    var layerF = new ol.source.ImageWMS({
+        url: 'http://localhost:8080/geoserver/wms',
+        params: {
+            'LAYERS': 'operadorZona'
+        },
+        serverType: 'geoserver',
+    });
+}
+
+/*if (document.getElementById('rolUser') != null) {
+    if (document.getElementById('rolUser').innerHTML == "2") {
+        layerSource = new ol.source.ImageWMS({
+            url: 'http://localhost:8080/geoserver/wms',
+            params: {
+                'LAYERS': 'peticionUsuario'
+                //'LAYERS': 'view_peticion'
+            },
+            serverType: 'geoserver',
+        });
+
+        var layerF = new ol.source.ImageWMS({
+            url: 'http://localhost:8080/geoserver/wms',
+            params: {
+                'LAYERS': 'operadorZona'
+            },
+            serverType: 'geoserver',
+        });
+    }
+}*/
 
 var layerP = new ol.layer.Image({
     title: 'punto',
     source: layerSource,
     visible: true
-});
-
-var layerF = new ol.source.ImageWMS({
-    url: 'http://localhost:8080/geoserver/wms',
-    params: {
-        'LAYERS': 'view_radios'
-    },
-    serverType: 'geoserver',
 });
 
 var layerFF = new ol.layer.Image({

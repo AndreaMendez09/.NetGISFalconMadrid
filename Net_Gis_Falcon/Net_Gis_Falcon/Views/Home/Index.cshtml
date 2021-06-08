@@ -18,7 +18,18 @@
     <div class="text-center" id="info">&nbsp;</div>
 </div>
 
+@foreach (var c in User.Claims)
+{
+    if (c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)
+    {
+        <div id="idUser">@c.Value</div>
+    }
 
+    if (c.Type == System.Security.Claims.ClaimTypes.Role)
+    {
+        <div id="rolUser">@c.Value</div>
+    }
+}
 <script src="~/js/site.js"></script>
 <style>
     .card {
