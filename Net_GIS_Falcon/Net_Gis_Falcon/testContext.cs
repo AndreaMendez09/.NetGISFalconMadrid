@@ -188,13 +188,13 @@ namespace Net_Gis_Falcon
                 entity.HasOne(d => d.OperadorNavigation)
                     .WithMany(p => p.OperadoresZonas)
                     .HasForeignKey(d => d.Operador)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("operadores_zona_operador_fkey");
 
                 entity.HasOne(d => d.ZonaNavigation)
                     .WithMany(p => p.OperadoresZonas)
                     .HasForeignKey(d => d.Zona)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("operadores_zona_zona_fkey");
             });
 
